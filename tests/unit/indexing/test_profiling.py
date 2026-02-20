@@ -5,8 +5,8 @@
 
 import time
 
-from graphrag.index.run.profiling import WorkflowProfiler
-from graphrag.index.typing.stats import WorkflowMetrics
+from hypergraph.index.run.profiling import WorkflowProfiler
+from hypergraph.index.typing.stats import WorkflowMetrics
 
 
 class TestWorkflowProfiler:

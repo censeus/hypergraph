@@ -12,7 +12,7 @@ from knowledge_loader.data_sources.typing import Datasource
 
 """
 Contains functions to load and prep graph-indexed data from parquet files into dataframes.
-These output dataframes will then be used to create knowledge model's objects to be used as inputs for the graphrag-orchestration functions
+These output dataframes will then be used to create knowledge model's objects to be used as inputs for the hypergraph-orchestration functions
 """
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("azure").setLevel(logging.WARNING)

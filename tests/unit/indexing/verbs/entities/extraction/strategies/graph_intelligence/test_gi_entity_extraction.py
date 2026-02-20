@@ -2,10 +2,10 @@
 # Licensed under the MIT License
 import unittest
 
-from graphrag.index.operations.extract_graph.extract_graph import _run_extract_graph
-from graphrag.prompts.index.extract_graph import GRAPH_EXTRACTION_PROMPT
-from graphrag_llm.completion import create_completion
-from graphrag_llm.config import LLMProviderType, ModelConfig
+from hypergraph.index.operations.extract_graph.extract_graph import _run_extract_graph
+from hypergraph.prompts.index.extract_graph import GRAPH_EXTRACTION_PROMPT
+from hypergraph_llm.completion import create_completion
+from hypergraph_llm.config import LLMProviderType, ModelConfig
 
 SIMPLE_EXTRACTION_RESPONSE = """
 ("entity"<|>TEST_ENTITY_1<|>COMPANY<|>TEST_ENTITY_1 is a test company)

@@ -4,7 +4,7 @@
 """Test retry configuration loading."""
 
 import pytest
-from graphrag_llm.config import RetryConfig, RetryType
+from hypergraph_llm.config import RetryConfig, RetryType
 
 
 def test_exponential_backoff_validation() -> None:

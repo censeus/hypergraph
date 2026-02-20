@@ -1,18 +1,18 @@
 # Default Configuration Mode (using YAML/JSON)
 
-The default configuration mode may be configured by using a `settings.yml` or `settings.json` file in the data project root. If a `.env` file is present along with this config file, then it will be loaded, and the environment variables defined therein will be available for token replacements in your configuration document using `${ENV_VAR}` syntax. We initialize with YML by default in `graphrag init` but you may use the equivalent JSON form if preferred.
+The default configuration mode may be configured by using a `settings.yml` or `settings.json` file in the data project root. If a `.env` file is present along with this config file, then it will be loaded, and the environment variables defined therein will be available for token replacements in your configuration document using `${ENV_VAR}` syntax. We initialize with YML by default in `hypergraph init` but you may use the equivalent JSON form if preferred.
 
-Many of these config values have defaults. Rather than replicate them here, please refer to the [constants in the code](https://github.com/censeus/hypergraph/blob/main/graphrag/config/defaults.py) directly.
+Many of these config values have defaults. Rather than replicate them here, please refer to the [constants in the code](https://github.com/censeus/hypergraph/blob/main/hypergraph/config/defaults.py) directly.
 
 For example:
 
 ```bash
 # .env
-GRAPHRAG_API_KEY=some_api_key
+HYPERGRAPH_API_KEY=some_api_key
 
 # settings.yml
 default_chat_model:
-  api_key: ${GRAPHRAG_API_KEY}
+  api_key: ${HYPERGRAPH_API_KEY}
 ```
 
 # Config Sections
@@ -31,19 +31,19 @@ completion_models:
     model_provider: openai
     model: gpt-4.1
     auth_method: api_key
-    api_key: ${GRAPHRAG_API_KEY}
+    api_key: ${HYPERGRAPH_API_KEY}
 
 embedding_models:
   default_embedding_model:
     model_provider: openai
     model: text-embedding-3-large
     auth_method: api_key
-    api_key: ${GRAPHRAG_API_KEY}
+    api_key: ${HYPERGRAPH_API_KEY}
 ```
 
 #### Fields
 
-- `type` **litellm|mock** - The type of LLM provider to use. GraphRAG uses [LiteLLM](https://docs.litellm.ai/) for calling language models.
+- `type` **litellm|mock** - The type of LLM provider to use. Hypergraph uses [LiteLLM](https://docs.litellm.ai/) for calling language models.
 - `model_provider` **str** - The model provider to use, e.g., openai, azure, anthropic, etc. [LiteLLM](https://docs.litellm.ai/) is used under the hood which has support for calling 100+ models. [View LiteLLm basic usage](https://docs.litellm.ai/docs/#basic-usage) for details on how models are called (The `model_provider` is the portion prior to `/` while the `model` is the portion following the `/`). [View Language Model Selection](models.md) for more details and examples on using LiteLLM.
 - `model` **str** - The model name.
 - `call_args`: **dict[str, Any]** - Default arguments to send with every model request. Example, `{"n": 5, "max_completion_tokens": 1000, "temperature": 1.5, "organization": "..." }`
@@ -63,7 +63,7 @@ embedding_models:
   - period_in_seconds **int|None** - Window size for `sliding_window` rate limiting. default=`60`, limit requests per minute.
   - requests_per_period **int|None** - Maximum number of requests per period. default=`None`
   - tokens_per_period **int|None** - Maximum number of tokens per period. default=`None`
-- metrics **MetricsConfig|None** - Metric settings. default=`MetricsConfig()`. View [metrics notebook](https://github.com/censeus/hypergraph/blob/main/packages/graphrag-llm/notebooks/04_metrics.ipynb) for more details on metrics.
+- metrics **MetricsConfig|None** - Metric settings. default=`MetricsConfig()`. View [metrics notebook](https://github.com/censeus/hypergraph/blob/main/packages/hypergraph-llm/notebooks/04_metrics.ipynb) for more details on metrics.
   - type **default** - The type of `MetricsProcessor` service to use for processing request metrics. default=`default`
   - store **memory** - The type of `MetricsStore` service. default=`memory`.
   - writer **log|file** - The type of `MetricsWriter` to use. Will write out metrics at the end of the process. default`log`, log metrics out using python standard logging at the end of the process.
@@ -216,11 +216,11 @@ These settings control each individual workflow as they execute.
 
 ### workflows
 
-**list[str]** - This is a list of workflow names to run, in order. GraphRAG has built-in pipelines to configure this, but you can run exactly and only what you want by specifying the list here. Useful if you have done part of the processing yourself.
+**list[str]** - This is a list of workflow names to run, in order. Hypergraph has built-in pipelines to configure this, but you can run exactly and only what you want by specifying the list here. Useful if you have done part of the processing yourself.
 
 ### embed_text
 
-By default, the GraphRAG indexer will only export embeddings required for our query methods. However, the model has embeddings defined for all plaintext fields, and these can be customized by setting the `target` and `names` fields.
+By default, the Hypergraph indexer will only export embeddings required for our query methods. However, the model has embeddings defined for all plaintext fields, and these can be customized by setting the `target` and `names` fields.
 
 Supported embeddings names are:
 

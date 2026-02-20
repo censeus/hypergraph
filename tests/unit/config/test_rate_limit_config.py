@@ -4,7 +4,7 @@
 """Test rate limit configuration loading."""
 
 import pytest
-from graphrag_llm.config import RateLimitConfig, RateLimitType
+from hypergraph_llm.config import RateLimitConfig, RateLimitType
 
 
 def test_sliding_window_validation() -> None:

@@ -4,7 +4,7 @@
 """Test tokenizer configuration loading."""
 
 import pytest
-from graphrag_llm.config import TokenizerConfig, TokenizerType
+from hypergraph_llm.config import TokenizerConfig, TokenizerType
 
 
 def test_litellm_tokenizer_validation() -> None:

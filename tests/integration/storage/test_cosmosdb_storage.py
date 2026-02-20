@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 
 import pytest
-from graphrag_storage.azure_cosmos_storage import AzureCosmosStorage
+from hypergraph_storage.azure_cosmos_storage import AzureCosmosStorage
 
 # cspell:disable-next-line well-known-key
 WELL_KNOWN_COSMOS_CONNECTION_STRING = "AccountEndpoint=https://127.0.0.1:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="

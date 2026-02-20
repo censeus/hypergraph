@@ -8,25 +8,25 @@ import os
 import tempfile
 from pathlib import Path
 
-from graphrag.logger.standard_logging import DEFAULT_LOG_FILENAME, init_loggers
+from hypergraph.logger.standard_logging import DEFAULT_LOG_FILENAME, init_loggers
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 
 def test_standard_logging():
     """Test that standard logging works."""
-    logger = logging.getLogger("graphrag.test")
-    assert logger.name == "graphrag.test"
+    logger = logging.getLogger("hypergraph.test")
+    assert logger.name == "hypergraph.test"
 
 
 def test_logger_hierarchy():
     """Test that logger hierarchy works correctly."""
     # reset logging to default state using init_loggers
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     init_loggers(config)
 
-    root_logger = logging.getLogger("graphrag")
-    child_logger = logging.getLogger("graphrag.child")
+    root_logger = logging.getLogger("hypergraph")
+    child_logger = logging.getLogger("hypergraph.child")
 
     # setting level on root should affect children
     root_logger.setLevel(logging.ERROR)
@@ -40,15 +40,15 @@ def test_init_loggers_file_config():
     """Test that init_loggers works with file configuration."""
     with tempfile.TemporaryDirectory() as temp_dir:
         # Need to manually change cwd since we are not using load_config
-        # to create graphrag config.
+        # to create hypergraph config.
         cwd = Path.cwd()
         os.chdir(temp_dir)
-        config = get_default_graphrag_config()
+        config = get_default_hypergraph_config()
 
         # call init_loggers with file config
         init_loggers(config=config)
 
-        logger = logging.getLogger("graphrag")
+        logger = logging.getLogger("hypergraph")
 
         # should have a file handler
         file_handlers = [
@@ -80,15 +80,15 @@ def test_init_loggers_file_verbose():
     """Test that init_loggers works with verbose flag."""
     with tempfile.TemporaryDirectory() as temp_dir:
         # Need to manually change cwd since we are not using load_config
-        # to create graphrag config.
+        # to create hypergraph config.
         cwd = Path.cwd()
         os.chdir(temp_dir)
-        config = get_default_graphrag_config()
+        config = get_default_hypergraph_config()
 
         # call init_loggers with file config
         init_loggers(config=config, verbose=True)
 
-        logger = logging.getLogger("graphrag")
+        logger = logging.getLogger("hypergraph")
 
         # test that logging works
         test_message = "Test init_loggers file message"
@@ -113,15 +113,15 @@ def test_init_loggers_custom_filename():
     """Test that init_loggers works with custom filename."""
     with tempfile.TemporaryDirectory() as temp_dir:
         # Need to manually change cwd since we are not using load_config
-        # to create graphrag config.
+        # to create hypergraph config.
         cwd = Path.cwd()
         os.chdir(temp_dir)
-        config = get_default_graphrag_config()
+        config = get_default_hypergraph_config()
 
         # call init_loggers with file config
         init_loggers(config=config, filename="custom-log.log")
 
-        logger = logging.getLogger("graphrag")
+        logger = logging.getLogger("hypergraph")
 
         # check that the log file was created
         log_file = Path(temp_dir) / "logs" / "custom-log.log"

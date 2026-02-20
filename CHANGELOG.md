@@ -10,7 +10,7 @@ Note: version releases in the 0.x.y range may introduce breaking changes.
 - patch: Add table provider factory.
 - patch: Fix missed py 3.13.
 - patch: Move document ID, human_readable_id, and raw_data initialization from create_final_documents into load_input_documents and load_update_documents.
-- patch: Remove NetworkX dependency from graph utilities; move to DataFrame-based implementations in graphrag.graphs package.
+- patch: Remove NetworkX dependency from graph utilities; move to DataFrame-based implementations in hypergraph.graphs package.
 - patch: Remove unnecessary response format check. Fixes: #2203
 - patch: add profiling to get memory usage
 - patch: update notebooks
@@ -24,16 +24,16 @@ Note: version releases in the 0.x.y range may introduce breaking changes.
 - major: Monorepo restructure
 
   New Packages:
-    - graphrag-cache
-    - graphrag-chunking
-    - graphrag-common
-    - graphrag-input
-    - graphrag-llm
-    - graphrag-storage
-    - graphrag-vectors
+    - hypergraph-cache
+    - hypergraph-chunking
+    - hypergraph-common
+    - hypergraph-input
+    - hypergraph-llm
+    - hypergraph-storage
+    - hypergraph-vectors
 
   Changes:
-    - New config: run graphrag init --force to reinitialize config with new layout and options.
+    - New config: run hypergraph init --force to reinitialize config with new layout and options.
 
 ## 2.7.1
 
@@ -76,7 +76,7 @@ Note: version releases in the 0.x.y range may introduce breaking changes.
 ## 2.3.0
 
 - minor: Remove Dynamic Max Retries support. Refactor typer typing in cli interface
-- minor: Update fnllm to latest. Update default graphrag configuration
+- minor: Update fnllm to latest. Update default hypergraph configuration
 - patch: A few fixes and enhancements for better reuse and flow.
 - patch: Add full llm response to LLM PRovider output
 - patch: Fix Drift Reduce Response for non streaming calls
@@ -125,7 +125,7 @@ Note: version releases in the 0.x.y range may introduce breaking changes.
 - patch: Export NLP community reports prompt.
 - patch: Fix DRIFT search on Azure AI Search.
 - patch: Fix StopAsyncIteration catch.
-- patch: Fix missing embeddings workflow in FastGraphRAG.
+- patch: Fix missing embeddings workflow in FastHypergraph.
 - patch: Fix proper use of n_depth for drift search
 - patch: Fix report generation recursion.
 - patch: Fix summarization over large datasets for inc indexing. Fix relationship summarization

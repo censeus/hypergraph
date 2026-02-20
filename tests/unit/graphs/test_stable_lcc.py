@@ -8,7 +8,7 @@ from pathlib import Path
 
 import networkx as nx
 import pandas as pd
-from graphrag.graphs.stable_lcc import stable_lcc
+from hypergraph.graphs.stable_lcc import stable_lcc
 from pandas.testing import assert_frame_equal
 
 from tests.unit.graphs.nx_stable_lcc import stable_largest_connected_component

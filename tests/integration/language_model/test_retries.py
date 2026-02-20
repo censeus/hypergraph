@@ -9,8 +9,8 @@ from typing import Any
 import httpx
 import litellm.exceptions as exceptions
 import pytest
-from graphrag_llm.config import RetryConfig, RetryType
-from graphrag_llm.retry import create_retry
+from hypergraph_llm.config import RetryConfig, RetryType
+from hypergraph_llm.retry import create_retry
 
 
 @pytest.mark.parametrize(

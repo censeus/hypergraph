@@ -5,14 +5,14 @@ import re
 from typing import Any, cast
 
 import yaml
-from graphrag.config.init_content import INIT_YAML
-from graphrag.config.models.graph_rag_config import GraphRagConfig
+from hypergraph.config.init_content import INIT_YAML
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 
 
 def test_init_yaml():
     data = yaml.load(INIT_YAML, Loader=yaml.FullLoader)
-    config = GraphRagConfig(**data)
-    GraphRagConfig.model_validate(config, strict=True)
+    config = HyperGraphConfig(**data)
+    HyperGraphConfig.model_validate(config, strict=True)
 
 
 def test_init_yaml_uncommented():
@@ -25,5 +25,5 @@ def test_init_yaml_uncommented():
 
     content = "\n".join([uncomment_line(line) for line in lines])
     data = yaml.load(content, Loader=yaml.FullLoader)
-    config = GraphRagConfig(**data)
-    GraphRagConfig.model_validate(config, strict=True)
+    config = HyperGraphConfig(**data)
+    HyperGraphConfig.model_validate(config, strict=True)

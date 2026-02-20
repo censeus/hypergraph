@@ -1,9 +1,9 @@
 # CLI Reference
 
-This page documents the command-line interface of the graphrag library.
+This page documents the command-line interface of the hypergraph library.
 
 ::: mkdocs-typer
-    :module: graphrag.cli.main
-    :prog_name: graphrag
+    :module: hypergraph.cli.main
+    :prog_name: hypergraph
     :command: app
     :depth: 0

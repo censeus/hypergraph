@@ -3,9 +3,9 @@
 
 """NetworkX-based stable LCC utility, kept for side-by-side test comparisons.
 
-This was originally at graphrag.index.utils.stable_lcc and has been moved here
+This was originally at hypergraph.index.utils.stable_lcc and has been moved here
 because production code no longer uses it (superseded by the DataFrame-based
-graphrag.graphs.stable_lcc).
+hypergraph.graphs.stable_lcc).
 """
 
 import html

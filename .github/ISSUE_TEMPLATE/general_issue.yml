@@ -34,9 +34,9 @@ body:
   - type: textarea
     id: configused
     attributes:
-      label: GraphRAG Config Used
-      description: The GraphRAG configuration used for the run.
-      placeholder: The settings.yaml content or GraphRAG configuration
+      label: Hypergraph Config Used
+      description: The Hypergraph configuration used for the run.
+      placeholder: The settings.yaml content or Hypergraph configuration
       value: |
         ```yaml
         # Paste your config here
@@ -53,13 +53,13 @@ body:
     attributes:
       label: Additional Information
       description: |
-        - GraphRAG Version: e.g., v0.1.1
+        - Hypergraph Version: e.g., v0.1.1
         - Operating System: e.g., Windows 10, Ubuntu 20.04
         - Python Version: e.g., 3.8
         - Related Issues: e.g., #1
         - Any other relevant information.
       value: |
-        - GraphRAG Version:
+        - Hypergraph Version:
         - Operating System:
         - Python Version:
         - Related Issues:

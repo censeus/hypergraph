@@ -1,12 +1,12 @@
 {
-	"_comment": "Use this file to configure the graphrag project for debugging. You may create other configuration profiles based on these or select one below to use.",
+	"_comment": "Use this file to configure the hypergraph project for debugging. You may create other configuration profiles based on these or select one below to use.",
 	"version": "0.2.0",
 	"configurations": [
 		{
 			"name": "Indexer",
 			"type": "debugpy",
 			"request": "launch",
-			"module": "graphrag",
+			"module": "hypergraph",
 			"args": [
 				"index",
 				"--root", 
@@ -18,7 +18,7 @@
 			"name": "Update",
 			"type": "debugpy",
 			"request": "launch",
-			"module": "graphrag",
+			"module": "hypergraph",
 			"args": [
 				"update",
 				"--root", 
@@ -30,7 +30,7 @@
 			"name": "Query",
 			"type": "debugpy",
 			"request": "launch",
-			"module": "graphrag",
+			"module": "hypergraph",
 			"args": [
 				"query",
                 "${input:query}",

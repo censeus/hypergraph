@@ -1,13 +1,13 @@
 # Unified Search
-Unified demo for GraphRAG search comparisons.
+Unified demo for Hypergraph search comparisons.
 
-⚠️ This app is maintained for demo/experimental purposes and is not supported. Issue filings on the GraphRAG repo may not be addressed.
+⚠️ This app is maintained for demo/experimental purposes and is not supported. Issue filings on the Hypergraph repo may not be addressed.
 
 ## Requirements:
 - Python 3.11
 - UV
     
-This sample app is not published to pypi, so you'll need to clone the GraphRAG repo and run from this folder.
+This sample app is not published to pypi, so you'll need to clone the Hypergraph repo and run from this folder.
 
 We recommend always using a virtual environment:
 
@@ -15,10 +15,10 @@ We recommend always using a virtual environment:
 - `source .venv/bin/activate`
 
 ## Run index
-Use GraphRAG to index your dataset before running Unified Search. We recommend starting with the [Getting Started guide](https://censeus.github.io/hypergraph/get_started/).
+Use Hypergraph to index your dataset before running Unified Search. We recommend starting with the [Getting Started guide](https://censeus.github.io/hypergraph/get_started/).
 
 ## Datasets
-Unified Search supports multiple GraphRAG indexes by using a directory listing file. Create a `listing.json` file in the root folder where all your datasets are stored (locally or in blob storage), with the following format (one entry per dataset):
+Unified Search supports multiple Hypergraph indexes by using a directory listing file. Create a `listing.json` file in the root folder where all your datasets are stored (locally or in blob storage), with the following format (one entry per dataset):
 
 ```json
 [{
@@ -36,7 +36,7 @@ Unified Search supports multiple GraphRAG indexes by using a directory listing f
 }]
 ```
 
-For example, if you have a folder of GraphRAG indexes called "projects" and inside that you ran the Getting Started instructions, your listing.json in the projects folder could look like:
+For example, if you have a folder of Hypergraph indexes called "projects" and inside that you ran the Getting Started instructions, your listing.json in the projects folder could look like:
 ```json
 [{
     "key": "christmas-demo",

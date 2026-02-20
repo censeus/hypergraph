@@ -1,6 +1,6 @@
 # Manual Prompt Tuning ⚙️
 
-The GraphRAG indexer, by default, will run with a handful of prompts that are designed to work well in the broad context of knowledge discovery.
+The Hypergraph indexer, by default, will run with a handful of prompts that are designed to work well in the broad context of knowledge discovery.
 However, it is quite common to want to tune the prompts to better suit your specific use case.
 We provide a means for you to do this by allowing you to specify a custom prompt file, which will each use a series of token-replacements internally.
 
@@ -10,7 +10,7 @@ Each of these prompts may be overridden by writing a custom prompt file in plain
 
 ### Entity/Relationship Extraction
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/extract_graph.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/extract_graph.py)
 
 #### Tokens
 
@@ -22,7 +22,7 @@ Each of these prompts may be overridden by writing a custom prompt file in plain
 
 ### Summarize Entity/Relationship Descriptions
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/summarize_descriptions.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/summarize_descriptions.py)
 
 #### Tokens
 
@@ -31,7 +31,7 @@ Each of these prompts may be overridden by writing a custom prompt file in plain
 
 ### Claim Extraction
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/extract_claims.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/extract_claims.py)
 
 #### Tokens
 
@@ -46,7 +46,7 @@ See the [configuration documentation](../config/overview.md) for details on how 
 
 ### Generate Community Reports
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/community_report.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/community_report.py)
 
 #### Tokens
 
@@ -56,35 +56,35 @@ See the [configuration documentation](../config/overview.md) for details on how 
 
 ### Local Search
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/local_search_system_prompt.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/local_search_system_prompt.py)
 
 #### Tokens
 
 - **{response_type}** - Describe how the response should look. We default to "multiple paragraphs".
-- **{context_data}** - The data tables from GraphRAG's index.
+- **{context_data}** - The data tables from Hypergraph's index.
 
 ### Global Search
 
-[Mapper Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_map_system_prompt.py)
+[Mapper Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_map_system_prompt.py)
 
-[Reducer Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_reduce_system_prompt.py)
+[Reducer Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_reduce_system_prompt.py)
 
-[Knowledge Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_knowledge_system_prompt.py)
+[Knowledge Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_knowledge_system_prompt.py)
 
 Global search uses a map/reduce approach to summarization. You can tune these prompts independently. This search also includes the ability to adjust the use of general knowledge from the model's training.
 
 #### Tokens
 
 - **{response_type}** - Describe how the response should look (reducer only). We default to "multiple paragraphs".
-- **{context_data}** - The data tables from GraphRAG's index.
+- **{context_data}** - The data tables from Hypergraph's index.
 
 ### Drift Search
 
-[Prompt Source](http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/drift_search_system_prompt.py)
+[Prompt Source](http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/drift_search_system_prompt.py)
 
 #### Tokens
 
 - **{response_type}** - Describe how the response should look. We default to "multiple paragraphs".
-- **{context_data}** - The data tables from GraphRAG's index.
+- **{context_data}** - The data tables from Hypergraph's index.
 - **{community_reports}** - The most relevant community reports to include in the summarization.
 - **{query}** - The query text as injected into the context.

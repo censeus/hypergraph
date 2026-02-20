@@ -9,8 +9,8 @@ from typing import Any
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-from graphrag.prompt_tune.loader.input import load_docs_in_chunks
-from graphrag.prompt_tune.types import DocSelectionType
+from hypergraph.prompt_tune.loader.input import load_docs_in_chunks
+from hypergraph.prompt_tune.types import DocSelectionType
 
 
 @dataclass
@@ -62,7 +62,7 @@ class MockEmbeddingModel:
 
 @pytest.fixture
 def mock_config():
-    """Create a mock GraphRagConfig."""
+    """Create a mock HyperGraphConfig."""
     config = MagicMock()
     config.embed_text.embedding_model_id = "test-model"
     config.embed_text.batch_size = 10
@@ -110,19 +110,19 @@ class TestLoadDocsInChunks:
 
         with (
             patch(
-                "graphrag.prompt_tune.loader.input.create_embedding",
+                "hypergraph.prompt_tune.loader.input.create_embedding",
                 return_value=MockEmbeddingModel(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_storage",
+                "hypergraph.prompt_tune.loader.input.create_storage",
                 return_value=MagicMock(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_input_reader",
+                "hypergraph.prompt_tune.loader.input.create_input_reader",
                 return_value=mock_reader,
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_chunker",
+                "hypergraph.prompt_tune.loader.input.create_chunker",
                 return_value=MockChunker(),
             ),
         ):
@@ -147,19 +147,19 @@ class TestLoadDocsInChunks:
 
         with (
             patch(
-                "graphrag.prompt_tune.loader.input.create_embedding",
+                "hypergraph.prompt_tune.loader.input.create_embedding",
                 return_value=MockEmbeddingModel(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_storage",
+                "hypergraph.prompt_tune.loader.input.create_storage",
                 return_value=MagicMock(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_input_reader",
+                "hypergraph.prompt_tune.loader.input.create_input_reader",
                 return_value=mock_reader,
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_chunker",
+                "hypergraph.prompt_tune.loader.input.create_chunker",
                 return_value=MockChunker(),
             ),
         ):
@@ -189,19 +189,19 @@ class TestLoadDocsInChunks:
 
         with (
             patch(
-                "graphrag.prompt_tune.loader.input.create_embedding",
+                "hypergraph.prompt_tune.loader.input.create_embedding",
                 return_value=MockEmbeddingModel(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_storage",
+                "hypergraph.prompt_tune.loader.input.create_storage",
                 return_value=MagicMock(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_input_reader",
+                "hypergraph.prompt_tune.loader.input.create_input_reader",
                 return_value=mock_reader,
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_chunker",
+                "hypergraph.prompt_tune.loader.input.create_chunker",
                 return_value=MockChunker(),
             ),
         ):
@@ -225,23 +225,23 @@ class TestLoadDocsInChunks:
 
         with (
             patch(
-                "graphrag.prompt_tune.loader.input.create_embedding",
+                "hypergraph.prompt_tune.loader.input.create_embedding",
                 return_value=MockEmbeddingModel(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_storage",
+                "hypergraph.prompt_tune.loader.input.create_storage",
                 return_value=MagicMock(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_input_reader",
+                "hypergraph.prompt_tune.loader.input.create_input_reader",
                 return_value=mock_reader,
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_chunker",
+                "hypergraph.prompt_tune.loader.input.create_chunker",
                 return_value=MockChunker(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.LIMIT",
+                "hypergraph.prompt_tune.loader.input.LIMIT",
                 3,
             ),
         ):
@@ -264,19 +264,19 @@ class TestLoadDocsInChunks:
 
         with (
             patch(
-                "graphrag.prompt_tune.loader.input.create_embedding",
+                "hypergraph.prompt_tune.loader.input.create_embedding",
                 return_value=MockEmbeddingModel(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_storage",
+                "hypergraph.prompt_tune.loader.input.create_storage",
                 return_value=MagicMock(),
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_input_reader",
+                "hypergraph.prompt_tune.loader.input.create_input_reader",
                 return_value=mock_reader,
             ),
             patch(
-                "graphrag.prompt_tune.loader.input.create_chunker",
+                "hypergraph.prompt_tune.loader.input.create_chunker",
                 return_value=MockChunker(),
             ),
         ):

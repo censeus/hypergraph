@@ -8,20 +8,20 @@ These tests will test the LLMFactory class and the creation of custom and provid
 
 from typing import TYPE_CHECKING, Any, Unpack
 
-from graphrag_llm.completion import (
+from hypergraph_llm.completion import (
     LLMCompletion,
     create_completion,
     register_completion,
 )
-from graphrag_llm.config import ModelConfig
-from graphrag_llm.embedding import LLMEmbedding, create_embedding, register_embedding
+from hypergraph_llm.config import ModelConfig
+from hypergraph_llm.embedding import LLMEmbedding, create_embedding, register_embedding
 
 if TYPE_CHECKING:
     from collections.abc import AsyncIterator, Iterator
 
-    from graphrag_llm.metrics import MetricsStore
-    from graphrag_llm.tokenizer import Tokenizer
-    from graphrag_llm.types import (
+    from hypergraph_llm.metrics import MetricsStore
+    from hypergraph_llm.tokenizer import Tokenizer
+    from hypergraph_llm.types import (
         LLMCompletionArgs,
         LLMCompletionChunk,
         LLMCompletionResponse,

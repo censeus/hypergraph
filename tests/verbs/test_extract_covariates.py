@@ -1,14 +1,14 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.data_model.schemas import COVARIATES_FINAL_COLUMNS
-from graphrag.index.workflows.extract_covariates import (
+from hypergraph.data_model.schemas import COVARIATES_FINAL_COLUMNS
+from hypergraph.index.workflows.extract_covariates import (
     run_workflow,
 )
-from graphrag_llm.config import LLMProviderType
+from hypergraph_llm.config import LLMProviderType
 from pandas.testing import assert_series_equal
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     create_test_context,
@@ -29,7 +29,7 @@ async def test_extract_covariates():
         storage=["text_units"],
     )
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.extract_claims.enabled = True
     config.extract_claims.description = "description"
     llm_settings = config.get_completion_model_config(

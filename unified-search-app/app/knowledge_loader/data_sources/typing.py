@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 import pandas as pd
-from graphrag.config.models.graph_rag_config import GraphRagConfig
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 
 
 class WriteMode(Enum):
@@ -39,7 +39,7 @@ class Datasource(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def read_settings(self, file: str) -> GraphRagConfig | None:
+    def read_settings(self, file: str) -> HyperGraphConfig | None:
         """Read settings method definition."""
         raise NotImplementedError
 

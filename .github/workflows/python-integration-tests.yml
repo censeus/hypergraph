@@ -47,7 +47,7 @@ jobs:
         with:
           filters: |
             python:
-              - 'graphrag/**/*'
+              - 'hypergraph/**/*'
               - 'uv.lock'
               - 'pyproject.toml'
               - '**/*.py'

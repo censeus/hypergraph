@@ -14,10 +14,10 @@ from unittest import mock
 
 import pandas as pd
 import pytest
-from graphrag.query.context_builder.community_context import (
+from hypergraph.query.context_builder.community_context import (
     NO_COMMUNITY_RECORDS_WARNING,
 )
-from graphrag_storage.azure_blob_storage import AzureBlobStorage
+from hypergraph_storage.azure_blob_storage import AzureBlobStorage
 
 logger = logging.getLogger(__name__)
 

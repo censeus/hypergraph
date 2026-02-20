@@ -22,7 +22,7 @@ from knowledge_loader.data_sources.typing import Datasource
 
 """
 Contain functions to load graph-indexed data into collections of knowledge model objects.
-These collections will be used as inputs for the graphrag-orchestration functions
+These collections will be used as inputs for the hypergraph-orchestration functions
 """
 
 

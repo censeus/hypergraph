@@ -6,12 +6,12 @@ from io import StringIO
 
 import pandas as pd
 import pytest
-from graphrag_storage import (
+from hypergraph_storage import (
     StorageConfig,
     StorageType,
     create_storage,
 )
-from graphrag_storage.tables.csv_table_provider import CSVTableProvider
+from hypergraph_storage.tables.csv_table_provider import CSVTableProvider
 
 
 class TestCSVTableProvider(unittest.IsolatedAsyncioTestCase):

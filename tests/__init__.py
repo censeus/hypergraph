@@ -2,4 +2,4 @@
 # Licensed under the MIT License
 
 
-"""Tests for the GraphRAG LLM module."""
+"""Tests for the Hypergraph LLM module."""

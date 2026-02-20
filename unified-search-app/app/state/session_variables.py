@@ -19,7 +19,7 @@ class SessionVariables:
         self.datasets = SessionVariable([])
         self.dataset_config = SessionVariable()
         self.datasource = SessionVariable()
-        self.graphrag_config = SessionVariable()
+        self.hypergraph_config = SessionVariable()
         self.question = QueryVariable("question", "")
         self.suggested_questions = SessionVariable(default_suggested_questions)
         self.entities = SessionVariable([])

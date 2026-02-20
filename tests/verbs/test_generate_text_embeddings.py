@@ -1,14 +1,14 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.config.embeddings import (
+from hypergraph.config.embeddings import (
     all_embeddings,
 )
-from graphrag.index.workflows.generate_text_embeddings import (
+from hypergraph.index.workflows.generate_text_embeddings import (
     run_workflow,
 )
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     create_test_context,
@@ -26,7 +26,7 @@ async def test_generate_text_embeddings():
         ]
     )
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     llm_settings = config.get_embedding_model_config(
         config.embed_text.embedding_model_id
     )

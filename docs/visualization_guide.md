@@ -1,6 +1,6 @@
 # Visualizing and Debugging Your Knowledge Graph
 
-The following step-by-step guide walks through the process to visualize a knowledge graph after it's been constructed by graphrag. Note that some of the settings recommended below are based on our own experience of what works well. Feel free to change and explore other settings for a better visualization experience!
+The following step-by-step guide walks through the process to visualize a knowledge graph after it's been constructed by hypergraph. Note that some of the settings recommended below are based on our own experience of what works well. Feel free to change and explore other settings for a better visualization experience!
 
 ## 1. Run the Pipeline
 Before building an index, please review your `settings.yaml` configuration file and ensure that graphml snapshots is enabled.

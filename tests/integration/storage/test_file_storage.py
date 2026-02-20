@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from graphrag_storage.file_storage import (
+from hypergraph_storage.file_storage import (
     FileStorage,
 )
 

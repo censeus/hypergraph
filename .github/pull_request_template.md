@@ -1,5 +1,5 @@
 <!--
-Thanks for contributing to GraphRAG!
+Thanks for contributing to Hypergraph!
 
 Please do not make *Draft* pull requests, as they still notify anyone watching the repo.
 

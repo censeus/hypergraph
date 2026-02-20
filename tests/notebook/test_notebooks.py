@@ -16,7 +16,7 @@ class NotebookDetails:
 
 NOTEBOOKS: list[NotebookDetails] = [
     NotebookDetails(
-        dir=Path("packages/graphrag-llm/notebooks"),
+        dir=Path("packages/hypergraph-llm/notebooks"),
         excluded_filenames=[],
     ),
     # Was in previous test but not actually pointing at a notebooks location
@@ -64,7 +64,7 @@ def _notebook_run(filepath: Path):
 
 
 def clear_cache():
-    cache_dir = Path("packages/graphrag-llm/notebooks/cache")
+    cache_dir = Path("packages/hypergraph-llm/notebooks/cache")
     if cache_dir.exists():
         for file in cache_dir.iterdir():
             if file.is_file():

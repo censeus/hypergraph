@@ -1,13 +1,13 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-"""Unit tests for graphrag-config.load_config."""
+"""Unit tests for hypergraph-config.load_config."""
 
 import os
 from pathlib import Path
 
 import pytest
-from graphrag_common.config import ConfigParsingError, load_config
+from hypergraph_common.config import ConfigParsingError, load_config
 from pydantic import ValidationError
 
 from .config import TestConfigModel

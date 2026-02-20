@@ -8,9 +8,9 @@ These tests will test the LoggerFactory class and the creation of each reporting
 import logging
 
 import pytest
-from graphrag.config.enums import ReportingType
-from graphrag.logger.blob_workflow_logger import BlobWorkflowLogger
-from graphrag.logger.factory import LoggerFactory
+from hypergraph.config.enums import ReportingType
+from hypergraph.logger.blob_workflow_logger import BlobWorkflowLogger
+from hypergraph.logger.factory import LoggerFactory
 
 # cspell:disable-next-line well-known-key
 WELL_KNOWN_BLOB_STORAGE_KEY = "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"

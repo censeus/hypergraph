@@ -57,7 +57,7 @@
       "type": "patch"
     },
     {
-      "description": "Fix missing embeddings workflow in FastGraphRAG.",
+      "description": "Fix missing embeddings workflow in FastHypergraph.",
       "type": "patch"
     },
     {

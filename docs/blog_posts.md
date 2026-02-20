@@ -1,7 +1,7 @@
 
 <div class="grid cards" markdown>
 
--   [:octicons-arrow-right-24: __GraphRAG: Unlocking LLM discovery on narrative private data__](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)
+-   [:octicons-arrow-right-24: __Hypergraph: Unlocking LLM discovery on narrative private data__](https://www.microsoft.com/en-us/research/blog/hypergraph-unlocking-llm-discovery-on-narrative-private-data/)
 
     ---
     <h6>Published February 13, 2024
@@ -9,7 +9,7 @@
     By [Jonathan Larson](https://www.microsoft.com/en-us/research/people/jolarso/), Senior Principal Data Architect; [Steven Truitt](https://www.microsoft.com/en-us/research/people/steventruitt/), Principal Program Manager</h6>
     
 
--   [:octicons-arrow-right-24: __GraphRAG: New tool for complex data discovery now on GitHub__](https://www.microsoft.com/en-us/research/blog/graphrag-new-tool-for-complex-data-discovery-now-on-github/)
+-   [:octicons-arrow-right-24: __Hypergraph: New tool for complex data discovery now on GitHub__](https://www.microsoft.com/en-us/research/blog/hypergraph-new-tool-for-complex-data-discovery-now-on-github/)
 
     ---
     <h6>Published July 2, 2024
@@ -17,7 +17,7 @@
     By [Darren Edge](https://www.microsoft.com/en-us/research/people/daedge/), Senior Director; [Ha Trinh](https://www.microsoft.com/en-us/research/people/trinhha/), Senior Data Scientist; [Steven Truitt](https://www.microsoft.com/en-us/research/people/steventruitt/), Principal Program Manager; [Jonathan Larson](https://www.microsoft.com/en-us/research/people/jolarso/), Senior Principal Data Architect</h6>
 
 
--   [:octicons-arrow-right-24: __GraphRAG auto-tuning provides rapid adaptation to new domains__](https://www.microsoft.com/en-us/research/blog/graphrag-auto-tuning-provides-rapid-adaptation-to-new-domains/)
+-   [:octicons-arrow-right-24: __Hypergraph auto-tuning provides rapid adaptation to new domains__](https://www.microsoft.com/en-us/research/blog/hypergraph-auto-tuning-provides-rapid-adaptation-to-new-domains/)
 
     ---
     <h6>Published September 9, 2024
@@ -31,21 +31,21 @@
 
     By Julian Whiting, Senior Machine Learning Engineer; Zachary Hills , Senior Software Engineer; [Alonso Guevara Fernández](https://www.microsoft.com/en-us/research/people/alonsog/), Sr. Software Engineer; [Ha Trinh](https://www.microsoft.com/en-us/research/people/trinhha/), Senior Data Scientist; Adam Bradley , Managing Partner, Strategic Research; [Jonathan Larson](https://www.microsoft.com/en-us/research/people/jolarso/), Senior Principal Data Architect</h6>
 
-- [:octicons-arrow-right-24: __GraphRAG: Improving global search via dynamic community selection__](https://www.microsoft.com/en-us/research/blog/graphrag-improving-global-search-via-dynamic-community-selection/)
+- [:octicons-arrow-right-24: __Hypergraph: Improving global search via dynamic community selection__](https://www.microsoft.com/en-us/research/blog/hypergraph-improving-global-search-via-dynamic-community-selection/)
 
     ---
     <h6>Published November 15, 2024
 
     By Bryan Li, Research Intern; [Ha Trinh](https://www.microsoft.com/en-us/research/people/trinhha/), Senior Data Scientist; [Darren Edge](https://www.microsoft.com/en-us/research/people/daedge/), Senior Director; [Jonathan Larson](https://www.microsoft.com/en-us/research/people/jolarso/), Senior Principal Data Architect</h6>
 
-- [:octicons-arrow-right-24: __LazyGraphRAG: Setting a new standard for quality and cost__](https://www.microsoft.com/en-us/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/)
+- [:octicons-arrow-right-24: __LazyHypergraph: Setting a new standard for quality and cost__](https://www.microsoft.com/en-us/research/blog/lazyhypergraph-setting-a-new-standard-for-quality-and-cost/)
 
     ---
     <h6>Published November 25, 2024
 
     By [Darren Edge](https://www.microsoft.com/en-us/research/people/daedge/), Senior Director; [Ha Trinh](https://www.microsoft.com/en-us/research/people/trinhha/), Senior Data Scientist;  [Jonathan Larson](https://www.microsoft.com/en-us/research/people/jolarso/), Senior Principal Data Architect</h6>
 
-- [:octicons-arrow-right-24: __Moving to GraphRAG 1.0 – Streamlining ergonomics for developers and users__](https://www.microsoft.com/en-us/research/blog/moving-to-graphrag-1-0-streamlining-ergonomics-for-developers-and-users)
+- [:octicons-arrow-right-24: __Moving to Hypergraph 1.0 – Streamlining ergonomics for developers and users__](https://www.microsoft.com/en-us/research/blog/moving-to-hypergraph-1-0-streamlining-ergonomics-for-developers-and-users)
 
     ---
     <h6>Published December 16, 2024

@@ -7,10 +7,10 @@ import os
 from unittest.mock import MagicMock, patch
 
 import pytest
-from graphrag_vectors import (
+from hypergraph_vectors import (
     VectorStoreDocument,
 )
-from graphrag_vectors.azure_ai_search import AzureAISearchVectorStore
+from hypergraph_vectors.azure_ai_search import AzureAISearchVectorStore
 
 TEST_AZURE_AI_SEARCH_URL = os.environ.get(
     "TEST_AZURE_AI_SEARCH_URL", "https://test-url.search.windows.net"
@@ -24,13 +24,13 @@ class TestAzureAISearchVectorStore:
     @pytest.fixture
     def mock_search_client(self):
         """Create a mock Azure AI Search client."""
-        with patch("graphrag_vectors.azure_ai_search.SearchClient") as mock_client:
+        with patch("hypergraph_vectors.azure_ai_search.SearchClient") as mock_client:
             yield mock_client.return_value
 
     @pytest.fixture
     def mock_index_client(self):
         """Create a mock Azure AI Search index client."""
-        with patch("graphrag_vectors.azure_ai_search.SearchIndexClient") as mock_client:
+        with patch("hypergraph_vectors.azure_ai_search.SearchIndexClient") as mock_client:
             yield mock_client.return_value
 
     @pytest.fixture

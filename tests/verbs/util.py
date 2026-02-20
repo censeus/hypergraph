@@ -2,8 +2,8 @@
 # Licensed under the MIT License
 
 import pandas as pd
-from graphrag.index.run.utils import create_run_context
-from graphrag.index.typing.context import PipelineRunContext
+from hypergraph.index.run.utils import create_run_context
+from hypergraph.index.typing.context import PipelineRunContext
 from pandas.testing import assert_series_equal
 
 pd.set_option("display.max_columns", None)

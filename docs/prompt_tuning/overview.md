@@ -1,10 +1,10 @@
 # Prompt Tuning ⚙️
 
-This page provides an overview of the prompt tuning options available for the GraphRAG indexing engine.
+This page provides an overview of the prompt tuning options available for the Hypergraph indexing engine.
 
 ## Default Prompts
 
-The default prompts are the simplest way to get started with the GraphRAG system. It is designed to work out-of-the-box with minimal configuration. More details about each of the default prompts for indexing and query can be found on the [manual tuning](./manual_prompt_tuning.md) page.
+The default prompts are the simplest way to get started with the Hypergraph system. It is designed to work out-of-the-box with minimal configuration. More details about each of the default prompts for indexing and query can be found on the [manual tuning](./manual_prompt_tuning.md) page.
 
 ## Auto Tuning
 

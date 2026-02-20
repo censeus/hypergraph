@@ -1,8 +1,8 @@
 completion_models:
   default_completion_model:
     model_provider: azure
-    api_key: ${GRAPHRAG_API_KEY}
-    api_base: ${GRAPHRAG_API_BASE}
+    api_key: ${HYPERGRAPH_API_KEY}
+    api_base: ${HYPERGRAPH_API_BASE}
     api_version: "2025-04-01-preview"
     model: gpt-4.1
     azure_deployment_name: gpt-4.1
@@ -13,8 +13,8 @@ completion_models:
 embedding_models:
   default_embedding_model:
     model_provider: azure
-    api_key: ${GRAPHRAG_API_KEY}
-    api_base: ${GRAPHRAG_API_BASE}
+    api_key: ${HYPERGRAPH_API_KEY}
+    api_base: ${HYPERGRAPH_API_BASE}
     api_version: "2025-04-01-preview"
     model: text-embedding-3-large
     azure_deployment_name: text-embedding-3-large

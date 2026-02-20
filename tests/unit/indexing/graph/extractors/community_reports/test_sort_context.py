@@ -3,10 +3,10 @@
 import math
 import platform
 
-from graphrag.index.operations.summarize_communities.graph_context.sort_context import (
+from hypergraph.index.operations.summarize_communities.graph_context.sort_context import (
     sort_context,
 )
-from graphrag.tokenizer.get_tokenizer import get_tokenizer
+from hypergraph.tokenizer.get_tokenizer import get_tokenizer
 
 nan = math.nan
 

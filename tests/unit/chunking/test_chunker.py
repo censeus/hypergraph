@@ -4,15 +4,15 @@
 from typing import Any
 from unittest.mock import Mock, patch
 
-from graphrag.tokenizer.get_tokenizer import get_tokenizer
-from graphrag_chunking.bootstrap_nltk import bootstrap
-from graphrag_chunking.chunk_strategy_type import ChunkerType
-from graphrag_chunking.chunker_factory import create_chunker
-from graphrag_chunking.chunking_config import ChunkingConfig
-from graphrag_chunking.token_chunker import (
+from hypergraph.tokenizer.get_tokenizer import get_tokenizer
+from hypergraph_chunking.bootstrap_nltk import bootstrap
+from hypergraph_chunking.chunk_strategy_type import ChunkerType
+from hypergraph_chunking.chunker_factory import create_chunker
+from hypergraph_chunking.chunking_config import ChunkingConfig
+from hypergraph_chunking.token_chunker import (
     split_text_on_tokens,
 )
-from graphrag_llm.tokenizer import Tokenizer
+from hypergraph_llm.tokenizer import Tokenizer
 
 
 class MockTokenizer(Tokenizer):

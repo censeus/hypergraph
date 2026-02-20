@@ -8,8 +8,8 @@ import os
 from pathlib import Path
 
 import pandas as pd
-from graphrag.config.load_config import load_config
-from graphrag.config.models.graph_rag_config import GraphRagConfig
+from hypergraph.config.load_config import load_config
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 from knowledge_loader.data_sources.typing import Datasource
 
 logging.basicConfig(level=logging.INFO)
@@ -64,7 +64,7 @@ class LocalDatasource(Datasource):
         self,
         file: str,
         throw_on_missing: bool = False,
-    ) -> GraphRagConfig | None:
+    ) -> HyperGraphConfig | None:
         """Read settings file from local source."""
         cwd = Path(__file__).parent
         root_dir = (cwd / self._base_path).resolve()

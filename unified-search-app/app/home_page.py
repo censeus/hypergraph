@@ -24,7 +24,7 @@ async def main():
     create_side_bar(sv)
 
     st.markdown(
-        "#### GraphRAG: A Novel Knowledge Graph-based Approach to Retrieval Augmented Generation (RAG)"
+        "#### Hypergraph: A Novel Knowledge Graph-based Approach to Retrieval Augmented Generation (RAG)"
     )
     st.markdown("##### Dataset selected: " + dataset_name(sv.dataset.value, sv))
     st.markdown(sv.dataset_config.value.description)
@@ -135,7 +135,7 @@ async def main():
                     init_search_ui(
                         container=ss_basic,
                         search_type=SearchType.Basic,
-                        title="##### GraphRAG: Basic RAG",
+                        title="##### Hypergraph: Basic RAG",
                         caption="###### Answer context: Fixed number of text chunks of raw documents",
                     )
 
@@ -144,7 +144,7 @@ async def main():
                     init_search_ui(
                         container=ss_local,
                         search_type=SearchType.Local,
-                        title="##### GraphRAG: Local Search",
+                        title="##### Hypergraph: Local Search",
                         caption="###### Answer context: Graph index query results with relevant document text chunks",
                     )
 
@@ -153,7 +153,7 @@ async def main():
                     init_search_ui(
                         container=ss_global,
                         search_type=SearchType.Global,
-                        title="##### GraphRAG: Global Search",
+                        title="##### Hypergraph: Global Search",
                         caption="###### Answer context: AI-generated network reports covering all input documents",
                     )
 
@@ -162,7 +162,7 @@ async def main():
                     init_search_ui(
                         container=ss_drift,
                         search_type=SearchType.Drift,
-                        title="##### GraphRAG: Drift Search",
+                        title="##### Hypergraph: Drift Search",
                         caption="###### Answer context: Includes community information",
                     )
 

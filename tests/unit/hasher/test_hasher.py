@@ -3,7 +3,7 @@
 
 """Test hasher"""
 
-from graphrag_common.hasher import hash_data
+from hypergraph_common.hasher import hash_data
 
 
 def test_hash_data() -> None:

@@ -4,7 +4,7 @@
 """Test model configuration loading."""
 
 import pytest
-from graphrag_llm.config import AuthMethod, LLMProviderType, ModelConfig
+from hypergraph_llm.config import AuthMethod, LLMProviderType, ModelConfig
 from pydantic import ValidationError
 
 

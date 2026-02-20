@@ -1,9 +1,9 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.index.workflows.create_base_text_units import run_workflow
+from hypergraph.index.workflows.create_base_text_units import run_workflow
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     compare_outputs,
@@ -17,7 +17,7 @@ async def test_create_base_text_units():
 
     context = await create_test_context()
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.chunking.prepend_metadata = ["title"]
 
     await run_workflow(config, context)

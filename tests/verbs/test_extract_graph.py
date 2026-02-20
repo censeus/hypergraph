@@ -1,9 +1,9 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.index.workflows.extract_graph import run_workflow
+from hypergraph.index.workflows.extract_graph import run_workflow
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     create_test_context,
@@ -35,7 +35,7 @@ async def test_extract_graph():
         storage=["text_units"],
     )
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.completion_models["default_completion_model"].type = "mock"
     config.completion_models[
         "default_completion_model"

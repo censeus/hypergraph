@@ -8,7 +8,7 @@ from pathlib import Path
 
 import networkx as nx
 import pandas as pd
-from graphrag.graphs.compute_degree import compute_degree as compute_degree_df
+from hypergraph.graphs.compute_degree import compute_degree as compute_degree_df
 from pandas.testing import assert_frame_equal
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"

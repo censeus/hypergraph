@@ -8,7 +8,7 @@ from pathlib import Path
 
 import networkx as nx
 import pandas as pd
-from graphrag.graphs.connected_components import (
+from hypergraph.graphs.connected_components import (
     connected_components,
     largest_connected_component,
 )

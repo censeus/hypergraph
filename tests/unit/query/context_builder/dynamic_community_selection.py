@@ -5,9 +5,9 @@
 
 from unittest.mock import MagicMock
 
-from graphrag.data_model.community import Community
-from graphrag.data_model.community_report import CommunityReport
-from graphrag.query.context_builder.dynamic_community_selection import (
+from hypergraph.data_model.community import Community
+from hypergraph.data_model.community_report import CommunityReport
+from hypergraph.query.context_builder.dynamic_community_selection import (
     DynamicCommunitySelection,
 )
 

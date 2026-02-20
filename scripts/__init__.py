@@ -2,4 +2,4 @@
 # Licensed under the MIT License
 
 
-"""GraphRAG Scripts module."""
+"""Hypergraph Scripts module."""

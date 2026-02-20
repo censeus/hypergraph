@@ -8,17 +8,17 @@ These tests will test the StorageFactory class and the creation of each storage 
 import sys
 
 import pytest
-from graphrag_storage import (
+from hypergraph_storage import (
     Storage,
     StorageConfig,
     StorageType,
     create_storage,
     register_storage,
 )
-from graphrag_storage.azure_blob_storage import AzureBlobStorage
-from graphrag_storage.azure_cosmos_storage import AzureCosmosStorage
-from graphrag_storage.file_storage import FileStorage
-from graphrag_storage.memory_storage import MemoryStorage
+from hypergraph_storage.azure_blob_storage import AzureBlobStorage
+from hypergraph_storage.azure_cosmos_storage import AzureCosmosStorage
+from hypergraph_storage.file_storage import FileStorage
+from hypergraph_storage.memory_storage import MemoryStorage
 
 # cspell:disable-next-line well-known-key
 WELL_KNOWN_BLOB_STORAGE_KEY = "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"

@@ -1,10 +1,10 @@
 # Inputs
 
-GraphRAG supports several input formats to simplify ingesting your data. The mechanics and features available for input files and text chunking are discussed here.
+Hypergraph supports several input formats to simplify ingesting your data. The mechanics and features available for input files and text chunking are discussed here.
 
 ## Input Loading and Schema
 
-All input formats are loaded within GraphRAG and passed to the indexing pipeline as a `documents` DataFrame. This DataFrame has a row for each document using a shared column schema:
+All input formats are loaded within Hypergraph and passed to the indexing pipeline as a `documents` DataFrame. This DataFrame has a row for each document using a shared column schema:
 
 | name          | type | description |
 | ------------- | ---- | ----------- |
@@ -18,7 +18,7 @@ Also see the [outputs](outputs.md) documentation for the final documents table s
 
 ## Bring-your-own DataFrame
 
-GraphRAG's [indexing API method](https://github.com/censeus/hypergraph/blob/main/graphrag/api/index.py) allows you to pass in your own pandas DataFrame and bypass all of the input loading/parsing described in the next section. This is convenient if you have content in a format or storage location we don't support out-of-the-box. _You must ensure that your input DataFrame conforms to the schema described above._ All of the chunking behavior described later will proceed exactly the same.
+Hypergraph's [indexing API method](https://github.com/censeus/hypergraph/blob/main/hypergraph/api/index.py) allows you to pass in your own pandas DataFrame and bypass all of the input loading/parsing described in the next section. This is convenient if you have content in a format or storage location we don't support out-of-the-box. _You must ensure that your input DataFrame conforms to the schema described above._ All of the chunking behavior described later will proceed exactly the same.
 
 ## Custom File Handling
 
@@ -44,7 +44,7 @@ JSON files (typically ending in a .json extension) contain [structured objects](
 
 ## Metadata
 
-With the structured file formats (CSV and JSON) you can configure any number of columns to be added to a persisted `metadata` field in the DataFrame. This is configured by supplying a list of column names to collect. If this is configured, the output `metadata` column will have a dict containing a key for each column, and the value of the column for that document. This metadata can optionally be used later in the GraphRAG pipeline.
+With the structured file formats (CSV and JSON) you can configure any number of columns to be added to a persisted `metadata` field in the DataFrame. This is configured by supplying a list of column names to collect. If this is configured, the output `metadata` column will have a dict containing a key for each column, and the value of the column for that document. This metadata can optionally be used later in the Hypergraph pipeline.
 
 ### Example
 

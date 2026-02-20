@@ -4,7 +4,7 @@
 """Test metrics configuration loading."""
 
 import pytest
-from graphrag_llm.config import (
+from hypergraph_llm.config import (
     MetricsConfig,
     MetricsWriterType,
 )

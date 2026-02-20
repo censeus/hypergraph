@@ -7,7 +7,7 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING
 
-import graphrag.api as api
+import hypergraph.api as api
 import streamlit as st
 from knowledge_loader.data_sources.loader import (
     create_datasource,
@@ -32,7 +32,7 @@ def initialize() -> SessionVariables:
         st.set_page_config(
             layout="wide",
             initial_sidebar_state="collapsed",
-            page_title="GraphRAG",
+            page_title="Hypergraph",
         )
         sv = SessionVariables()
         datasets = load_dataset_listing()
@@ -55,7 +55,7 @@ def load_dataset(dataset: str, sv: SessionVariables):
     )
     if sv.dataset_config.value is not None:
         sv.datasource.value = create_datasource(f"{sv.dataset_config.value.path}")  # type: ignore
-        sv.graphrag_config.value = sv.datasource.value.read_settings("settings.yaml")
+        sv.hypergraph_config.value = sv.datasource.value.read_settings("settings.yaml")
         load_knowledge_model(sv)
 
 
@@ -126,7 +126,7 @@ async def run_global_search_question_generation(
     empty_context_data: dict[str, pd.DataFrame] = {}
 
     response, context_data = await api.global_search(
-        config=sv.graphrag_config.value,
+        config=sv.hypergraph_config.value,
         entities=sv.entities.value,
         communities=sv.communities.value,
         community_reports=sv.community_reports.value,
@@ -161,7 +161,7 @@ async def run_local_search(
         empty_context_data: dict[str, pd.DataFrame] = {}
 
         response, context_data = await api.local_search(
-            config=sv.graphrag_config.value,
+            config=sv.hypergraph_config.value,
             communities=sv.communities.value,
             entities=sv.entities.value,
             community_reports=sv.community_reports.value,
@@ -215,7 +215,7 @@ async def run_global_search(query: str, sv: SessionVariables) -> SearchResult:
         empty_context_data: dict[str, pd.DataFrame] = {}
 
         response, context_data = await api.global_search(
-            config=sv.graphrag_config.value,
+            config=sv.hypergraph_config.value,
             entities=sv.entities.value,
             communities=sv.communities.value,
             community_reports=sv.community_reports.value,
@@ -267,7 +267,7 @@ async def run_drift_search(
         empty_context_data: dict[str, pd.DataFrame] = {}
 
         response, context_data = await api.drift_search(
-            config=sv.graphrag_config.value,
+            config=sv.hypergraph_config.value,
             entities=sv.entities.value,
             communities=sv.communities.value,
             community_reports=sv.community_reports.value,
@@ -320,7 +320,7 @@ async def run_basic_search(
         empty_context_data: dict[str, pd.DataFrame] = {}
 
         response, context_data = await api.basic_search(
-            config=sv.graphrag_config.value,
+            config=sv.hypergraph_config.value,
             text_units=sv.text_units.value,
             query=query,
         )

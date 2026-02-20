@@ -1,6 +1,6 @@
-# Contributing to GraphRAG
+# Contributing to Hypergraph
 
-Thank you for your interest in contributing to GraphRAG! We welcome contributions from the community to help improve the project.
+Thank you for your interest in contributing to Hypergraph! We welcome contributions from the community to help improve the project.
 
 ## Code of Conduct
 
@@ -68,4 +68,4 @@ If you don't have any additional info/context to add but would like to indicate 
 
 ## Thank you
 
-We appreciate your contributions to GraphRAG!
+We appreciate your contributions to Hypergraph!

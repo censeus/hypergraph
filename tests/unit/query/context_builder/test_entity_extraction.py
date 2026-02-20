@@ -3,14 +3,14 @@
 
 from typing import Any
 
-from graphrag.data_model.entity import Entity
-from graphrag.query.context_builder.entity_extraction import (
+from hypergraph.data_model.entity import Entity
+from hypergraph.query.context_builder.entity_extraction import (
     EntityVectorStoreKey,
     map_query_to_entities,
 )
-from graphrag_llm.config import LLMProviderType, ModelConfig
-from graphrag_llm.embedding import create_embedding
-from graphrag_vectors import (
+from hypergraph_llm.config import LLMProviderType, ModelConfig
+from hypergraph_llm.embedding import create_embedding
+from hypergraph_vectors import (
     TextEmbedder,
     VectorStore,
     VectorStoreDocument,

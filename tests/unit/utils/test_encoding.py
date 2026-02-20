@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.tokenizer.get_tokenizer import get_tokenizer
+from hypergraph.tokenizer.get_tokenizer import get_tokenizer
 
 
 def test_encode_basic():

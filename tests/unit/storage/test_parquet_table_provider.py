@@ -6,12 +6,12 @@ from io import BytesIO
 
 import pandas as pd
 import pytest
-from graphrag_storage import (
+from hypergraph_storage import (
     StorageConfig,
     StorageType,
     create_storage,
 )
-from graphrag_storage.tables.parquet_table_provider import ParquetTableProvider
+from hypergraph_storage.tables.parquet_table_provider import ParquetTableProvider
 
 
 class TestParquetTableProvider(unittest.IsolatedAsyncioTestCase):

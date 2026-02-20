@@ -1,11 +1,11 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-"""Unit tests for graphrag_factory package."""
+"""Unit tests for hypergraph_factory package."""
 
 from abc import ABC, abstractmethod
 
-from graphrag_common.factory import Factory
+from hypergraph_common.factory import Factory
 
 
 class TestABC(ABC):

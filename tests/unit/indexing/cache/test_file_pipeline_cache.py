@@ -4,9 +4,9 @@ import asyncio
 import os
 import unittest
 
-from graphrag_cache import CacheConfig, CacheType
-from graphrag_cache import create_cache as cc
-from graphrag_storage import StorageConfig, StorageType
+from hypergraph_cache import CacheConfig, CacheType
+from hypergraph_cache import create_cache as cc
+from hypergraph_storage import StorageConfig, StorageType
 
 TEMP_DIR = "./.tmp"
 

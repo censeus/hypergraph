@@ -2,7 +2,7 @@
 # Licensed under the MIT License
 
 import pytest
-from graphrag_input import get_property
+from hypergraph_input import get_property
 
 
 def test_get_property_single_level():

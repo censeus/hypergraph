@@ -8,10 +8,10 @@ import tempfile
 
 import numpy as np
 import pytest
-from graphrag_vectors import (
+from hypergraph_vectors import (
     VectorStoreDocument,
 )
-from graphrag_vectors.lancedb import LanceDBVectorStore
+from hypergraph_vectors.lancedb import LanceDBVectorStore
 
 
 class TestLanceDBVectorStore:

@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.data_model.entity import Entity
-from graphrag.query.input.retrieval.entities import (
+from hypergraph.data_model.entity import Entity
+from hypergraph.query.input.retrieval.entities import (
     get_entity_by_id,
     get_entity_by_key,
 )

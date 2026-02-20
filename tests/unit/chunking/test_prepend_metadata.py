@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag_chunking.transformers import add_metadata
+from hypergraph_chunking.transformers import add_metadata
 
 
 def test_add_metadata_one_row():

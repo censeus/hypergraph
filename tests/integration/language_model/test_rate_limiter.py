@@ -8,8 +8,8 @@ import time
 from math import ceil
 from queue import Queue
 
-from graphrag_llm.config import RateLimitConfig, RateLimitType
-from graphrag_llm.rate_limit import RateLimiter, create_rate_limiter
+from hypergraph_llm.config import RateLimitConfig, RateLimitType
+from hypergraph_llm.rate_limit import RateLimiter, create_rate_limiter
 
 from tests.integration.language_model.utils import (
     assert_max_num_values_per_period,

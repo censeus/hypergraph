@@ -1,6 +1,6 @@
-# GraphRAG Indexing 🤖
+# Hypergraph Indexing 🤖
 
-The GraphRAG indexing package is a data pipeline and transformation suite that is designed to extract meaningful, structured data from unstructured text using LLMs.
+The Hypergraph indexing package is a data pipeline and transformation suite that is designed to extract meaningful, structured data from unstructured text using LLMs.
 
 Indexing Pipelines are configurable. They are composed of workflows, standard and custom steps, prompt templates, and input/output adapters. Our standard pipeline is designed to:
 
@@ -17,7 +17,7 @@ The outputs of the pipeline are stored as Parquet tables by default, and embeddi
 
 See the [requirements](../developing.md#requirements) section in [Get Started](../get_started.md) for details on setting up a development environment.
 
-To configure GraphRAG, see the [configuration](../config/overview.md) documentation.
+To configure Hypergraph, see the [configuration](../config/overview.md) documentation.
 After you have a config file you can run the pipeline using the CLI or the Python API.
 
 ## Usage
@@ -30,10 +30,10 @@ uv run poe index --root <data_root> # default config mode
 
 ### Python API
 
-Please see the indexing API [python file](https://github.com/censeus/hypergraph/blob/main/graphrag/api/index.py) for the recommended method to call directly from Python code.
+Please see the indexing API [python file](https://github.com/censeus/hypergraph/blob/main/hypergraph/api/index.py) for the recommended method to call directly from Python code.
 
 ## Further Reading
 
-- To start developing within the _GraphRAG_ project, see [getting started](../developing.md)
+- To start developing within the _Hypergraph_ project, see [getting started](../developing.md)
 - To understand the underlying concepts and execution model of the indexing library, see [the architecture documentation](../index/architecture.md)
 - To read more about configuring the indexing engine, see [the configuration documentation](../config/overview.md)

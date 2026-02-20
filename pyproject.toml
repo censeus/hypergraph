@@ -1,14 +1,14 @@
 [project]
-name = "graphrag-monorepo"
+name = "hypergraph-monorepo"
 classifiers = ["Private :: Do Not Upload"]
 version = "0.0.0"
-description = "GraphRAG: A graph-based retrieval-augmented generation (RAG) system."
+description = "Hypergraph: A graph-based retrieval-augmented generation (RAG) system."
 maintainers = [
     {name = "Arsen Ohanyan"},
 ]
 authors = [
     {name = "Arsen Ohanyan"},
-    {name = "Microsoft GraphRAG Team (original authors)"},
+    {name = "Microsoft Hypergraph Team (original authors)"},
 ]
 requires-python = ">=3.11,<3.14"
 
@@ -43,13 +43,13 @@ package = false
 members = ["packages/*"]
 
 [tool.uv.sources]
-graphrag-chunking = { workspace = true }
-graphrag-common = { workspace = true }
-graphrag-input = { workspace = true }
-graphrag-storage = { workspace = true }
-graphrag-cache = { workspace = true }
-graphrag-vectors = { workspace = true }
-graphrag-llm = { workspace = true }
+hypergraph-chunking = { workspace = true }
+hypergraph-common = { workspace = true }
+hypergraph-input = { workspace = true }
+hypergraph-storage = { workspace = true }
+hypergraph-cache = { workspace = true }
+hypergraph-vectors = { workspace = true }
+hypergraph-llm = { workspace = true }
 
 # Keep poethepoet for task management to minimize changes
 [tool.poe.tasks]
@@ -63,14 +63,14 @@ _copy_build_assets = "python -m scripts.copy_build_assets"
 _semversioner_release = "semversioner release"
 _semversioner_changelog = "semversioner changelog > CHANGELOG.md"
 # Add more update toml tasks as packages are added
-_semversioner_update_graphrag_toml_version = "update-toml update --file packages/graphrag/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_chunking_toml_version = "update-toml update --file packages/graphrag-chunking/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_common_toml_version = "update-toml update --file packages/graphrag-common/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_storage_toml_version = "update-toml update --file packages/graphrag-storage/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_cache_toml_version = "update-toml update --file packages/graphrag-cache/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_input_toml_version = "update-toml update --file packages/graphrag-input/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_vectors_toml_version = "update-toml update --file packages/graphrag-vectors/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
-_semversioner_update_graphrag_llm_toml_version = "update-toml update --file packages/graphrag-llm/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_toml_version = "update-toml update --file packages/hypergraph/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_chunking_toml_version = "update-toml update --file packages/hypergraph-chunking/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_common_toml_version = "update-toml update --file packages/hypergraph-common/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_storage_toml_version = "update-toml update --file packages/hypergraph-storage/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_cache_toml_version = "update-toml update --file packages/hypergraph-cache/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_input_toml_version = "update-toml update --file packages/hypergraph-input/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_vectors_toml_version = "update-toml update --file packages/hypergraph-vectors/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
+_semversioner_update_hypergraph_llm_toml_version = "update-toml update --file packages/hypergraph-llm/pyproject.toml --path project.version --value $(uv run semversioner current-version)"
 _semversioner_update_workspace_dependency_versions = "python -m scripts.update_workspace_dependency_versions"
 semversioner_add = "semversioner add-change"
 coverage_report = 'coverage report --omit "**/tests/**" --show-missing'
@@ -83,11 +83,11 @@ test_integration = "pytest ./tests/integration"
 test_smoke = "pytest ./tests/smoke"
 test_notebook = "pytest -n auto ./tests/notebook"
 test_verbs = "pytest ./tests/verbs"
-index = "python -m graphrag index"
-update = "python -m graphrag update"
-init = "python -m graphrag init"
-query = "python -m graphrag query"
-prompt_tune = "python -m graphrag prompt-tune"
+index = "python -m hypergraph index"
+update = "python -m hypergraph update"
+init = "python -m hypergraph init"
+query = "python -m hypergraph query"
+prompt_tune = "python -m hypergraph prompt-tune"
 # Pass in a test pattern
 test_only = "pytest -s -k"
 serve_docs = "mkdocs serve"
@@ -103,14 +103,14 @@ sequence = [
     '_semversioner_release',
     '_semversioner_changelog',
     # Add more update toml tasks as packages are added
-    '_semversioner_update_graphrag_toml_version',
-    '_semversioner_update_graphrag_common_toml_version',
-    '_semversioner_update_graphrag_chunking_toml_version',
-    '_semversioner_update_graphrag_input_toml_version',
-    '_semversioner_update_graphrag_storage_toml_version',
-    '_semversioner_update_graphrag_cache_toml_version',
-    "_semversioner_update_graphrag_vectors_toml_version",
-    '_semversioner_update_graphrag_llm_toml_version',
+    '_semversioner_update_hypergraph_toml_version',
+    '_semversioner_update_hypergraph_common_toml_version',
+    '_semversioner_update_hypergraph_chunking_toml_version',
+    '_semversioner_update_hypergraph_input_toml_version',
+    '_semversioner_update_hypergraph_storage_toml_version',
+    '_semversioner_update_hypergraph_cache_toml_version',
+    "_semversioner_update_hypergraph_vectors_toml_version",
+    '_semversioner_update_hypergraph_llm_toml_version',
     '_semversioner_update_workspace_dependency_versions',
     '_sync',
 ]
@@ -214,7 +214,7 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S", "D", "ANN", "T201", "ASYNC", "ARG", "PTH", "TRY"]
-"graphrag/index/config/*" = ["TCH"]
+"hypergraph/index/config/*" = ["TCH"]
 "*.ipynb" = ["T201", "S101", "PT015", "B011"]
 
 [tool.ruff.lint.flake8-builtins]
@@ -226,11 +226,11 @@ convention = "numpy"
 # https://github.com/microsoft/pyright/blob/9f81564a4685ff5c55edd3959f9b39030f590b2f/docs/configuration.md#sample-pyprojecttoml-file
 [tool.pyright]
 include = [
-    "packages/graphrag/graphrag", 
-    "packages/graphrag-common/graphrag_common", 
-    "packages/graphrag-storage/graphrag_storage", 
-    "packages/graphrag-cache/graphrag_cache",
-    "packages/graphrag-llm/graphrag_llm",
+    "packages/hypergraph/hypergraph", 
+    "packages/hypergraph-common/hypergraph_common", 
+    "packages/hypergraph-storage/hypergraph_storage", 
+    "packages/hypergraph-cache/hypergraph_cache",
+    "packages/hypergraph-llm/hypergraph_llm",
     "tests"
 ]
 exclude = ["**/node_modules", "**/__pycache__"]

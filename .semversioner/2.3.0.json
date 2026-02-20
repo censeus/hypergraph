@@ -5,7 +5,7 @@
       "type": "minor"
     },
     {
-      "description": "Update fnllm to latest. Update default graphrag configuration",
+      "description": "Update fnllm to latest. Update default hypergraph configuration",
       "type": "minor"
     },
     {

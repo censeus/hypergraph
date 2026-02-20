@@ -6,14 +6,14 @@ These tests will test the VectorStoreFactory class and the creation of each vect
 """
 
 import pytest
-from graphrag_vectors import (
+from hypergraph_vectors import (
     VectorStore,
     VectorStoreFactory,
     VectorStoreType,
 )
-from graphrag_vectors.azure_ai_search import AzureAISearchVectorStore
-from graphrag_vectors.cosmosdb import CosmosDBVectorStore
-from graphrag_vectors.lancedb import LanceDBVectorStore
+from hypergraph_vectors.azure_ai_search import AzureAISearchVectorStore
+from hypergraph_vectors.cosmosdb import CosmosDBVectorStore
+from hypergraph_vectors.lancedb import LanceDBVectorStore
 
 # register the defaults, since they are lazily registered
 VectorStoreFactory().register(VectorStoreType.LanceDB, LanceDBVectorStore)
@@ -103,7 +103,7 @@ def test_is_supported_type():
 
 def test_register_class_directly_works():
     """Test that registering a class directly works."""
-    from graphrag_vectors import VectorStore
+    from hypergraph_vectors import VectorStore
 
     class CustomVectorStore(VectorStore):
         def __init__(self, **kwargs):
@@ -125,7 +125,7 @@ def test_register_class_directly_works():
             return []
 
         def search_by_id(self, id):
-            from graphrag_vectors import VectorStoreDocument
+            from hypergraph_vectors import VectorStoreDocument
 
             return VectorStoreDocument(id=id, vector=None)
 

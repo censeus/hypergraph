@@ -1,6 +1,6 @@
 # Query Engine 🔎
 
-The Query Engine is the retrieval module of the GraphRAG library, and operates over completed [indexes](../index/overview.md).
+The Query Engine is the retrieval module of the Hypergraph library, and operates over completed [indexes](../index/overview.md).
 It is responsible for the following tasks:
 
 - [Local Search](#local-search)
@@ -23,13 +23,13 @@ More about this is provided on the [Global Search](global_search.md) page.
 
 ## DRIFT Search
 
-DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This expands the GraphRAG query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.
+DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This expands the Hypergraph query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.
 
 To learn more about DRIFT Search, please refer to the [DRIFT Search](drift_search.md) page.
 
 ## Basic Search
 
-GraphRAG includes a rudimentary implementation of basic vector RAG to make it easy to compare different search results based on the type of question you are asking. You can specify the top `k` text unit chunks to include in the summarization context.
+Hypergraph includes a rudimentary implementation of basic vector RAG to make it easy to compare different search results based on the type of question you are asking. You can specify the top `k` text unit chunks to include in the summarization context.
 
 ## Question Generation
 

@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag_input import InputConfig, InputType, create_input_reader
-from graphrag_storage import StorageConfig, create_storage
+from hypergraph_input import InputConfig, InputType, create_input_reader
+from hypergraph_storage import StorageConfig, create_storage
 
 
 async def test_text_loader_one_file():

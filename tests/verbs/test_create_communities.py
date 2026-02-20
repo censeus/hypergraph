@@ -1,12 +1,12 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-from graphrag.data_model.schemas import COMMUNITIES_FINAL_COLUMNS
-from graphrag.index.workflows.create_communities import (
+from hypergraph.data_model.schemas import COMMUNITIES_FINAL_COLUMNS
+from hypergraph.index.workflows.create_communities import (
     run_workflow,
 )
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     compare_outputs,
@@ -25,7 +25,7 @@ async def test_create_communities():
         ],
     )
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
 
     await run_workflow(
         config,

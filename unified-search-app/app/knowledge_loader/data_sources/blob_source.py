@@ -13,7 +13,7 @@ import streamlit as st
 import yaml
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient, ContainerClient
-from graphrag.config.models.graph_rag_config import GraphRagConfig
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 from knowledge_loader.data_sources.typing import Datasource
 
 from .default import blob_account_name, blob_container_name
@@ -105,7 +105,7 @@ class BlobDatasource(Datasource):
         self,
         file: str,
         throw_on_missing: bool = False,
-    ) -> GraphRagConfig | None:
+    ) -> HyperGraphConfig | None:
         """Read settings from container."""
         try:
             settings = load_blob_file(self._database, file)
@@ -113,7 +113,7 @@ class BlobDatasource(Datasource):
             str_settings = settings.read().decode("utf-8")
             config = os.path.expandvars(str_settings)
             settings_yaml = yaml.safe_load(config)
-            graphrag_config = GraphRagConfig(**settings_yaml)
+            hypergraph_config = HyperGraphConfig(**settings_yaml)
         except Exception as err:
             if throw_on_missing:
                 error_msg = f"File {file} does not exist"
@@ -122,4 +122,4 @@ class BlobDatasource(Datasource):
             logger.warning("File %s does not exist", file)
             return None
 
-        return graphrag_config
+        return hypergraph_config

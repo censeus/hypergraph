@@ -2,16 +2,16 @@
 # Licensed under the MIT License
 
 
-from graphrag.data_model.schemas import COMMUNITY_REPORTS_FINAL_COLUMNS
-from graphrag.index.operations.summarize_communities.community_reports_extractor import (
+from hypergraph.data_model.schemas import COMMUNITY_REPORTS_FINAL_COLUMNS
+from hypergraph.index.operations.summarize_communities.community_reports_extractor import (
     CommunityReportResponse,
     FindingModel,
 )
-from graphrag.index.workflows.create_community_reports import (
+from hypergraph.index.workflows.create_community_reports import (
     run_workflow,
 )
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 from .util import (
     compare_outputs,
@@ -49,7 +49,7 @@ async def test_create_community_reports():
         ]
     )
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.completion_models["default_completion_model"].type = "mock"
     config.completion_models["default_completion_model"].mock_responses = MOCK_RESPONSES  # type: ignore
 

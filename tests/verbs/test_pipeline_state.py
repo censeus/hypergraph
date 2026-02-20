@@ -3,24 +3,24 @@
 
 """Tests for pipeline state passthrough."""
 
-from graphrag.config.models.graph_rag_config import GraphRagConfig
-from graphrag.index.run.utils import create_run_context
-from graphrag.index.typing.context import PipelineRunContext
-from graphrag.index.typing.workflow import WorkflowFunctionOutput
-from graphrag.index.workflows.factory import PipelineFactory
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
+from hypergraph.index.run.utils import create_run_context
+from hypergraph.index.typing.context import PipelineRunContext
+from hypergraph.index.typing.workflow import WorkflowFunctionOutput
+from hypergraph.index.workflows.factory import PipelineFactory
 
-from tests.unit.config.utils import get_default_graphrag_config
+from tests.unit.config.utils import get_default_hypergraph_config
 
 
 async def run_workflow_1(  # noqa: RUF029
-    _config: GraphRagConfig, context: PipelineRunContext
+    _config: HyperGraphConfig, context: PipelineRunContext
 ):
     context.state["count"] = 1
     return WorkflowFunctionOutput(result=None)
 
 
 async def run_workflow_2(  # noqa: RUF029
-    _config: GraphRagConfig, context: PipelineRunContext
+    _config: HyperGraphConfig, context: PipelineRunContext
 ):
     context.state["count"] += 1
     return WorkflowFunctionOutput(result=None)
@@ -31,7 +31,7 @@ async def test_pipeline_state():
     PipelineFactory.register("workflow_1", run_workflow_1)
     PipelineFactory.register("workflow_2", run_workflow_2)
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.workflows = ["workflow_1", "workflow_2"]
     context = create_run_context()
 
@@ -44,7 +44,7 @@ async def test_pipeline_state():
 async def test_pipeline_existing_state():
     PipelineFactory.register("workflow_2", run_workflow_2)
 
-    config = get_default_graphrag_config()
+    config = get_default_hypergraph_config()
     config.workflows = ["workflow_2"]
     context = create_run_context(state={"count": 4})
 

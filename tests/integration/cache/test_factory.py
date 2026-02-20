@@ -8,12 +8,12 @@ These tests will test the CacheFactory() class and the creation of each cache ty
 import sys
 
 import pytest
-from graphrag_cache import Cache, CacheConfig, CacheType, create_cache, register_cache
-from graphrag_cache.cache_factory import cache_factory
-from graphrag_cache.json_cache import JsonCache
-from graphrag_cache.memory_cache import MemoryCache
-from graphrag_cache.noop_cache import NoopCache
-from graphrag_storage import StorageConfig, StorageType, create_storage
+from hypergraph_cache import Cache, CacheConfig, CacheType, create_cache, register_cache
+from hypergraph_cache.cache_factory import cache_factory
+from hypergraph_cache.json_cache import JsonCache
+from hypergraph_cache.memory_cache import MemoryCache
+from hypergraph_cache.noop_cache import NoopCache
+from hypergraph_storage import StorageConfig, StorageType, create_storage
 
 # cspell:disable-next-line well-known-key
 WELL_KNOWN_BLOB_STORAGE_KEY = "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"

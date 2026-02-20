@@ -1,8 +1,8 @@
 # Indexing Dataflow
 
-## The GraphRAG Knowledge Model
+## The Hypergraph Knowledge Model
 
-The knowledge model is a specification for data outputs that conform to our data-model definition. You can find these definitions in the python/graphrag/graphrag/model folder within the GraphRAG repository. The following entity types are provided. The fields here represent the fields that are text-embedded by default.
+The knowledge model is a specification for data outputs that conform to our data-model definition. You can find these definitions in the python/hypergraph/hypergraph/model folder within the Hypergraph repository. The following entity types are provided. The fields here represent the fields that are text-embedded by default.
 
 - `Document` - An input document into the system. These either represent individual rows in a CSV or individual .txt files.
 - `TextUnit` - A chunk of text to analyze. The size of these chunks, their overlap, and whether they adhere to any data boundaries may be configured below.
@@ -14,7 +14,7 @@ The knowledge model is a specification for data outputs that conform to our data
 
 ## The Default Configuration Workflow
 
-Let's take a look at how the default-configuration workflow transforms text documents into the _GraphRAG Knowledge Model_. This page gives a general overview of the major steps in this process. To fully configure this workflow, check out the [configuration](../config/overview.md) documentation.
+Let's take a look at how the default-configuration workflow transforms text documents into the _Hypergraph Knowledge Model_. This page gives a general overview of the major steps in this process. To fully configure this workflow, check out the [configuration](../config/overview.md) documentation.
 
 ```mermaid
 ---
@@ -71,7 +71,7 @@ flowchart LR
 
 ## Phase 2: Document Processing
 
-In this phase of the workflow, we create the _Documents_ table for the knowledge model. Final documents are not used directly in GraphRAG, but this step links them to their constituent text units for provenance in your own applications.
+In this phase of the workflow, we create the _Documents_ table for the knowledge model. Final documents are not used directly in Hypergraph, but this step links them to their constituent text units for provenance in your own applications.
 
 ```mermaid
 ---
@@ -103,7 +103,7 @@ flowchart LR
     tu --> ce[Claim Extraction]
 ```
 
-> Note: if you are using the [FastGraphRAG](https://censeus.github.io/hypergraph/index/methods/#fastgraphrag) option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.
+> Note: if you are using the [FastHypergraph](https://censeus.github.io/hypergraph/index/methods/#fasthypergraph) option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.
 
 ### Entity & Relationship Extraction
 

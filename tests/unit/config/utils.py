@@ -3,33 +3,33 @@
 
 from dataclasses import asdict
 
-import graphrag.config.defaults as defs
-from graphrag.config.models.basic_search_config import BasicSearchConfig
-from graphrag.config.models.cluster_graph_config import ClusterGraphConfig
-from graphrag.config.models.community_reports_config import CommunityReportsConfig
-from graphrag.config.models.drift_search_config import DRIFTSearchConfig
-from graphrag.config.models.embed_text_config import EmbedTextConfig
-from graphrag.config.models.extract_claims_config import ExtractClaimsConfig
-from graphrag.config.models.extract_graph_config import ExtractGraphConfig
-from graphrag.config.models.extract_graph_nlp_config import (
+import hypergraph.config.defaults as defs
+from hypergraph.config.models.basic_search_config import BasicSearchConfig
+from hypergraph.config.models.cluster_graph_config import ClusterGraphConfig
+from hypergraph.config.models.community_reports_config import CommunityReportsConfig
+from hypergraph.config.models.drift_search_config import DRIFTSearchConfig
+from hypergraph.config.models.embed_text_config import EmbedTextConfig
+from hypergraph.config.models.extract_claims_config import ExtractClaimsConfig
+from hypergraph.config.models.extract_graph_config import ExtractGraphConfig
+from hypergraph.config.models.extract_graph_nlp_config import (
     ExtractGraphNLPConfig,
     TextAnalyzerConfig,
 )
-from graphrag.config.models.global_search_config import GlobalSearchConfig
-from graphrag.config.models.graph_rag_config import GraphRagConfig
-from graphrag.config.models.local_search_config import LocalSearchConfig
-from graphrag.config.models.prune_graph_config import PruneGraphConfig
-from graphrag.config.models.reporting_config import ReportingConfig
-from graphrag.config.models.snapshots_config import SnapshotsConfig
-from graphrag.config.models.summarize_descriptions_config import (
+from hypergraph.config.models.global_search_config import GlobalSearchConfig
+from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
+from hypergraph.config.models.local_search_config import LocalSearchConfig
+from hypergraph.config.models.prune_graph_config import PruneGraphConfig
+from hypergraph.config.models.reporting_config import ReportingConfig
+from hypergraph.config.models.snapshots_config import SnapshotsConfig
+from hypergraph.config.models.summarize_descriptions_config import (
     SummarizeDescriptionsConfig,
 )
-from graphrag_cache import CacheConfig
-from graphrag_chunking.chunking_config import ChunkingConfig
-from graphrag_input import InputConfig
-from graphrag_llm.config import MetricsConfig, ModelConfig, RateLimitConfig, RetryConfig
-from graphrag_storage import StorageConfig
-from graphrag_vectors import VectorStoreConfig
+from hypergraph_cache import CacheConfig
+from hypergraph_chunking.chunking_config import ChunkingConfig
+from hypergraph_input import InputConfig
+from hypergraph_llm.config import MetricsConfig, ModelConfig, RateLimitConfig, RetryConfig
+from hypergraph_storage import StorageConfig
+from hypergraph_vectors import VectorStoreConfig
 
 FAKE_API_KEY = "NOT_AN_API_KEY"
 
@@ -54,9 +54,9 @@ DEFAULT_EMBEDDING_MODELS = {
 }
 
 
-def get_default_graphrag_config() -> GraphRagConfig:
-    return GraphRagConfig(**{
-        **asdict(defs.graphrag_config_defaults),
+def get_default_hypergraph_config() -> HyperGraphConfig:
+    return HyperGraphConfig(**{
+        **asdict(defs.hypergraph_config_defaults),
         "completion_models": DEFAULT_COMPLETION_MODELS,
         "embedding_models": DEFAULT_EMBEDDING_MODELS,
     })
@@ -334,7 +334,7 @@ def assert_basic_search_configs(
     assert actual.k == expected.k
 
 
-def assert_graphrag_configs(actual: GraphRagConfig, expected: GraphRagConfig) -> None:
+def assert_hypergraph_configs(actual: HyperGraphConfig, expected: HyperGraphConfig) -> None:
     completion_keys = sorted(actual.completion_models.keys())
     expected_completion_keys = sorted(expected.completion_models.keys())
     assert len(completion_keys) == len(expected_completion_keys)

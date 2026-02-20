@@ -11,13 +11,13 @@ from typing import Any
 
 import networkx as nx
 import pandas as pd
-from graphrag.graphs.modularity import modularity
+from hypergraph.graphs.modularity import modularity
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
 
 # ---------------------------------------------------------------------------
-# NX reference implementation (copied from graphrag.index.utils.graphs)
+# NX reference implementation (copied from hypergraph.index.utils.graphs)
 # ---------------------------------------------------------------------------
 
 
