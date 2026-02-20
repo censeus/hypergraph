@@ -23,7 +23,7 @@
     
     
       
-        <title>Local Search - GraphRAG</title>
+        <title>Local Search - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -2939,15 +2939,19 @@ from graphrag_vectors import IndexSchema, LanceDBVectorStore</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 17</span>
-<span class="ansi-green-fg">     13</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">query</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">structured_search</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">local_search</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">mixed_context</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> (
-<span class="ansi-green-fg">     14</span>     LocalSearchMixedContext,
-<span class="ansi-green-fg">     15</span> )
-<span class="ansi-green-fg">     16</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">query</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">structured_search</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">local_search</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">search</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> LocalSearch
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">17</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag_vectors</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> IndexSchema, LanceDBVectorStore
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">os</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pandas</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pd</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">query</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">context_builder</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">entity_extraction</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> EntityVectorStoreKey
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">query</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">indexer_adapters</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> (
+<span class="ansi-green-fg">      6</span>     read_indexer_covariates,
+<span class="ansi-green-fg">      7</span>     read_indexer_entities,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     10</span>     read_indexer_text_units,
+<span class="ansi-green-fg">     11</span> )
+<span class="ansi-green-fg">     12</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">query</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">question_gen</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">local_gen</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> LocalQuestionGen
 
-<span class="ansi-red-fg">ImportError</span>: cannot import name 'LanceDBVectorStore' from 'graphrag_vectors' (/home/runner/work/hypergraph/hypergraph/packages/graphrag-vectors/graphrag_vectors/__init__.py)</pre>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'graphrag'</pre>
 </div>
 </div>
 </div>
@@ -3108,17 +3112,17 @@ entity_df.head()</div>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 9</span>
-<span class="ansi-green-fg">      5</span> entities = read_indexer_entities(entity_df, community_df, COMMUNITY_LEVEL)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      2</span> entity_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>ENTITY_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      3</span> community_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>COMMUNITY_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> entities = <span class="ansi-yellow-bg">read_indexer_entities</span>(entity_df, community_df, COMMUNITY_LEVEL)
 <span class="ansi-green-fg">      7</span> <span style="color: rgb(95,135,135)"># load description embeddings to an in-memory lancedb vectorstore</span>
 <span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># to connect to a remote db, specify url and port values.</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">9</span> description_embedding_store = <span class="ansi-yellow-bg">LanceDBVectorStore</span>(
+<span class="ansi-green-fg">      9</span> description_embedding_store = LanceDBVectorStore(
 <span class="ansi-green-fg">     10</span>     index_schema=IndexSchema(index_name=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">default-entity-description</span><span class="ansi-yellow-fg">"</span>)
 <span class="ansi-green-fg">     11</span> )
-<span class="ansi-green-fg">     12</span> description_embedding_store.connect(db_uri=LANCEDB_URI)
-<span class="ansi-green-fg">     14</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Entity count: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(entity_df)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
 
-<span class="ansi-red-fg">NameError</span>: name 'LanceDBVectorStore' is not defined</pre>
+<span class="ansi-red-fg">NameError</span>: name 'read_indexer_entities' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3175,101 +3179,17 @@ relationship_df.head()</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Relationship count: 107
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> relationship_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>RELATIONSHIP_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> relationships = <span class="ansi-yellow-bg">read_indexer_relationships</span>(relationship_df)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Relationship count: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(relationship_df)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      5</span> relationship_df.head()
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>id</th>
-<th>human_readable_id</th>
-<th>source</th>
-<th>target</th>
-<th>description</th>
-<th>weight</th>
-<th>combined_degree</th>
-<th>text_unit_ids</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>7c9039f8-43d7-4685-a317-f7bbbfac8e3a</td>
-<td>0</td>
-<td>ALEX MERCER</td>
-<td>PARANORMAL MILITARY SQUAD</td>
-<td>Alex Mercer is a prominent agent and operative...</td>
-<td>17.0</td>
-<td>29</td>
-<td>[ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>f0310841-7ad1-4286-8e1d-1641c180b3ab</td>
-<td>1</td>
-<td>TAYLOR CRUZ</td>
-<td>PARANORMAL MILITARY SQUAD</td>
-<td>Taylor Cruz is a leading agent in the Paranorm...</td>
-<td>9.0</td>
-<td>29</td>
-<td>[ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>84441d65-6f4e-40eb-92ef-743ac6d1229c</td>
-<td>2</td>
-<td>JORDAN HAYES</td>
-<td>PARANORMAL MILITARY SQUAD</td>
-<td>Dr. Jordan Hayes is a key member of the Parano...</td>
-<td>17.0</td>
-<td>25</td>
-<td>[ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>ec2c0109-3a2f-479e-89d9-7a64abe07a63</td>
-<td>3</td>
-<td>SAM RIVERA</td>
-<td>PARANORMAL MILITARY SQUAD</td>
-<td>Sam Rivera is a technical expert and agent wit...</td>
-<td>9.0</td>
-<td>29</td>
-<td>[ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>19d249b1-487e-4db9-85db-410cfb6ab986</td>
-<td>4</td>
-<td>PARANORMAL MILITARY SQUAD</td>
-<td>OPERATION: DULCE</td>
-<td>The Paranormal Military Squad is the team assi...</td>
-<td>10.0</td>
-<td>20</td>
-<td>[ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc...</td>
-</tr>
-</tbody>
-</table>
-</div>
+<span class="ansi-red-fg">NameError</span>: name 'read_indexer_relationships' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3321,9 +3241,19 @@ covariates = {"claims": claims}</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Claim records: 41
-</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># NOTE: covariates are turned off by default, because they generally need prompt tuning to be valuable</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># Please see the GRAPHRAG_CLAIM_* settings</span>
+<span class="ansi-green-fg">      3</span> covariate_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>COVARIATE_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> claims = <span class="ansi-yellow-bg">read_indexer_covariates</span>(covariate_df)
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Claim records: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(claims)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      8</span> covariates = {<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">claims</span><span class="ansi-yellow-fg">"</span>: claims}
+
+<span class="ansi-red-fg">NameError</span>: name 'read_indexer_covariates' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3380,143 +3310,17 @@ report_df.head()</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Report records: 10
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> report_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>COMMUNITY_REPORT_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> reports = <span class="ansi-yellow-bg">read_indexer_reports</span>(report_df, community_df, COMMUNITY_LEVEL)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Report records: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(report_df)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      5</span> report_df.head()
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>id</th>
-<th>human_readable_id</th>
-<th>community</th>
-<th>level</th>
-<th>parent</th>
-<th>children</th>
-<th>title</th>
-<th>summary</th>
-<th>full_content</th>
-<th>rank</th>
-<th>rating_explanation</th>
-<th>findings</th>
-<th>full_content_json</th>
-<th>period</th>
-<th>size</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>9785e64b429dacd70cce8238051f3438b387ebcd6920ef...</td>
-<td>7</td>
-<td>7</td>
-<td>1</td>
-<td>0</td>
-<td>[]</td>
-<td>Paranormal Military Squad and Operation Dulce</td>
-<td>This community centers on the Paranormal Milit...</td>
-<td># Paranormal Military Squad and Operation Dulc...</td>
-<td>8.5</td>
-<td>The impact severity rating is high due to the ...</td>
-<td>[{'explanation': 'The Paranormal Military Squa...</td>
-<td>{\n    "title": "Paranormal Military Squad and...</td>
-<td>2026-01-13</td>
-<td>4</td>
-</tr>
-<tr>
-<th>1</th>
-<td>212c8ff1796bff731abe3d54f3216511ab15d5fb0d97eb...</td>
-<td>8</td>
-<td>8</td>
-<td>1</td>
-<td>0</td>
-<td>[]</td>
-<td>Paranormal Military Squad: Leadership and Scie...</td>
-<td>This community centers on the Paranormal Milit...</td>
-<td># Paranormal Military Squad: Leadership and Sc...</td>
-<td>8.0</td>
-<td>The community poses a high impact due to its i...</td>
-<td>[{'explanation': 'Taylor Cruz, often referred ...</td>
-<td>{\n    "title": "Paranormal Military Squad: Le...</td>
-<td>2026-01-13</td>
-<td>3</td>
-</tr>
-<tr>
-<th>2</th>
-<td>dbff99eaacade8ac4337a9bde0f533313445f0643ab3d0...</td>
-<td>9</td>
-<td>9</td>
-<td>1</td>
-<td>0</td>
-<td>[]</td>
-<td>Paranormal Military Squad and Operation: Dulce...</td>
-<td>This community centers around the Paranormal M...</td>
-<td># Paranormal Military Squad and Operation: Dul...</td>
-<td>8.5</td>
-<td>The community poses a high impact severity due...</td>
-<td>[{'explanation': 'The military complex is the ...</td>
-<td>{\n    "title": "Paranormal Military Squad and...</td>
-<td>2026-01-13</td>
-<td>3</td>
-</tr>
-<tr>
-<th>3</th>
-<td>b6e8ab1ac8ecc605bbec09ad78819b95ac08d62c5a9991...</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>-1</td>
-<td>[7, 8, 9]</td>
-<td>Paranormal Military Squad and Operation: Dulce</td>
-<td>This community centers on the Paranormal Milit...</td>
-<td># Paranormal Military Squad and Operation: Dul...</td>
-<td>8.5</td>
-<td>The community poses a high impact due to its e...</td>
-<td>[{'explanation': 'Taylor Cruz is the central a...</td>
-<td>{\n    "title": "Paranormal Military Squad and...</td>
-<td>2026-01-13</td>
-<td>10</td>
-</tr>
-<tr>
-<th>4</th>
-<td>97038bee58306d13b709b615fb2b816cae0c11273a9e73...</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>-1</td>
-<td>[]</td>
-<td>Team of Agents Investigating Dulce Base</td>
-<td>This community centers on a specialized team o...</td>
-<td># Team of Agents Investigating Dulce Base\n\nT...</td>
-<td>7.5</td>
-<td>The impact severity rating is high due to the ...</td>
-<td>[{'explanation': 'The core of this community i...</td>
-<td>{\n    "title": "Team of Agents Investigating ...</td>
-<td>2026-01-13</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-</div>
+<span class="ansi-red-fg">NameError</span>: name 'read_indexer_reports' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3573,101 +3377,17 @@ text_unit_df.head()</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Text unit records: 5
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> text_unit_df = pd.read_parquet(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>INPUT_DIR<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">/</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>TEXT_UNIT_TABLE<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.parquet</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> text_units = <span class="ansi-yellow-bg">read_indexer_text_units</span>(text_unit_df)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Text unit records: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">len</span>(text_unit_df)<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      5</span> text_unit_df.head()
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>id</th>
-<th>human_readable_id</th>
-<th>text</th>
-<th>n_tokens</th>
-<th>document_id</th>
-<th>entity_ids</th>
-<th>relationship_ids</th>
-<th>covariate_ids</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>ff65e3e3764d360b35c55a83aaa35b0138af32551d0bc0...</td>
-<td>0</td>
-<td># Operation: Dulce\n\n## Chapter 1\n\nThe thru...</td>
-<td>1200</td>
-<td>6e81f882f89dd5596e1925dd3ae8a4f0a0edcb55b35a80...</td>
-<td>[bbb2ad85-3d0b-4c26-b6f9-71ed76ee64bd, 66112f0...</td>
-<td>[7c9039f8-43d7-4685-a317-f7bbbfac8e3a, f031084...</td>
-<td>[4c6e019b-29c5-456c-951c-0cd3df308634, b2d2c91...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>56388c08c6e58a2aeaa235be38fe973bbdcbfb5ca72fd2...</td>
-<td>1</td>
-<td>Taylor offered a brief nod, perhaps too curt,...</td>
-<td>1200</td>
-<td>6e81f882f89dd5596e1925dd3ae8a4f0a0edcb55b35a80...</td>
-<td>[bbb2ad85-3d0b-4c26-b6f9-71ed76ee64bd, 66112f0...</td>
-<td>[e15afdbb-6757-4f10-897d-54b9bb3dddc7, 319a7dc...</td>
-<td>[9cdfde65-90c1-46a2-bfa2-9808ea4c821a, 83a704b...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>6012990fbcfad49511dce9a360dcc28d0c9bd37dc7b337...</td>
-<td>2</td>
-<td>team was descending into the earth, carrying ...</td>
-<td>1200</td>
-<td>6e81f882f89dd5596e1925dd3ae8a4f0a0edcb55b35a80...</td>
-<td>[bbb2ad85-3d0b-4c26-b6f9-71ed76ee64bd, 66112f0...</td>
-<td>[4f42f1c3-b769-48f6-a01d-6a4a89b1c084, 319a7dc...</td>
-<td>[d3d99801-1d52-4398-9e36-3dd3d8a06a56, 1a2f60a...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>402ae07f78c0154e8c24a93c00a90ee7c85e7478a755da...</td>
-<td>3</td>
-<td>Cruz squared their shoulders, clearly ruffled ...</td>
-<td>1200</td>
-<td>6e81f882f89dd5596e1925dd3ae8a4f0a0edcb55b35a80...</td>
-<td>[bbb2ad85-3d0b-4c26-b6f9-71ed76ee64bd, e1274d9...</td>
-<td>[7c9039f8-43d7-4685-a317-f7bbbfac8e3a, 84441d6...</td>
-<td>[b39dd61f-5a5a-4894-9047-23bee3e03f73, 23029bd...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>999a787eccebd488865de53a048f60889847f42057d5ad...</td>
-<td>4</td>
-<td>to him, and he couldn't help but feel the wei...</td>
-<td>382</td>
-<td>6e81f882f89dd5596e1925dd3ae8a4f0a0edcb55b35a80...</td>
-<td>[bbb2ad85-3d0b-4c26-b6f9-71ed76ee64bd, 66112f0...</td>
-<td>[d3ea1355-14f3-494e-94cf-d43ac1077ab4, 72e568c...</td>
-<td>[7c71874a-1443-40a6-bbad-6bc78ef23ee4, dac744e...</td>
-</tr>
-</tbody>
-</table>
-</div>
+<span class="ansi-red-fg">NameError</span>: name 'read_indexer_text_units' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3776,13 +3496,13 @@ tokenizer = get_tokenizer(chat_config)</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">enums</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> ModelType
 <span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">models</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">language_model_config</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> LanguageModelConfig
 <span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">language_model</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">manager</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> ModelManager
 
-<span class="ansi-red-fg">ImportError</span>: cannot import name 'ModelType' from 'graphrag.config.enums' (/home/runner/work/hypergraph/hypergraph/packages/graphrag/graphrag/config/enums.py)</pre>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'graphrag'</pre>
 </div>
 </div>
 </div>
@@ -3857,21 +3577,21 @@ tokenizer = get_tokenizer(chat_config)</div>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 8</span>
-<span class="ansi-green-fg">      1</span> context_builder = LocalSearchMixedContext(
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> context_builder = <span class="ansi-yellow-bg">LocalSearchMixedContext</span>(
 <span class="ansi-green-fg">      2</span>     community_reports=reports,
 <span class="ansi-green-fg">      3</span>     text_units=text_units,
 <span class="ansi-green-fg">      4</span>     entities=entities,
 <span class="ansi-green-fg">      5</span>     relationships=relationships,
 <span class="ansi-green-fg">      6</span>     <span style="color: rgb(95,135,135)"># if you did not run covariates during indexing, set this to None</span>
 <span class="ansi-green-fg">      7</span>     covariates=covariates,
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span>     entity_text_embeddings=<span class="ansi-yellow-bg">description_embedding_store</span>,
+<span class="ansi-green-fg">      8</span>     entity_text_embeddings=description_embedding_store,
 <span class="ansi-green-fg">      9</span>     embedding_vectorstore_key=EntityVectorStoreKey.ID,  <span style="color: rgb(95,135,135)"># if the vectorstore uses entity title as ids, set this to EntityVectorStoreKey.TITLE</span>
 <span class="ansi-green-fg">     10</span>     text_embedder=text_embedder,
 <span class="ansi-green-fg">     11</span>     tokenizer=tokenizer,
 <span class="ansi-green-fg">     12</span> )
 
-<span class="ansi-red-fg">NameError</span>: name 'description_embedding_store' is not defined</pre>
+<span class="ansi-red-fg">NameError</span>: name 'LocalSearchMixedContext' is not defined</pre>
 </div>
 </div>
 </div>
@@ -3888,8 +3608,8 @@ tokenizer = get_tokenizer(chat_config)</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3982,6 +3702,46 @@ model_params = {
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 28</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># text_unit_prop: proportion of context window dedicated to related text units</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># community_prop: proportion of context window dedicated to community reports.</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># The remaining proportion is dedicated to entities and relationships. Sum of text_unit_prop and community_prop should be &lt;= 1</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># dataframes indicates whether the record is included in the context window.</span>
+<span class="ansi-green-fg">     14</span> <span style="color: rgb(95,135,135)"># max_tokens: maximum number of tokens to use for the context window.</span>
+<span class="ansi-green-fg">     17</span> local_context_params = {
+<span class="ansi-green-fg">     18</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">text_unit_prop</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">0.5</span>,
+<span class="ansi-green-fg">     19</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">community_prop</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">0.1</span>,
+<span class="ansi-green-fg">     20</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">conversation_history_max_turns</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">5</span>,
+<span class="ansi-green-fg">     21</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">conversation_history_user_turns_only</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">     22</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">top_k_mapped_entities</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">10</span>,
+<span class="ansi-green-fg">     23</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">top_k_relationships</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">10</span>,
+<span class="ansi-green-fg">     24</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">include_entity_rank</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">     25</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">include_relationship_weight</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">     26</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">include_community_rank</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">     27</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">return_candidate_context</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">28</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">embedding_vectorstore_key</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-yellow-bg">EntityVectorStoreKey</span>.ID,  <span style="color: rgb(95,135,135)"># set this to EntityVectorStoreKey.TITLE if the vectorstore uses entity title as ids</span>
+<span class="ansi-green-fg">     29</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">max_tokens</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">12_000</span>,  <span style="color: rgb(95,135,135)"># change this based on the token limit you have on your model (if you are using a model with 8k limit, a good setting could be 5000)</span>
+<span class="ansi-green-fg">     30</span> }
+<span class="ansi-green-fg">     32</span> model_params = {
+<span class="ansi-green-fg">     33</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">max_tokens</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">2_000</span>,  <span style="color: rgb(95,135,135)"># change this based on the token limit you have on your model (if you are using a model with 8k limit, a good setting could be 1000=1500)</span>
+<span class="ansi-green-fg">     34</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">temperature</span><span class="ansi-yellow-fg">"</span>: <span class="ansi-green-fg">0.0</span>,
+<span class="ansi-green-fg">     35</span> }
+
+<span class="ansi-red-fg">NameError</span>: name 'EntityVectorStoreKey' is not defined</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
@@ -4033,9 +3793,9 @@ model_params = {
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> search_engine = LocalSearch(
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     model=<span class="ansi-yellow-bg">chat_model</span>,
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> search_engine = <span class="ansi-yellow-bg">LocalSearch</span>(
+<span class="ansi-green-fg">      2</span>     model=chat_model,
 <span class="ansi-green-fg">      3</span>     context_builder=context_builder,
 <span class="ansi-green-fg">      4</span>     tokenizer=tokenizer,
 <span class="ansi-green-fg">      5</span>     model_params=model_params,
@@ -4043,7 +3803,7 @@ model_params = {
 <span class="ansi-green-fg">      7</span>     response_type=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">multiple paragraphs</span><span class="ansi-yellow-fg">"</span>,  <span style="color: rgb(95,135,135)"># free form text describing the response type and format, can be anything, e.g. prioritized list, single paragraph, multiple paragraphs, multiple-page report</span>
 <span class="ansi-green-fg">      8</span> )
 
-<span class="ansi-red-fg">NameError</span>: name 'chat_model' is not defined</pre>
+<span class="ansi-red-fg">NameError</span>: name 'LocalSearch' is not defined</pre>
 </div>
 </div>
 </div>
@@ -4471,16 +4231,16 @@ print(result.response)</div>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[20]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> question_generator = LocalQuestionGen(
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     model=<span class="ansi-yellow-bg">chat_model</span>,
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[20]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> question_generator = <span class="ansi-yellow-bg">LocalQuestionGen</span>(
+<span class="ansi-green-fg">      2</span>     model=chat_model,
 <span class="ansi-green-fg">      3</span>     context_builder=context_builder,
 <span class="ansi-green-fg">      4</span>     tokenizer=tokenizer,
 <span class="ansi-green-fg">      5</span>     model_params=model_params,
 <span class="ansi-green-fg">      6</span>     context_builder_params=local_context_params,
 <span class="ansi-green-fg">      7</span> )
 
-<span class="ansi-red-fg">NameError</span>: name 'chat_model' is not defined</pre>
+<span class="ansi-red-fg">NameError</span>: name 'LocalQuestionGen' is not defined</pre>
 </div>
 </div>
 </div>

@@ -23,7 +23,7 @@
     
     
       
-        <title>Custom Graphs - GraphRAG</title>
+        <title>Custom Graphs - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -916,10 +916,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fastgraphrag" class="md-nav__link">
+  <a href="#fasthypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FastGraphRAG
+        FastHypergraph
       
     </span>
   </a>
@@ -2000,10 +2000,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fastgraphrag" class="md-nav__link">
+  <a href="#fasthypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FastGraphRAG
+        FastHypergraph
       
     </span>
   </a>
@@ -2047,14 +2047,14 @@
 
 
 <h1 id="bring-your-own-graph">Bring Your Own Graph</h1>
-<p>Several users have asked if they can bring their own existing graph and have it summarized for query with GraphRAG. There are many possible ways to do this, but here we'll describe a simple method that aligns with the existing GraphRAG workflows quite easily.</p>
-<p>To cover the basic use cases for GraphRAG query, you should have two or three tables derived from your data:</p>
+<p>Several users have asked if they can bring their own existing graph and have it summarized for query with Hypergraph. There are many possible ways to do this, but here we'll describe a simple method that aligns with the existing Hypergraph workflows quite easily.</p>
+<p>To cover the basic use cases for Hypergraph query, you should have two or three tables derived from your data:</p>
 <ul>
 <li>entities.parquet - this is the list of entities found in the dataset, which are the nodes of the graph.</li>
 <li>relationships.parquet - this is the list of relationships found in the dataset, which are the edges of the graph.</li>
 <li>text_units.parquet - this is the source text chunks the graph was extracted from. This is optional depending on the query method you intend to use (described later).</li>
 </ul>
-<p>The approach described here will be to run a custom GraphRAG workflow pipeline that assumes the text chunking, entity extraction, and relationship extraction has already occurred.</p>
+<p>The approach described here will be to run a custom Hypergraph workflow pipeline that assumes the text chunking, entity extraction, and relationship extraction has already occurred.</p>
 <h2 id="tables">Tables</h2>
 <h3 id="entities">Entities</h3>
 <p>See the full entities <a href="../outputs/#entities">table schema</a>. For graph summarization purposes, you only need id, title, description, and the list of text_unit_ids.</p>
@@ -2064,10 +2064,10 @@
 <p>Note: the <code>weight</code> field is important because it is used to properly compute Leiden communities!</p>
 </blockquote>
 <h2 id="workflow-configuration">Workflow Configuration</h2>
-<p>GraphRAG includes the ability to specify <em>only</em> the specific workflow steps that you need. For basic graph summarization and query, you need the following config in your settings.yaml:</p>
+<p>Hypergraph includes the ability to specify <em>only</em> the specific workflow steps that you need. For basic graph summarization and query, you need the following config in your settings.yaml:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">workflows</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">create_communities</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">create_community_reports</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-<p>This will result in only the minimal workflows required for GraphRAG <a href="../../query/global_search/">Global Search</a>.</p>
+<p>This will result in only the minimal workflows required for Hypergraph <a href="../../query/global_search/">Global Search</a>.</p>
 <h2 id="optional-additional-config">Optional Additional Config</h2>
 <p>If you would like to run <a href="../../query/local_search/">Local</a>, <a href="../../query/drift_search/">DRIFT</a>, or <a href="../../query/overview/#basic-search">Basic</a> Search, you will need to include text_units and some embeddings.</p>
 <h3 id="text-units">Text Units</h3>
@@ -2076,8 +2076,8 @@
 <p>To perform the other search types above, you need some of the content to be embedded. Simply add the embeddings workflow:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">workflows</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">create_communities</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">create_community_reports</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">generate_text_embeddings</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-<h3 id="fastgraphrag">FastGraphRAG</h3>
-<p><a href="../methods/#fastgraphrag">FastGraphRAG</a> uses text_units for the community reports instead of the entity and relationship descriptions. If your graph is sourced in such a way that it does not have descriptions, this might be a useful alternative. In this case, you would update your workflows list to include the text variant of the community reports workflow:</p>
+<h3 id="fasthypergraph">FastHypergraph</h3>
+<p><a href="../methods/#fasthypergraph">FastHypergraph</a> uses text_units for the community reports instead of the entity and relationship descriptions. If your graph is sourced in such a way that it does not have descriptions, this might be a useful alternative. In this case, you would update your workflows list to include the text variant of the community reports workflow:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">workflows</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">create_communities</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">create_community_reports_text</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">generate_text_embeddings</span><span class="p p-Indicator">]</span>
 </code></pre></div>
 <p>This method requires that your entities and relationships tables have valid links to a list of text_unit_ids. Also note that <code>generate_text_embeddings</code> is still only required if you are doing searches other than Global Search.</p>
@@ -2086,7 +2086,7 @@
 <ul>
 <li><code>output</code>: Create an output folder and put your entities and relationships (and optionally text_units) parquet files in it.</li>
 <li>Update your config as noted above to only run the workflows subset you need.</li>
-<li>Run <code>graphrag index --root &lt;your_project_root&gt;</code></li>
+<li>Run <code>hypergraph index --root &lt;your_project_root&gt;</code></li>
 </ul>
 
 

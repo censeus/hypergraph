@@ -23,7 +23,7 @@
     
     
       
-        <title>Inputs - GraphRAG</title>
+        <title>Inputs - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -2225,9 +2225,9 @@
 
 
 <h1 id="inputs">Inputs</h1>
-<p>GraphRAG supports several input formats to simplify ingesting your data. The mechanics and features available for input files and text chunking are discussed here.</p>
+<p>Hypergraph supports several input formats to simplify ingesting your data. The mechanics and features available for input files and text chunking are discussed here.</p>
 <h2 id="input-loading-and-schema">Input Loading and Schema</h2>
-<p>All input formats are loaded within GraphRAG and passed to the indexing pipeline as a <code>documents</code> DataFrame. This DataFrame has a row for each document using a shared column schema:</p>
+<p>All input formats are loaded within Hypergraph and passed to the indexing pipeline as a <code>documents</code> DataFrame. This DataFrame has a row for each document using a shared column schema:</p>
 <table>
 <thead>
 <tr>
@@ -2266,7 +2266,7 @@
 </table>
 <p>Also see the <a href="../outputs/">outputs</a> documentation for the final documents table schema saved to parquet after pipeline completion.</p>
 <h2 id="bring-your-own-dataframe">Bring-your-own DataFrame</h2>
-<p>GraphRAG's <a href="https://github.com/censeus/hypergraph/blob/main/graphrag/api/index.py">indexing API method</a> allows you to pass in your own pandas DataFrame and bypass all of the input loading/parsing described in the next section. This is convenient if you have content in a format or storage location we don't support out-of-the-box. <em>You must ensure that your input DataFrame conforms to the schema described above.</em> All of the chunking behavior described later will proceed exactly the same.</p>
+<p>Hypergraph's <a href="https://github.com/censeus/hypergraph/blob/main/hypergraph/api/index.py">indexing API method</a> allows you to pass in your own pandas DataFrame and bypass all of the input loading/parsing described in the next section. This is convenient if you have content in a format or storage location we don't support out-of-the-box. <em>You must ensure that your input DataFrame conforms to the schema described above.</em> All of the chunking behavior described later will proceed exactly the same.</p>
 <h2 id="custom-file-handling">Custom File Handling</h2>
 <p>We use an injectable InputReader provider class. This means you can implement any input file handling you want in a class that extends InputReader and register it with the InputReaderFactory. See the <a href="https://censeus.github.io/hypergraph/index/architecture/">architecture page</a> for more info on our standard provider pattern.</p>
 <h2 id="formats">Formats</h2>
@@ -2279,7 +2279,7 @@
 <h3 id="json">JSON</h3>
 <p>JSON files (typically ending in a .json extension) contain <a href="https://www.json.org/">structured objects</a>. These are loaded using python's <a href="https://docs.python.org/3/library/json.html"><code>json.loads</code> method</a>, so your files must be properly compliant. JSON files may contain a single object in the file <em>or</em> the file may contain an array of objects at the root. We will check for and handle either of these cases. As with CSV, multiple files will be concatenated into a final table, and the <code>text_column</code> and <code>title_column</code> config options will be applied to the properties of each loaded object. Note that the specialized jsonl format produced by some libraries (one full JSON object on each line, not in an array) is not currently supported.</p>
 <h2 id="metadata">Metadata</h2>
-<p>With the structured file formats (CSV and JSON) you can configure any number of columns to be added to a persisted <code>metadata</code> field in the DataFrame. This is configured by supplying a list of column names to collect. If this is configured, the output <code>metadata</code> column will have a dict containing a key for each column, and the value of the column for that document. This metadata can optionally be used later in the GraphRAG pipeline.</p>
+<p>With the structured file formats (CSV and JSON) you can configure any number of columns to be added to a persisted <code>metadata</code> field in the DataFrame. This is configured by supplying a list of column names to collect. If this is configured, the output <code>metadata</code> column will have a dict containing a key for each column, and the value of the column for that document. This metadata can optionally be used later in the Hypergraph pipeline.</p>
 <h3 id="example">Example</h3>
 <p>software.csv</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>text,title,tag

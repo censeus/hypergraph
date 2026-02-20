@@ -23,7 +23,7 @@
     
     
       
-        <title>Overview - GraphRAG</title>
+        <title>Overview - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -1935,7 +1935,7 @@
 
 
 <h1 id="query-engine">Query Engine 🔎</h1>
-<p>The Query Engine is the retrieval module of the GraphRAG library, and operates over completed <a href="../../index/overview/">indexes</a>.
+<p>The Query Engine is the retrieval module of the Hypergraph library, and operates over completed <a href="../../index/overview/">indexes</a>.
 It is responsible for the following tasks:</p>
 <ul>
 <li><a href="#local-search">Local Search</a></li>
@@ -1951,10 +1951,10 @@ It is responsible for the following tasks:</p>
 <p>Global search generates answers by searching over all AI-generated community reports in a map-reduce fashion. This is a resource-intensive method, but often gives good responses for questions that require an understanding of the dataset as a whole (e.g. What are the most significant values of the herbs mentioned in this notebook?).</p>
 <p>More about this is provided on the <a href="../global_search/">Global Search</a> page.</p>
 <h2 id="drift-search">DRIFT Search</h2>
-<p>DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This expands the GraphRAG query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.</p>
+<p>DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This expands the Hypergraph query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.</p>
 <p>To learn more about DRIFT Search, please refer to the <a href="../drift_search/">DRIFT Search</a> page.</p>
 <h2 id="basic-search">Basic Search</h2>
-<p>GraphRAG includes a rudimentary implementation of basic vector RAG to make it easy to compare different search results based on the type of question you are asking. You can specify the top <code>k</code> text unit chunks to include in the summarization context.</p>
+<p>Hypergraph includes a rudimentary implementation of basic vector RAG to make it easy to compare different search results based on the type of question you are asking. You can specify the top <code>k</code> text unit chunks to include in the summarization context.</p>
 <h2 id="question-generation">Question Generation</h2>
 <p>This functionality takes a list of user queries and generates the next candidate questions. This is useful for generating follow-up questions in a conversation or for generating a list of questions for the investigator to dive deeper into the dataset.</p>
 <p>Information about how question generation works can be found at the <a href="../question_generation/">Question Generation</a> documentation page.</p>

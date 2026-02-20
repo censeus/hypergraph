@@ -23,7 +23,7 @@
     
     
       
-        <title>Manual Tuning - GraphRAG</title>
+        <title>Manual Tuning - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -2285,13 +2285,13 @@
 
 
 <h1 id="manual-prompt-tuning">Manual Prompt Tuning ⚙️</h1>
-<p>The GraphRAG indexer, by default, will run with a handful of prompts that are designed to work well in the broad context of knowledge discovery.
+<p>The Hypergraph indexer, by default, will run with a handful of prompts that are designed to work well in the broad context of knowledge discovery.
 However, it is quite common to want to tune the prompts to better suit your specific use case.
 We provide a means for you to do this by allowing you to specify a custom prompt file, which will each use a series of token-replacements internally.</p>
 <p>Each of these prompts may be overridden by writing a custom prompt file in plaintext. We use token-replacements in the form of <code>{token_name}</code>, and the descriptions for the available tokens can be found below.</p>
 <h2 id="indexing-prompts">Indexing Prompts</h2>
 <h3 id="entityrelationship-extraction">Entity/Relationship Extraction</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/extract_graph.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/extract_graph.py">Prompt Source</a></p>
 <h4 id="tokens">Tokens</h4>
 <ul>
 <li><strong>{input_text}</strong> - The input text to be processed.</li>
@@ -2301,14 +2301,14 @@ We provide a means for you to do this by allowing you to specify a custom prompt
 <li><strong>{completion_delimiter}</strong> - An indicator for when generation is complete.</li>
 </ul>
 <h3 id="summarize-entityrelationship-descriptions">Summarize Entity/Relationship Descriptions</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/summarize_descriptions.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/summarize_descriptions.py">Prompt Source</a></p>
 <h4 id="tokens_1">Tokens</h4>
 <ul>
 <li><strong>{entity_name}</strong> - The name of the entity or the source/target pair of the relationship.</li>
 <li><strong>{description_list}</strong> - A list of descriptions for the entity or relationship.</li>
 </ul>
 <h3 id="claim-extraction">Claim Extraction</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/extract_claims.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/extract_claims.py">Prompt Source</a></p>
 <h4 id="tokens_2">Tokens</h4>
 <ul>
 <li><strong>{input_text}</strong> - The input text to be processed.</li>
@@ -2320,35 +2320,35 @@ We provide a means for you to do this by allowing you to specify a custom prompt
 </ul>
 <p>See the <a href="../../config/overview/">configuration documentation</a> for details on how to change this.</p>
 <h3 id="generate-community-reports">Generate Community Reports</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/index/community_report.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/index/community_report.py">Prompt Source</a></p>
 <h4 id="tokens_3">Tokens</h4>
 <ul>
 <li><strong>{input_text}</strong> - The input text to generate the report with. This will contain tables of entities and relationships.</li>
 </ul>
 <h2 id="query-prompts">Query Prompts</h2>
 <h3 id="local-search">Local Search</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/local_search_system_prompt.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/local_search_system_prompt.py">Prompt Source</a></p>
 <h4 id="tokens_4">Tokens</h4>
 <ul>
 <li><strong>{response_type}</strong> - Describe how the response should look. We default to "multiple paragraphs".</li>
-<li><strong>{context_data}</strong> - The data tables from GraphRAG's index.</li>
+<li><strong>{context_data}</strong> - The data tables from Hypergraph's index.</li>
 </ul>
 <h3 id="global-search">Global Search</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_map_system_prompt.py">Mapper Prompt Source</a></p>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_reduce_system_prompt.py">Reducer Prompt Source</a></p>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/global_search_knowledge_system_prompt.py">Knowledge Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_map_system_prompt.py">Mapper Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_reduce_system_prompt.py">Reducer Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/global_search_knowledge_system_prompt.py">Knowledge Prompt Source</a></p>
 <p>Global search uses a map/reduce approach to summarization. You can tune these prompts independently. This search also includes the ability to adjust the use of general knowledge from the model's training.</p>
 <h4 id="tokens_5">Tokens</h4>
 <ul>
 <li><strong>{response_type}</strong> - Describe how the response should look (reducer only). We default to "multiple paragraphs".</li>
-<li><strong>{context_data}</strong> - The data tables from GraphRAG's index.</li>
+<li><strong>{context_data}</strong> - The data tables from Hypergraph's index.</li>
 </ul>
 <h3 id="drift-search">Drift Search</h3>
-<p><a href="http://github.com/censeus/hypergraph/blob/main/graphrag/prompts/query/drift_search_system_prompt.py">Prompt Source</a></p>
+<p><a href="http://github.com/censeus/hypergraph/blob/main/hypergraph/prompts/query/drift_search_system_prompt.py">Prompt Source</a></p>
 <h4 id="tokens_6">Tokens</h4>
 <ul>
 <li><strong>{response_type}</strong> - Describe how the response should look. We default to "multiple paragraphs".</li>
-<li><strong>{context_data}</strong> - The data tables from GraphRAG's index.</li>
+<li><strong>{context_data}</strong> - The data tables from Hypergraph's index.</li>
 <li><strong>{community_reports}</strong> - The most relevant community reports to include in the summarization.</li>
 <li><strong>{query}</strong> - The query text as injected into the context.</li>
 </ul>

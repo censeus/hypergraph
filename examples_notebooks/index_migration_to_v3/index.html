@@ -19,7 +19,7 @@
     
     
       
-        <title>Index migration to v3 - GraphRAG</title>
+        <title>Index migration to v3 - Hypergraph</title>
       
     
     
@@ -86,7 +86,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -100,7 +100,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -372,13 +372,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -2629,32 +2629,14 @@ storage = create_storage(config.output_storage)</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pathlib</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Path
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">models</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">graph_rag_config</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> GraphRagConfig
 <span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag_common</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> load_config
 <span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag_storage</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">storage_factory</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> create_storage
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> config = <span class="ansi-yellow-bg">load_config</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">GraphRagConfig</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">config_path</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">Path</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">PROJECT_DIRECTORY</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">      8</span> storage = create_storage(config.output_storage)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/hypergraph/hypergraph/packages/graphrag-common/graphrag_common/config/load_config.py:172</span>, in <span class="ansi-cyan-fg">load_config</span><span class="ansi-blue-fg">(config_initializer, config_path, overrides, set_cwd, parse_env_vars, load_dot_env_file, dot_env_path, config_parser, file_encoding)</span>
-<span class="ansi-green-fg">    117</span> <span class="ansi-yellow-fg">"""Load configuration from a file.</span>
-<span class="ansi-green-fg">    118</span> 
-<span class="ansi-green-fg">    119</span> <span class="ansi-yellow-fg">Parameters</span>
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    169</span> <span class="ansi-yellow-fg">    - If the parser fails to parse the configuration text.</span>
-<span class="ansi-green-fg">    170</span> <span class="ansi-yellow-fg">"""</span>
-<span class="ansi-green-fg">    171</span> config_path = Path(config_path).resolve() <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> config_path <span class="ansi-bold" style="color: rgb(0,135,0)">else</span> Path.cwd()
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">172</span> config_path = <span class="ansi-yellow-bg">_get_config_file_path</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">config_path</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">    174</span> file_contents = config_path.read_text(encoding=file_encoding)
-<span class="ansi-green-fg">    176</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> parse_env_vars:
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/hypergraph/hypergraph/packages/graphrag-common/graphrag_common/config/load_config.py:38</span>, in <span class="ansi-cyan-fg">_get_config_file_path</span><span class="ansi-blue-fg">(config_dir_or_file)</span>
-<span class="ansi-green-fg">     36</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> config_dir_or_file.is_dir():
-<span class="ansi-green-fg">     37</span>     msg = <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid config path: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>config_dir_or_file<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> is not a directory</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">38</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">FileNotFoundError</span>(msg)
-<span class="ansi-green-fg">     40</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> file <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> _default_config_files:
-<span class="ansi-green-fg">     41</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> (config_dir_or_file / file).is_file():
-
-<span class="ansi-red-fg">FileNotFoundError</span>: Invalid config path: /home/runner/work/hypergraph/hypergraph/docs/examples_notebooks/&lt;your project directory&gt; is not a directory</pre>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'graphrag'</pre>
 </div>
 </div>
 </div>
@@ -2746,15 +2728,13 @@ await table_provider.write_dataframe("text_units", text_units)</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 4</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag_storage</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">tables</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">parquet_table_provider</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> ParquetTableProvider
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag_storage</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">tables</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">parquet_table_provider</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> ParquetTableProvider
 <span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># Create table provider from storage</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> table_provider = ParquetTableProvider(<span class="ansi-yellow-bg">storage</span>)
-<span class="ansi-green-fg">      6</span> text_units = <span class="ansi-bold" style="color: rgb(0,135,0)">await</span> table_provider.read_dataframe(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">text_units</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">      8</span> text_units[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">document_id</span><span class="ansi-yellow-fg">"</span>] = text_units[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">document_ids</span><span class="ansi-yellow-fg">"</span>].apply(<span class="ansi-bold" style="color: rgb(0,135,0)">lambda</span> ids: ids[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      4</span> table_provider = ParquetTableProvider(storage)
 
-<span class="ansi-red-fg">NameError</span>: name 'storage' is not defined</pre>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'graphrag_storage'</pre>
 </div>
 </div>
 </div>

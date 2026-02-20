@@ -23,7 +23,7 @@
     
     
       
-        <title>Methods - GraphRAG</title>
+        <title>Methods - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -748,10 +748,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#standard-graphrag" class="md-nav__link">
+  <a href="#standard-hypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard GraphRAG
+        Standard Hypergraph
       
     </span>
   </a>
@@ -759,10 +759,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fastgraphrag" class="md-nav__link">
+  <a href="#fasthypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FastGraphRAG
+        FastHypergraph
       
     </span>
   </a>
@@ -1838,10 +1838,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#standard-graphrag" class="md-nav__link">
+  <a href="#standard-hypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard GraphRAG
+        Standard Hypergraph
       
     </span>
   </a>
@@ -1849,10 +1849,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fastgraphrag" class="md-nav__link">
+  <a href="#fasthypergraph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FastGraphRAG
+        FastHypergraph
       
     </span>
   </a>
@@ -1891,9 +1891,9 @@
 
 
 <h1 id="indexing-methods">Indexing Methods</h1>
-<p>GraphRAG is a platform for our research into RAG indexing methods that produce optimal context window content for language models. We have a standard indexing pipeline that uses a language model to extract the graph that our memory model is based upon. We may introduce additional indexing methods from time to time. This page documents those options.</p>
-<h2 id="standard-graphrag">Standard GraphRAG</h2>
-<p>This is the method described in the original <a href="https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/">blog post</a>. Standard uses a language model for all reasoning tasks:</p>
+<p>Hypergraph is a platform for our research into RAG indexing methods that produce optimal context window content for language models. We have a standard indexing pipeline that uses a language model to extract the graph that our memory model is based upon. We may introduce additional indexing methods from time to time. This page documents those options.</p>
+<h2 id="standard-hypergraph">Standard Hypergraph</h2>
+<p>This is the method described in the original <a href="https://www.microsoft.com/en-us/research/blog/hypergraph-unlocking-llm-discovery-on-narrative-private-data/">blog post</a>. Standard uses a language model for all reasoning tasks:</p>
 <ul>
 <li>entity extraction: LLM is prompted to extract named entities and provide a description from each text unit.</li>
 <li>relationship extraction: LLM is prompted to describe the relationship between each pair of entities in each text unit.</li>
@@ -1902,9 +1902,9 @@
 <li>claim extraction (optional): LLM is prompted to extract and describe claims from each text unit.</li>
 <li>community report generation: entity and relationship descriptions (and optionally claims) for each community are collected and used to prompt the LLM to generate a summary report.</li>
 </ul>
-<p><code>graphrag index --method standard</code>. This is the default method, so the method param can be omitted on the command line.</p>
-<h2 id="fastgraphrag">FastGraphRAG</h2>
-<p>FastGraphRAG is a method that substitutes some of the language model reasoning for traditional natural language processing (NLP) methods. This is a hybrid technique that we developed as a faster and cheaper indexing alternative:</p>
+<p><code>hypergraph index --method standard</code>. This is the default method, so the method param can be omitted on the command line.</p>
+<h2 id="fasthypergraph">FastHypergraph</h2>
+<p>FastHypergraph is a method that substitutes some of the language model reasoning for traditional natural language processing (NLP) methods. This is a hybrid technique that we developed as a faster and cheaper indexing alternative:</p>
 <ul>
 <li>entity extraction: entities are noun phrases extracted using NLP libraries such as NLTK and spaCy. There is no description; the source text unit is used for this.</li>
 <li>relationship extraction: relationships are defined as text unit co-occurrence between entity pairs. There is no description.</li>
@@ -1913,14 +1913,14 @@
 <li>claim extraction: unused.</li>
 <li>community report generation: The direct text unit content containing each entity noun phrase is collected and used to prompt the LLM to generate a summary report.</li>
 </ul>
-<p><code>graphrag index --method fast</code></p>
-<p>FastGraphRAG has a handful of NLP <a href="https://censeus.github.io/hypergraph/config/yaml/#extract_graph_nlp">options built in</a>. By default we use NLTK + regular expressions for the noun phrase extraction, which is very fast but primarily suitable for English. We have built in two additional methods using spaCy: semantic parsing and CFG. We use the <code>en_core_web_md</code> model by default for spaCy, but note that you can reference any <a href="https://spacy.io/models/">supported model</a> that you have installed. </p>
+<p><code>hypergraph index --method fast</code></p>
+<p>FastHypergraph has a handful of NLP <a href="https://censeus.github.io/hypergraph/config/yaml/#extract_graph_nlp">options built in</a>. By default we use NLTK + regular expressions for the noun phrase extraction, which is very fast but primarily suitable for English. We have built in two additional methods using spaCy: semantic parsing and CFG. We use the <code>en_core_web_md</code> model by default for spaCy, but note that you can reference any <a href="https://spacy.io/models/">supported model</a> that you have installed. </p>
 <p>Note that we also generally configure the text chunking to produce much smaller chunks (50-100 tokens). This results in a better co-occurrence graph.</p>
 <p>⚠️ Note on SpaCy models:</p>
 <p>This package requires SpaCy models to function correctly. If the required model is not installed, the package will automatically download and install it the first time it is used.</p>
 <p>You can install it manually by running <code>python -m spacy download &lt;model_name&gt;</code>, for example <code>python -m spacy download en_core_web_md</code>.</p>
 <h2 id="choosing-a-method">Choosing a Method</h2>
-<p>Standard GraphRAG provides a rich description of real-world entities and relationships, but is more expensive than FastGraphRAG. We estimate graph extraction to constitute roughly 75% of indexing cost. FastGraphRAG is therefore much cheaper, but the tradeoff is that the extracted graph is less directly relevant for use outside of GraphRAG, and the graph tends to be quite a bit noisier. If high fidelity entities and graph exploration are important to your use case, we recommend staying with traditional GraphRAG. If your use case is primarily aimed at summary questions using global search, FastGraphRAG provides high quality summarization with much lower language model cost.</p>
+<p>Standard Hypergraph provides a rich description of real-world entities and relationships, but is more expensive than FastHypergraph. We estimate graph extraction to constitute roughly 75% of indexing cost. FastHypergraph is therefore much cheaper, but the tradeoff is that the extracted graph is less directly relevant for use outside of Hypergraph, and the graph tends to be quite a bit noisier. If high fidelity entities and graph exploration are important to your use case, we recommend staying with traditional Hypergraph. If your use case is primarily aimed at summary questions using global search, FastHypergraph provides high quality summarization with much lower language model cost.</p>
 
 
 

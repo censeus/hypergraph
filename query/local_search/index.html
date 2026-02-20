@@ -23,7 +23,7 @@
     
     
       
-        <title>Local Search - GraphRAG</title>
+        <title>Local Search - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -1914,7 +1914,7 @@
 
 <h1 id="local-search">Local Search 🔎</h1>
 <h2 id="entity-based-reasoning">Entity-based Reasoning</h2>
-<p>The <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/local_search/">local search</a> method combines structured data from the knowledge graph with unstructured data from the input documents to augment the LLM context with relevant entity information at query time. It is well-suited for answering questions that require an understanding of specific entities mentioned in the input documents (e.g., “What are the healing properties of chamomile?”).</p>
+<p>The <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/local_search/">local search</a> method combines structured data from the knowledge graph with unstructured data from the input documents to augment the LLM context with relevant entity information at query time. It is well-suited for answering questions that require an understanding of specific entities mentioned in the input documents (e.g., “What are the healing properties of chamomile?”).</p>
 <h2 id="methodology">Methodology</h2>
 <pre class="mermaid"><code>---
 title: Local Search Dataflow
@@ -1951,14 +1951,14 @@ flowchart LR
 </code></pre>
 <p>Given a user query and, optionally, the conversation history, the local search method identifies a set of entities from the knowledge graph that are semantically-related to the user input. These entities serve as access points into the knowledge graph, enabling the extraction of further relevant details such as connected entities, relationships, entity covariates, and community reports. Additionally, it also extracts relevant text chunks from the raw input documents that are associated with the identified entities. These candidate data sources are then prioritized and filtered to fit within a single context window of pre-defined size, which is used to generate a response to the user query.</p>
 <h2 id="configuration">Configuration</h2>
-<p>Below are the key parameters of the <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/local_search/search.py">LocalSearch class</a>:</p>
+<p>Below are the key parameters of the <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/local_search/search.py">LocalSearch class</a>:</p>
 <ul>
 <li><code>model</code>: Language model chat completion object to be used for response generation</li>
-<li><code>context_builder</code>: <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/local_search/mixed_context.py">context builder</a> object to be used for preparing context data from collections of knowledge model objects</li>
-<li><code>system_prompt</code>: prompt template used to generate the search response. Default template can be found at <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/prompts/query/local_search_system_prompt.py">system_prompt</a></li>
+<li><code>context_builder</code>: <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/local_search/mixed_context.py">context builder</a> object to be used for preparing context data from collections of knowledge model objects</li>
+<li><code>system_prompt</code>: prompt template used to generate the search response. Default template can be found at <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/prompts/query/local_search_system_prompt.py">system_prompt</a></li>
 <li><code>response_type</code>: free-form text describing the desired response type and format (e.g., <code>Multiple Paragraphs</code>, <code>Multi-Page Report</code>)</li>
 <li><code>llm_params</code>: a dictionary of additional parameters (e.g., temperature, max_tokens) to be passed to the LLM call</li>
-<li><code>context_builder_params</code>: a dictionary of additional parameters to be passed to the <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/local_search/mixed_context.py"><code>context_builder</code></a> object when building context for the search prompt</li>
+<li><code>context_builder_params</code>: a dictionary of additional parameters to be passed to the <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/local_search/mixed_context.py"><code>context_builder</code></a> object when building context for the search prompt</li>
 <li><code>callbacks</code>: optional callback functions, can be used to provide custom event handlers for LLM's completion streaming events</li>
 </ul>
 <h2 id="how-to-use">How to Use</h2>

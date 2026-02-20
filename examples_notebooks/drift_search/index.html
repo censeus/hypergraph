@@ -23,7 +23,7 @@
     
     
       
-        <title>DRIFT Search - GraphRAG</title>
+        <title>DRIFT Search - Hypergraph</title>
       
     
     
@@ -85,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -99,7 +99,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -373,13 +373,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -2703,7 +2703,7 @@ read_indexer_report_embeddings(reports, full_content_embedding_store)</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 4</span>
 <span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">os</span>
 <span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pandas</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pd</span>
@@ -2711,7 +2711,7 @@ read_indexer_report_embeddings(reports, full_content_embedding_store)</div>
 <span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">models</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">drift_search_config</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> DRIFTSearchConfig
 <span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">graphrag</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">config</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">models</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">language_model_config</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> LanguageModelConfig
 
-<span class="ansi-red-fg">ImportError</span>: cannot import name 'ModelType' from 'graphrag.config.enums' (/home/runner/work/hypergraph/hypergraph/packages/graphrag/graphrag/config/enums.py)</pre>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'graphrag'</pre>
 </div>
 </div>
 </div>
@@ -2810,24 +2810,23 @@ text_embedder = ModelManager().get_or_create_embedding_model(
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> api_key = os.environ[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">GRAPHRAG_API_KEY</span><span class="ansi-yellow-fg">"</span>]
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> chat_config = <span class="ansi-yellow-bg">LanguageModelConfig</span>(
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> api_key = <span class="ansi-yellow-bg">os</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">environ</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">GRAPHRAG_API_KEY</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span>
+<span class="ansi-green-fg">      3</span> chat_config = LanguageModelConfig(
 <span class="ansi-green-fg">      4</span>     api_key=api_key,
 <span class="ansi-green-fg">      5</span>     <span style="color: rgb(0,135,0)">type</span>=ModelType.Chat,
-<span class="ansi-green-fg">      6</span>     model_provider=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">openai</span><span class="ansi-yellow-fg">"</span>,
-<span class="ansi-green-fg">      7</span>     model=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">gpt-4.1</span><span class="ansi-yellow-fg">"</span>,
-<span class="ansi-green-fg">      8</span>     max_retries=<span class="ansi-green-fg">20</span>,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">      8</span>     max_retries=<span class="ansi-green-fg">20</span>,
 <span class="ansi-green-fg">      9</span> )
 <span class="ansi-green-fg">     10</span> chat_model = ModelManager().get_or_create_chat_model(
 <span class="ansi-green-fg">     11</span>     name=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">local_search</span><span class="ansi-yellow-fg">"</span>,
 <span class="ansi-green-fg">     12</span>     model_type=ModelType.Chat,
 <span class="ansi-green-fg">     13</span>     config=chat_config,
 <span class="ansi-green-fg">     14</span> )
-<span class="ansi-green-fg">     16</span> tokenizer = get_tokenizer(chat_config)
 
-<span class="ansi-red-fg">NameError</span>: name 'LanguageModelConfig' is not defined</pre>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">&lt;frozen os&gt;:717</span>, in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
+
+<span class="ansi-red-fg">KeyError</span>: 'GRAPHRAG_API_KEY'</pre>
 </div>
 </div>
 </div>

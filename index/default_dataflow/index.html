@@ -23,7 +23,7 @@
     
     
       
-        <title>Dataflow - GraphRAG</title>
+        <title>Dataflow - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -720,10 +720,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-graphrag-knowledge-model" class="md-nav__link">
+  <a href="#the-hypergraph-knowledge-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The GraphRAG Knowledge Model
+        The Hypergraph Knowledge Model
       
     </span>
   </a>
@@ -2027,10 +2027,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-graphrag-knowledge-model" class="md-nav__link">
+  <a href="#the-hypergraph-knowledge-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The GraphRAG Knowledge Model
+        The Hypergraph Knowledge Model
       
     </span>
   </a>
@@ -2269,8 +2269,8 @@
 
 
 <h1 id="indexing-dataflow">Indexing Dataflow</h1>
-<h2 id="the-graphrag-knowledge-model">The GraphRAG Knowledge Model</h2>
-<p>The knowledge model is a specification for data outputs that conform to our data-model definition. You can find these definitions in the python/graphrag/graphrag/model folder within the GraphRAG repository. The following entity types are provided. The fields here represent the fields that are text-embedded by default.</p>
+<h2 id="the-hypergraph-knowledge-model">The Hypergraph Knowledge Model</h2>
+<p>The knowledge model is a specification for data outputs that conform to our data-model definition. You can find these definitions in the python/hypergraph/hypergraph/model folder within the Hypergraph repository. The following entity types are provided. The fields here represent the fields that are text-embedded by default.</p>
 <ul>
 <li><code>Document</code> - An input document into the system. These either represent individual rows in a CSV or individual .txt files.</li>
 <li><code>TextUnit</code> - A chunk of text to analyze. The size of these chunks, their overlap, and whether they adhere to any data boundaries may be configured below.</li>
@@ -2281,7 +2281,7 @@
 <li><code>Community Report</code> - The contents of each community are summarized into a generated report, useful for human reading and downstream search.</li>
 </ul>
 <h2 id="the-default-configuration-workflow">The Default Configuration Workflow</h2>
-<p>Let's take a look at how the default-configuration workflow transforms text documents into the <em>GraphRAG Knowledge Model</em>. This page gives a general overview of the major steps in this process. To fully configure this workflow, check out the <a href="../../config/overview/">configuration</a> documentation.</p>
+<p>Let's take a look at how the default-configuration workflow transforms text documents into the <em>Hypergraph Knowledge Model</em>. This page gives a general overview of the major steps in this process. To fully configure this workflow, check out the <a href="../../config/overview/">configuration</a> documentation.</p>
 <pre class="mermaid"><code>---
 title: Dataflow Overview
 ---
@@ -2327,7 +2327,7 @@ flowchart LR
     doc2 --&gt; tu4[TextUnit 4]
 </code></pre>
 <h2 id="phase-2-document-processing">Phase 2: Document Processing</h2>
-<p>In this phase of the workflow, we create the <em>Documents</em> table for the knowledge model. Final documents are not used directly in GraphRAG, but this step links them to their constituent text units for provenance in your own applications.</p>
+<p>In this phase of the workflow, we create the <em>Documents</em> table for the knowledge model. Final documents are not used directly in Hypergraph, but this step links them to their constituent text units for provenance in your own applications.</p>
 <pre class="mermaid"><code>---
 title: Document Processing
 ---
@@ -2347,7 +2347,7 @@ flowchart LR
     tu[TextUnit] --&gt; ge[Graph Extraction] --&gt; gs[Graph Summarization]
     tu --&gt; ce[Claim Extraction]</code></pre>
 <blockquote>
-<p>Note: if you are using the <a href="https://censeus.github.io/hypergraph/index/methods/#fastgraphrag">FastGraphRAG</a> option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.</p>
+<p>Note: if you are using the <a href="https://censeus.github.io/hypergraph/index/methods/#fasthypergraph">FastHypergraph</a> option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.</p>
 </blockquote>
 <h3 id="entity-relationship-extraction">Entity &amp; Relationship Extraction</h3>
 <p>In this first step of graph extraction, we process each text-unit to extract entities and relationships out of the raw text using the LLM. The output of this step is a subgraph-per-TextUnit containing a list of <strong>entities</strong> with a <em>title</em>, <em>type</em>, and <em>description</em>, and a list of <strong>relationships</strong> with a <em>source</em>, <em>target</em>, and <em>description</em>.</p>

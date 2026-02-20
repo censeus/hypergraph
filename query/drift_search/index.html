@@ -23,7 +23,7 @@
     
     
       
-        <title>DRIFT Search - GraphRAG</title>
+        <title>DRIFT Search - Hypergraph</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="GraphRAG" class="md-header__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-header__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GraphRAG
+            Hypergraph
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -378,13 +378,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="GraphRAG" class="md-nav__button md-logo" aria-label="GraphRAG" data-md-component="logo">
+    <a href="../.." title="Hypergraph" class="md-nav__button md-logo" aria-label="Hypergraph" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.375 8.5a3.25 3.25 0 1 1-3.163 4h-3a3.252 3.252 0 0 1-4.443 2.509L7.214 17.76a3.25 3.25 0 1 1-1.342-.674l1.672-2.957A3.24 3.24 0 0 1 6.75 12c0-.907.371-1.727.97-2.316L6.117 6.846A3.253 3.253 0 0 1 1.875 3.75a3.25 3.25 0 1 1 5.526 2.32l1.603 2.836A3.25 3.25 0 0 1 13.093 11h3.119a3.25 3.25 0 0 1 3.163-2.5M10 10.25a1.75 1.75 0 1 0-.001 3.499A1.75 1.75 0 0 0 10 10.25M5.125 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5m12.5 9.75a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14.25 8.5a1.75 1.75 0 1 0 3.501-.001 1.75 1.75 0 0 0-3.501.001"/></svg>
 
     </a>
-    GraphRAG
+    Hypergraph
   </label>
   
     <div class="md-nav__source">
@@ -1936,8 +1936,8 @@
 
 <h1 id="drift-search">DRIFT Search 🔎</h1>
 <h2 id="combining-local-and-global-search">Combining Local and Global Search</h2>
-<p>GraphRAG is a technique that uses large language models (LLMs) to create knowledge graphs and summaries from unstructured text documents and leverages them to improve retrieval-augmented generation (RAG) operations on private datasets. It offers comprehensive global overviews of large, private troves of unstructured text documents while also enabling exploration of detailed, localized information. By using LLMs to create comprehensive knowledge graphs that connect and describe entities and relationships contained in those documents, GraphRAG leverages semantic structuring of the data to generate responses to a wide variety of complex user queries.</p>
-<p>DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal) builds upon Microsoft’s GraphRAG technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes using our <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/drift_search/">drift search</a> method.</p>
+<p>Hypergraph is a technique that uses large language models (LLMs) to create knowledge graphs and summaries from unstructured text documents and leverages them to improve retrieval-augmented generation (RAG) operations on private datasets. It offers comprehensive global overviews of large, private troves of unstructured text documents while also enabling exploration of detailed, localized information. By using LLMs to create comprehensive knowledge graphs that connect and describe entities and relationships contained in those documents, Hypergraph leverages semantic structuring of the data to generate responses to a wide variety of complex user queries.</p>
+<p>DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal) builds upon Microsoft’s Hypergraph technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes using our <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/drift_search/">drift search</a> method.</p>
 <h2 id="methodology">Methodology</h2>
 <p align="center">
 <img src="../../img/drift-search-diagram.png" alt="Figure 1. An entire DRIFT search hierarchy highlighting the three core phases of the DRIFT search process." align="center" />
@@ -1945,15 +1945,15 @@
 <p align="center"><i><small>
 Figure 1. An entire DRIFT search hierarchy highlighting the three core phases of the DRIFT search process. A (Primer): DRIFT compares the user’s query with the top K most semantically relevant community reports, generating a broad initial answer and follow-up questions to steer further exploration. B (Follow-Up): DRIFT uses local search to refine queries, producing additional intermediate answers and follow-up questions that enhance specificity, guiding the engine towards context-rich information. A glyph on each node in the diagram shows the confidence the algorithm has to continue the query expansion step.  C (Output Hierarchy): The final output is a hierarchical structure of questions and answers ranked by relevance, reflecting a balanced mix of global insights and local refinements, making the results adaptable and comprehensive.</small></i></p>
 
-<p>DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This addition expands the GraphRAG query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.</p>
+<p>DRIFT Search introduces a new approach to local search queries by including community information in the search process. This greatly expands the breadth of the query’s starting point and leads to retrieval and usage of a far higher variety of facts in the final answer. This addition expands the Hypergraph query engine by providing a more comprehensive option for local search, which uses community insights to refine a query into detailed follow-up questions.</p>
 <h2 id="configuration">Configuration</h2>
-<p>Below are the key parameters of the <a href="https://github.com/censeus/hypergraph/blob/main//graphrag/query/structured_search/drift_search/search.py">DRIFTSearch class</a>:</p>
+<p>Below are the key parameters of the <a href="https://github.com/censeus/hypergraph/blob/main//hypergraph/query/structured_search/drift_search/search.py">DRIFTSearch class</a>:</p>
 <ul>
 <li><code>model</code>: Language model chat completion object to be used for response generation</li>
-<li><code>context_builder</code>: <a href="https://github.com/censeus/hypergraph/blob/main/graphrag/query/structured_search/drift_search/drift_context.py">context builder</a> object to be used for preparing context data from community reports and query information</li>
-<li><code>config</code>: model to define the DRIFT Search hyperparameters. <a href="https://github.com/censeus/hypergraph/blob/main/graphrag/config/models/drift_search_config.py">DRIFT Config model</a></li>
+<li><code>context_builder</code>: <a href="https://github.com/censeus/hypergraph/blob/main/hypergraph/query/structured_search/drift_search/drift_context.py">context builder</a> object to be used for preparing context data from community reports and query information</li>
+<li><code>config</code>: model to define the DRIFT Search hyperparameters. <a href="https://github.com/censeus/hypergraph/blob/main/hypergraph/config/models/drift_search_config.py">DRIFT Config model</a></li>
 <li><code>tokenizer</code>: token encoder for tracking the budget for the algorithm.</li>
-<li><code>query_state</code>: a state object as defined in <a href="https://github.com/censeus/hypergraph/blob/main/graphrag/query/structured_search/drift_search/state.py">Query State</a> that allows to track execution of a DRIFT Search instance, alongside follow ups and <a href="https://github.com/censeus/hypergraph/blob/main/graphrag/query/structured_search/drift_search/action.py">DRIFT actions</a>.</li>
+<li><code>query_state</code>: a state object as defined in <a href="https://github.com/censeus/hypergraph/blob/main/hypergraph/query/structured_search/drift_search/state.py">Query State</a> that allows to track execution of a DRIFT Search instance, alongside follow ups and <a href="https://github.com/censeus/hypergraph/blob/main/hypergraph/query/structured_search/drift_search/action.py">DRIFT actions</a>.</li>
 </ul>
 <h2 id="how-to-use">How to Use</h2>
 <p>An example of a drift search scenario can be found in the following <a href="../../examples_notebooks/drift_search/">notebook</a>.</p>
