@@ -81,8 +81,8 @@ Many users have used platforms such as [ollama](https://ollama.com/) and [LiteLL
 
 We support model injection through the use of a standard completion and embedding Protocol and accompanying factories that you can use to register your model implementation. This is not supported with the CLI, so you'll need to use GraphRAG as a library.
 
-- Our Protocol is [defined here](https://github.com/microsoft/graphrag/blob/main/packages/graphrag-llm/graphrag_llm/completion/completion.py)
-- We have a simple mock implementation in our tests that you can [reference here](https://github.com/microsoft/graphrag/blob/main/packages/graphrag-llm/graphrag_llm/completion/mock_llm_completion.py)
+- Our Protocol is [defined here](https://github.com/censeus/hypergraph/blob/main/packages/graphrag-llm/graphrag_llm/completion/completion.py)
+- We have a simple mock implementation in our tests that you can [reference here](https://github.com/censeus/hypergraph/blob/main/packages/graphrag-llm/graphrag_llm/completion/mock_llm_completion.py)
 
 Once you have a model implementation, you need to register it with our completion model factory or embedding model factory:
 

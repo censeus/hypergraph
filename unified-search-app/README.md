@@ -15,7 +15,7 @@ We recommend always using a virtual environment:
 - `source .venv/bin/activate`
 
 ## Run index
-Use GraphRAG to index your dataset before running Unified Search. We recommend starting with the [Getting Started guide](https://microsoft.github.io/graphrag/get_started/).
+Use GraphRAG to index your dataset before running Unified Search. We recommend starting with the [Getting Started guide](https://censeus.github.io/hypergraph/get_started/).
 
 ## Datasets
 Unified Search supports multiple GraphRAG indexes by using a directory listing file. Create a `listing.json` file in the root folder where all your datasets are stored (locally or in blob storage), with the following format (one entry per dataset):

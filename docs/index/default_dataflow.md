@@ -103,7 +103,7 @@ flowchart LR
     tu --> ce[Claim Extraction]
 ```
 
-> Note: if you are using the [FastGraphRAG](https://microsoft.github.io/graphrag/index/methods/#fastgraphrag) option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.
+> Note: if you are using the [FastGraphRAG](https://censeus.github.io/hypergraph/index/methods/#fastgraphrag) option, entity and relationship extraction will be performed using NLP to conserve LLM resources, and claim extraction will always be skipped.
 
 ### Entity & Relationship Extraction
 

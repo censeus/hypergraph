@@ -4,11 +4,11 @@ This document contains notes about our versioning approach and a log of changes 
 
 There are five surface areas that may be impacted on any given release. They are:
 
-- [CLI](https://microsoft.github.io/graphrag/cli/) - The CLI is the interface most project consumers are using. **Changes to the CLI will conform to standard semver.**
-- [API](https://github.com/microsoft/graphrag/tree/main/graphrag/api) - The API layer is the primary interface we expect developers to use if they are consuming the project as a library in their own codebases. **Changes to the API layer modules will conform to standard semver.**
+- [CLI](https://censeus.github.io/hypergraph/cli/) - The CLI is the interface most project consumers are using. **Changes to the CLI will conform to standard semver.**
+- [API](https://github.com/censeus/hypergraph/tree/main/graphrag/api) - The API layer is the primary interface we expect developers to use if they are consuming the project as a library in their own codebases. **Changes to the API layer modules will conform to standard semver.**
 - Internals - Any code modules behind the CLI and API layers are considered "internal" and may change at any time without conforming to strict semver. This is intended to give the research team high flexibility to change our underlying implementation rapidly. We are not enforcing access via tightly controlled `__init__.py` files, so please understand that if you utilize modules other than the index or query API, they may break between releases in a non-semver-compliant manner.
-- [settings.yaml](https://microsoft.github.io/graphrag/config/yaml/) - The settings.yaml file may have changes made to it as we adjust configurability. **Changes that affect the settings.yml will result in a minor version bump**. `graphrag init` will always emit compatible starter config, so we recommend always running the command when updating GraphRAG between minor versions, and copying your endpoint information or other customizations over to the new file.
-- [Data model](https://microsoft.github.io/graphrag/index/outputs/) - The output data model may change over time as we adjust our approach. **Changes to the data model will conform to standard semver.** Any changes to the output tables will be shimmed for backwards compatibility between major releases, and we'll provide a migration notebook for folks to upgrade without requiring a re-index.
+- [settings.yaml](https://censeus.github.io/hypergraph/config/yaml/) - The settings.yaml file may have changes made to it as we adjust configurability. **Changes that affect the settings.yml will result in a minor version bump**. `graphrag init` will always emit compatible starter config, so we recommend always running the command when updating GraphRAG between minor versions, and copying your endpoint information or other customizations over to the new file.
+- [Data model](https://censeus.github.io/hypergraph/index/outputs/) - The output data model may change over time as we adjust our approach. **Changes to the data model will conform to standard semver.** Any changes to the output tables will be shimmed for backwards compatibility between major releases, and we'll provide a migration notebook for folks to upgrade without requiring a re-index.
 
 > TL;DR: Always run `graphrag init --path [path] --force` between minor version bumps to ensure you have the latest config format. Run the provided migration notebook between major version bumps if you want to avoid re-indexing prior datasets. Note that this will overwrite your configuration and prompts, so backup if necessary.
 
@@ -36,7 +36,7 @@ This is a summary of changes:
 - Most workflows had an undocumented `strategy` config dict that allowed fine tuning of internal settings. These fine tunings are never used and had associated complexity, so we removed it.
 - Vector store configuration now allows custom schema per embedded field. This overrides the need for the `container_name` prefix, which caused confusion anyway. Now, the default container name will simply be the embedded field name - if you need something custom, add the `index_schema` block and populate as needed.
 - We previously supported the ability to embed any text field in the data model. However, we only ever use text_unit_text, entity_description, and community_full_content, so all others have been removed.
-- Removed the `umap` and `embed_graph` blocks which were only used to add x/y fields to the entities. This fixed a long-standing dependency issue with graspologic. If you need x/y positions, see the [visualization guide](https://microsoft.github.io/graphrag/visualization_guide/) for using gephi.
+- Removed the `umap` and `embed_graph` blocks which were only used to add x/y fields to the entities. This fixed a long-standing dependency issue with graspologic. If you need x/y positions, see the [visualization guide](https://censeus.github.io/hypergraph/visualization_guide/) for using gephi.
 - Removed file filtering from input document loading. This was essentially unused.
 - Removed the groupby ability for text chunking. This was intended to allow short documents to be grouped before chunking, but is never used and added a bunch of complexity to the chunking process.
 
@@ -107,7 +107,7 @@ All of the breaking changes listed below are accounted for in the four steps abo
 - Ensure `GRAPHRAG_STORAGE_BASE_DIR` is set to a static directory, e.g., `output` instead of `output/${timestamp}/artifacts`.
 - Ensure `GRAPHRAG_REPORTING_BASE_DIR` is set to a static directory, e.g., `output` instead of `output/${timestamp}/reports`
 
-[Full docs on using environment variables for configuration](https://microsoft.github.io/graphrag/config/env_vars/).
+[Full docs on using environment variables for configuration](https://censeus.github.io/hypergraph/config/env_vars/).
 
 **Using Configuration File**
 
@@ -124,4 +124,4 @@ reporting:
   base_dir: "output" # changed from "output/${timestamp}/reports"
 ```
 
-[Full docs on using YAML files for configuration](https://microsoft.github.io/graphrag/config/yaml/).
+[Full docs on using YAML files for configuration](https://censeus.github.io/hypergraph/config/yaml/).

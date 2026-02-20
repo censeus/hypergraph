@@ -2,7 +2,7 @@
 
 The default configuration mode may be configured by using a `settings.yml` or `settings.json` file in the data project root. If a `.env` file is present along with this config file, then it will be loaded, and the environment variables defined therein will be available for token replacements in your configuration document using `${ENV_VAR}` syntax. We initialize with YML by default in `graphrag init` but you may use the equivalent JSON form if preferred.
 
-Many of these config values have defaults. Rather than replicate them here, please refer to the [constants in the code](https://github.com/microsoft/graphrag/blob/main/graphrag/config/defaults.py) directly.
+Many of these config values have defaults. Rather than replicate them here, please refer to the [constants in the code](https://github.com/censeus/hypergraph/blob/main/graphrag/config/defaults.py) directly.
 
 For example:
 
@@ -63,7 +63,7 @@ embedding_models:
   - period_in_seconds **int|None** - Window size for `sliding_window` rate limiting. default=`60`, limit requests per minute.
   - requests_per_period **int|None** - Maximum number of requests per period. default=`None`
   - tokens_per_period **int|None** - Maximum number of tokens per period. default=`None`
-- metrics **MetricsConfig|None** - Metric settings. default=`MetricsConfig()`. View [metrics notebook](https://github.com/microsoft/graphrag/blob/main/packages/graphrag-llm/notebooks/04_metrics.ipynb) for more details on metrics.
+- metrics **MetricsConfig|None** - Metric settings. default=`MetricsConfig()`. View [metrics notebook](https://github.com/censeus/hypergraph/blob/main/packages/graphrag-llm/notebooks/04_metrics.ipynb) for more details on metrics.
   - type **default** - The type of `MetricsProcessor` service to use for processing request metrics. default=`default`
   - store **memory** - The type of `MetricsStore` service. default=`memory`.
   - writer **log|file** - The type of `MetricsWriter` to use. Will write out metrics at the end of the process. default`log`, log metrics out using python standard logging at the end of the process.

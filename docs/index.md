@@ -1,7 +1,7 @@
 # Welcome to GraphRAG
 
-👉 [Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/) <br/>
-👉 [GraphRAG Arxiv](https://arxiv.org/pdf/2404.16130)
+👉 [GraphRAG Arxiv](https://arxiv.org/pdf/2404.16130)<br/>
+👉 [Original Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)
 
 <p align="center">
 <img src="img/GraphRag-Figure1.jpg" alt="Figure 1: LLM-generated knowledge graph built from a private dataset using GPT-4 Turbo." width="450" align="center" />
@@ -27,7 +27,7 @@ Retrieval-Augmented Generation (RAG) is a technique to improve LLM outputs using
 - Baseline RAG struggles to connect the dots. This happens when answering a question requires traversing disparate pieces of information through their shared attributes in order to provide new synthesized insights.
 - Baseline RAG performs poorly when being asked to holistically understand summarized semantic concepts over large data collections or even singular large documents.
 
-To address this, the tech community is working to develop methods that extend and enhance RAG. Microsoft Research’s new approach, GraphRAG, creates a knowledge graph based on an input corpus. This graph, along with community summaries and graph machine learning outputs, are used to augment prompts at query time. GraphRAG shows substantial improvement in answering the two classes of questions described above, demonstrating intelligence or mastery that outperforms other approaches previously applied to private datasets.
+To address this, GraphRAG uses a knowledge graph based on an input corpus. This graph, along with community summaries and graph machine learning outputs, are used to augment prompts at query time. GraphRAG shows substantial improvement in answering the two classes of questions described above, demonstrating intelligence or mastery that outperforms other approaches previously applied to private datasets.
 
 ## The GraphRAG Process 🤖
 
@@ -57,6 +57,6 @@ We strongly recommend to fine-tune your prompts following the [Prompt Tuning Gui
 
 ## Versioning
 
-Please see the [breaking changes](https://github.com/microsoft/graphrag/blob/main/breaking-changes.md) document for notes on our approach to versioning the project.
+Please see the [breaking changes](https://github.com/censeus/hypergraph/blob/main/breaking-changes.md) document for notes on our approach to versioning the project.
 
 *Always run `graphrag init --root [path] --force` between minor version bumps to ensure you have the latest config format. Run the provided migration notebook between major version bumps if you want to avoid re-indexing prior datasets. Note that this will overwrite your configuration and prompts, so backup if necessary.*

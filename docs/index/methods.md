@@ -28,7 +28,7 @@ FastGraphRAG is a method that substitutes some of the language model reasoning f
 
 `graphrag index --method fast`
 
-FastGraphRAG has a handful of NLP [options built in](https://microsoft.github.io/graphrag/config/yaml/#extract_graph_nlp). By default we use NLTK + regular expressions for the noun phrase extraction, which is very fast but primarily suitable for English. We have built in two additional methods using spaCy: semantic parsing and CFG. We use the `en_core_web_md` model by default for spaCy, but note that you can reference any [supported model](https://spacy.io/models/) that you have installed. 
+FastGraphRAG has a handful of NLP [options built in](https://censeus.github.io/hypergraph/config/yaml/#extract_graph_nlp). By default we use NLTK + regular expressions for the noun phrase extraction, which is very fast but primarily suitable for English. We have built in two additional methods using spaCy: semantic parsing and CFG. We use the `en_core_web_md` model by default for spaCy, but note that you can reference any [supported model](https://spacy.io/models/) that you have installed. 
 
 Note that we also generally configure the text chunking to produce much smaller chunks (50-100 tokens). This results in a better co-occurrence graph.
 

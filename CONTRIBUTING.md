@@ -4,17 +4,8 @@ Thank you for your interest in contributing to GraphRAG! We welcome contribution
 
 ## Code of Conduct
 
-This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA)
-declaring that you have the right to, and actually do, grant us the rights to use your contribution.
-For details, visit https://cla.microsoft.com.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need
-to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the
-instructions provided by the bot. You will only need to do this once across all repositories using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
-or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This project has adopted the [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md).
+Please read it before participating.
 
 ## How to Contribute
 
@@ -28,7 +19,8 @@ or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any addi
 
 ## Reporting Security Issues
 
-**Please do not report security vulnerabilities through public GitHub issues.** Instead, please report them to the Microsoft Security Response Center (MSRC).
+**Please do not report security vulnerabilities through public GitHub issues.** Instead, please use
+[GitHub Security Advisories](https://github.com/censeus/hypergraph/security/advisories/new).
 See [SECURITY.md](./SECURITY.md) for more information.
 
 ## Before you start, file an issue
@@ -52,7 +44,7 @@ If no existing item describes your issue/feature, great - please file a new issu
 - Don't understand how to do something? File an issue
 - Found an existing issue that describes yours? Great - upvote and add additional commentary / info / repro-steps / etc.
 
-If from the previous guide you find yourself in the need of file an Issue please use the [issue tracker](https://github.com/microsoft/graphrag/issues).
+If from the previous guide you find yourself in the need of file an Issue please use the [issue tracker](https://github.com/censeus/hypergraph/issues).
 Provide as much detail as possible to help us understand and address the problem.
 
 ### Add information
@@ -61,7 +53,7 @@ Provide as much detail as possible to help us understand and address the problem
 
 - What device you're running (inc. CPU type, memory, disk, etc.)
 - What OS your device is running
-- What tools and apps you're using (e.g. VS 2022, VSCode, etc.)
+- What tools and apps you're using (e.g. VS Code, etc.)
 - **We LOVE detailed repro steps!** What steps do we need to take to reproduce the issue? Assume we love to read repro steps. As much detail as you can stand is probably _barely_ enough detail for us!
 - Prefer error message text where possible or screenshots of errors if text cannot be captured
 - **If you intend to implement the fix/feature yourself then say so!** If you do not indicate otherwise we will assume that the issue is our to solve, or may label the issue as `Help-Wanted`.
