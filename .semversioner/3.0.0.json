@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "description": "Monorepo restructure\n\n  New Packages:\n    - hypergraph-cache\n    - hypergraph-chunking\n    - hypergraph-common\n    - hypergraph-input\n    - hypergraph-llm\n    - hypergraph-storage\n    - hypergraph-vectors\n\n  Changes:\n    - New config: run hypergraph init --force to reinitialize config with new layout and options.",
+      "type": "major"
+    }
+  ],
+  "created_at": "2026-01-27T18:50:37+00:00",
+  "version": "3.0.0"
+}

@@ -1,0 +1,32 @@
+[project]
+name = "hypergraph-cache"
+version = "3.0.2"
+description = "Hypergraph cache package."
+maintainers = [
+    {name = "Arsen Ohanyan"},
+]
+authors = [
+    {name = "Arsen Ohanyan"},
+    {name = "Microsoft Hypergraph Team (original authors)"},
+]
+license = "MIT"
+readme = "README.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.11,<3.14"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "hypergraph-common==3.0.2",
+    "hypergraph-storage==3.0.2",
+]
+
+[project.urls]
+Source = "https://github.com/censeus/hypergraph"
+
+[build-system]
+requires = ["hatchling>=1.27.0,<2.0.0"]
+build-backend = "hatchling.build"
