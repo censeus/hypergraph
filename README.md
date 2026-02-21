@@ -1,8 +1,6 @@
 # Hypergraph
 
-👉 [Hypergraph Arxiv Paper](https://arxiv.org/pdf/2404.16130)<br/>
-👉 [Read the docs](https://censeus.github.io/hypergraph)<br/>
-👉 [Original Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/hypergraph-unlocking-llm-discovery-on-narrative-private-data/)
+**A graph-powered RAG engine for extracting structured knowledge from unstructured text.**
 
 <div align="left">
   <a href="https://github.com/censeus/hypergraph/issues">
@@ -13,45 +11,62 @@
   </a>
 </div>
 
-> **Note**: This project is a community-maintained fork of [microsoft/graphrag](https://github.com/microsoft/graphrag), originally developed by Microsoft Research. It is independently maintained and not affiliated with or endorsed by Microsoft.
-
 ## Overview
 
-The Hypergraph project is a data pipeline and transformation suite that is designed to extract meaningful, structured data from unstructured text using the power of LLMs.
+Hypergraph is a data pipeline and transformation suite that extracts meaningful, structured data from unstructured text using the power of LLMs. It builds knowledge graphs from your documents and uses them to enhance retrieval-augmented generation (RAG) for more accurate, context-rich answers.
 
-To learn more about Hypergraph and how it can be used to enhance your LLM's ability to reason about your private data, please visit the <a href="https://arxiv.org/pdf/2404.16130" target="_blank">Hypergraph paper on ArXiv.</a>
+### Key Features
+
+- 🔍 **Knowledge Graph Extraction** — Automatically extract entities, relationships, and communities from unstructured text
+- 🧠 **Graph-Enhanced RAG** — Multiple search modes (local, global, drift, basic) powered by knowledge graph structures
+- 🔗 **Entity Resolution** — LLM-based deduplication to merge entities with different surface forms
+- 📊 **Community Detection** — Hierarchical community summarization for global reasoning over large corpora
+- ⚡ **Incremental Indexing** — Update existing indexes without full re-processing
 
 ## Quickstart
 
-To get started with the Hypergraph system we recommend trying the [command line quickstart](https://censeus.github.io/hypergraph/get_started/).
+```bash
+pip install hypergraph
+hypergraph init --root ./myproject
+hypergraph index --root ./myproject
+hypergraph query --root ./myproject --method local "What are the main themes?"
+```
 
-## Repository Guidance
+For a full walkthrough, see the [Getting Started Guide](https://censeus.github.io/hypergraph/get_started/).
 
-This repository presents a methodology for using knowledge graph memory structures to enhance LLM outputs.
+⚠️ *Hypergraph indexing can be an expensive operation. Please read the documentation to understand the process and costs involved, and start small.*
 
-⚠️ *Warning: Hypergraph indexing can be an expensive operation, please read all of the documentation to understand the process and costs involved, and start small.*
+## Documentation
 
-## Diving Deeper
+📖 [Full Documentation](https://censeus.github.io/hypergraph)
 
-- To learn about our contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md)
-- To start developing _Hypergraph_, see [DEVELOPING.md](./DEVELOPING.md)
-- Join the conversation and provide feedback in the [GitHub Discussions tab!](https://github.com/censeus/hypergraph/discussions)
+- [Getting Started](https://censeus.github.io/hypergraph/get_started/)
+- [Configuration](https://censeus.github.io/hypergraph/config/overview/)
+- [Prompt Tuning Guide](https://censeus.github.io/hypergraph/prompt_tuning/overview/)
+- [API Reference](https://censeus.github.io/hypergraph/api/)
 
-## Prompt Tuning
+## Development
 
-Using _Hypergraph_ with your data out of the box may not yield the best possible results.
-We strongly recommend to fine-tune your prompts following the [Prompt Tuning Guide](https://censeus.github.io/hypergraph/prompt_tuning/overview/) in our documentation.
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Development Guide](./DEVELOPING.md)
+- [Breaking Changes](./breaking-changes.md)
 
-## Versioning
+## Research
 
-Please see the [breaking changes](./breaking-changes.md) document for notes on our approach to versioning the project.
+Hypergraph is based on the GraphRAG research from Microsoft Research:
 
-*Always run `hypergraph init --root [path] --force` between minor version bumps to ensure you have the latest config format. Run the provided migration notebook between major version bumps if you want to avoid re-indexing prior datasets. Note that this will overwrite your configuration and prompts, so backup if necessary.*
+- 📄 [GraphRAG: Unlocking LLM Discovery on Narrative Private Data](https://arxiv.org/pdf/2404.16130) (ArXiv)
+- 📝 [Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)
 
-## Responsible AI FAQ
+## Community
 
-See [RAI_TRANSPARENCY.md](./RAI_TRANSPARENCY.md)
+- 💬 [GitHub Discussions](https://github.com/censeus/hypergraph/discussions)
+- 🐛 [Report Issues](https://github.com/censeus/hypergraph/issues)
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+MIT License — see [LICENSE](./LICENSE) for details.
+
+---
+
+> This project is forked from [microsoft/graphrag](https://github.com/microsoft/graphrag), originally developed by Microsoft Research. It is independently maintained by [Censeus](https://github.com/censeus).
