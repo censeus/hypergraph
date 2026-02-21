@@ -82,6 +82,10 @@ extract_graph:
   entity_types: [{",".join(hypergraph_config_defaults.extract_graph.entity_types)}]
   max_gleanings: {hypergraph_config_defaults.extract_graph.max_gleanings}
 
+entity_resolution:
+  enabled: {hypergraph_config_defaults.entity_resolution.enabled}
+  completion_model_id: {hypergraph_config_defaults.entity_resolution.completion_model_id}
+
 summarize_descriptions:
   completion_model_id: {hypergraph_config_defaults.summarize_descriptions.completion_model_id}
   prompt: "prompts/summarize_descriptions.txt"
