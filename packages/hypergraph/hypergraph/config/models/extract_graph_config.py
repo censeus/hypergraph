@@ -43,11 +43,17 @@ class ExtractGraphConfig(BaseModel):
         default=hypergraph_config_defaults.extract_graph.relationship_types,
     )
     strict_entity_types: bool = Field(
-        description="If true, discard extracted entities whose type is not in entity_types.",
+        description=(
+            "If true, enforce that extracted entity types must come from entity_types. "
+            "If false, the model may propose new entity types."
+        ),
         default=hypergraph_config_defaults.extract_graph.strict_entity_types,
     )
     strict_relationship_types: bool = Field(
-        description="If true, discard extracted relationships whose typed label is not in relationship_types.",
+        description=(
+            "If true, enforce that extracted relationship labels must come from relationship_types. "
+            "If false, the model may propose new relationship labels."
+        ),
         default=hypergraph_config_defaults.extract_graph.strict_relationship_types,
     )
     ontology: str | None = Field(

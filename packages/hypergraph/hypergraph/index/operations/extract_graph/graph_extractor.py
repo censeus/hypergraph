@@ -30,6 +30,8 @@ COMPLETION_DELIMITER_KEY = "completion_delimiter"
 ENTITY_TYPES_KEY = "entity_types"
 RELATIONSHIP_TYPES_KEY = "relationship_types"
 ONTOLOGY_KEY = "ontology"
+ENTITY_TYPE_POLICY_KEY = "entity_type_policy"
+RELATIONSHIP_TYPE_POLICY_KEY = "relationship_type_policy"
 TUPLE_DELIMITER = "<|>"
 RECORD_DELIMITER = "##"
 COMPLETION_DELIMITER = "<|COMPLETE|>"
@@ -75,6 +77,8 @@ class GraphExtractor:
                 text=text,
                 entity_types=entity_types,
                 relationship_types=relationship_types,
+                strict_entity_types=strict_entity_types,
+                strict_relationship_types=strict_relationship_types,
                 ontology=ontology,
             )
         except Exception as e:  # pragma: no cover - defensive logging
@@ -105,14 +109,26 @@ class GraphExtractor:
         text: str,
         entity_types: list[str],
         relationship_types: list[str] | None = None,
+        strict_entity_types: bool = False,
+        strict_relationship_types: bool = False,
         ontology: str | None = None,
     ) -> str:
+        entity_type_policy = _build_entity_type_policy(
+            strict_entity_types=strict_entity_types,
+            entity_types=entity_types,
+        )
+        relationship_type_policy = _build_relationship_type_policy(
+            strict_relationship_types=strict_relationship_types,
+            relationship_types=relationship_types or [],
+        )
         messages_builder = CompletionMessagesBuilder().add_user_message(
             self._extraction_prompt.format(**{
                 INPUT_TEXT_KEY: text,
                 ENTITY_TYPES_KEY: ",".join(entity_types),
                 RELATIONSHIP_TYPES_KEY: ",".join(relationship_types or []),
                 ONTOLOGY_KEY: ontology or "",
+                ENTITY_TYPE_POLICY_KEY: entity_type_policy,
+                RELATIONSHIP_TYPE_POLICY_KEY: relationship_type_policy,
             })
         )
 
@@ -214,6 +230,17 @@ class GraphExtractor:
                     "weight": weight,
                 })
 
+        if strict_entity_types and entities and relationships:
+            known_titles = {entity["title"] for entity in entities}
+            kept_relationships = [
+                relationship
+                for relationship in relationships
+                if relationship["source"] in known_titles
+                and relationship["target"] in known_titles
+            ]
+            dropped_relationship_count += len(relationships) - len(kept_relationships)
+            relationships = kept_relationships
+
         if dropped_entity_count > 0 or dropped_relationship_count > 0:
             logger.info(
                 "Strict type filtering dropped %s entities and %s relationships for source_id=%s",
@@ -247,6 +274,48 @@ def _extract_relationship_label(description: str) -> str | None:
     candidate, _ = description.split(":", 1)
     normalized = clean_str(candidate).upper()
     return normalized if normalized else None
+
+
+def _build_entity_type_policy(
+    strict_entity_types: bool,
+    entity_types: list[str],
+) -> str:
+    """Build prompt instructions for entity type behavior."""
+    if strict_entity_types:
+        return (
+            "STRICT MODE: entity_type MUST be one of the provided Entity_types list. "
+            "Do not invent new entity types."
+        )
+
+    return (
+        "NON-STRICT MODE: Prefer the provided Entity_types list. "
+        "If none fit, you may propose a new concise entity type."
+    )
+
+
+def _build_relationship_type_policy(
+    strict_relationship_types: bool,
+    relationship_types: list[str],
+) -> str:
+    """Build prompt instructions for relationship type behavior."""
+    if strict_relationship_types and relationship_types:
+        return (
+            "STRICT MODE: each relationship_description MUST begin with one label from "
+            "Relationship_types followed by a colon, e.g. `acquires: ...`. "
+            "Do not invent new relationship labels."
+        )
+
+    if relationship_types:
+        return (
+            "NON-STRICT MODE: Prefer labels from Relationship_types, but you may propose "
+            "new labels when needed. Always begin relationship_description with "
+            "`<label>: ...`."
+        )
+
+    return (
+        "NON-STRICT MODE: No predefined relationship labels. Begin each "
+        "relationship_description with a concise inferred label as `<label>: ...`."
+    )
 
 
 def _empty_entities_df() -> pd.DataFrame:

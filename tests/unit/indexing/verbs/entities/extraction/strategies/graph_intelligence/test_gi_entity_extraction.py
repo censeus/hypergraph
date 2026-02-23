@@ -104,7 +104,7 @@ class TestRunChain(unittest.IsolatedAsyncioTestCase):
             )
         )
 
-        entities_df, _ = await _run_extract_graph(
+        entities_df, relationships_df = await _run_extract_graph(
             text="test_text",
             source_id="1",
             entity_types=["person"],
@@ -118,6 +118,7 @@ class TestRunChain(unittest.IsolatedAsyncioTestCase):
 
         assert entities_df["title"].tolist() == ["TEST_ENTITY_2"]
         assert entities_df["type"].tolist() == ["PERSON"]
+        assert relationships_df.empty
 
     async def test_run_extract_graph_strict_relationship_types_filters_unknown_types(self):
         strict_model = create_completion(

@@ -189,7 +189,7 @@ def _index_cli(
         "--strict-entity-types/--no-strict-entity-types",
         help=(
             "If set, overrides extract_graph.strict_entity_types for this run. "
-            "When enabled, entities outside extract_graph.entity_types are dropped."
+            "When enabled, entity types are constrained to extract_graph.entity_types."
         ),
     ),
     strict_relationship_types: bool | None = typer.Option(
@@ -197,7 +197,7 @@ def _index_cli(
         "--strict-relationship-types/--no-strict-relationship-types",
         help=(
             "If set, overrides extract_graph.strict_relationship_types for this run. "
-            "When enabled, relationships outside extract_graph.relationship_types are dropped."
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
         ),
     ),
 ) -> None:
@@ -263,7 +263,7 @@ def _update_cli(
         "--strict-entity-types/--no-strict-entity-types",
         help=(
             "If set, overrides extract_graph.strict_entity_types for this run. "
-            "When enabled, entities outside extract_graph.entity_types are dropped."
+            "When enabled, entity types are constrained to extract_graph.entity_types."
         ),
     ),
     strict_relationship_types: bool | None = typer.Option(
@@ -271,7 +271,7 @@ def _update_cli(
         "--strict-relationship-types/--no-strict-relationship-types",
         help=(
             "If set, overrides extract_graph.strict_relationship_types for this run. "
-            "When enabled, relationships outside extract_graph.relationship_types are dropped."
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
         ),
     ),
 ) -> None:
