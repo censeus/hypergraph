@@ -184,6 +184,22 @@ def _index_cli(
         "--ontology",
         help="Optional raw ontology text to inject into extraction prompts.",
     ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entities outside extract_graph.entity_types are dropped."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationships outside extract_graph.relationship_types are dropped."
+        ),
+    ),
 ) -> None:
     """Build a knowledge graph index."""
     from hypergraph.cli.index import index_cli
@@ -196,6 +212,8 @@ def _index_cli(
         skip_validation=skip_validation,
         method=method,
         ontology=ontology,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 
@@ -240,6 +258,22 @@ def _update_cli(
         "--ontology",
         help="Optional raw ontology text to inject into extraction prompts.",
     ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entities outside extract_graph.entity_types are dropped."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationships outside extract_graph.relationship_types are dropped."
+        ),
+    ),
 ) -> None:
     """
     Update an existing knowledge graph index.
@@ -255,6 +289,8 @@ def _update_cli(
         skip_validation=skip_validation,
         method=method,
         ontology=ontology,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 

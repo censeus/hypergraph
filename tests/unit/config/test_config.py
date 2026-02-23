@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 from unittest import mock
 
+import pytest
+
 from hypergraph.config.load_config import load_config
 from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 
@@ -76,3 +78,43 @@ def test_extract_graph_ontology_is_preserved_as_raw_text() -> None:
 
     assert config.extract_graph.ontology == ontology
     assert config.extract_graph.entity_types == ["ignored_default"]
+
+
+def test_extract_graph_strict_entity_types_requires_allowed_types() -> None:
+    with pytest.raises(ValueError, match="strict_entity_types"):
+        HyperGraphConfig(
+            completion_models=DEFAULT_COMPLETION_MODELS,  # type: ignore
+            embedding_models=DEFAULT_EMBEDDING_MODELS,  # type: ignore
+            extract_graph={
+                "entity_types": [" "],
+                "strict_entity_types": True,
+            },
+        )
+
+
+def test_extract_graph_strict_relationship_types_requires_allowed_types() -> None:
+    with pytest.raises(ValueError, match="strict_relationship_types"):
+        HyperGraphConfig(
+            completion_models=DEFAULT_COMPLETION_MODELS,  # type: ignore
+            embedding_models=DEFAULT_EMBEDDING_MODELS,  # type: ignore
+            extract_graph={
+                "relationship_types": [],
+                "strict_relationship_types": True,
+            },
+        )
+
+
+def test_extract_graph_strict_flags_can_be_enabled() -> None:
+    config = HyperGraphConfig(
+        completion_models=DEFAULT_COMPLETION_MODELS,  # type: ignore
+        embedding_models=DEFAULT_EMBEDDING_MODELS,  # type: ignore
+        extract_graph={
+            "entity_types": ["person"],
+            "relationship_types": ["works_with"],
+            "strict_entity_types": True,
+            "strict_relationship_types": True,
+        },
+    )
+
+    assert config.extract_graph.strict_entity_types is True
+    assert config.extract_graph.strict_relationship_types is True

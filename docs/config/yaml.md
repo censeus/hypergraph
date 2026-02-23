@@ -247,6 +247,8 @@ Tune the language model-based graph extraction process.
 - `prompt` **str** - The prompt file to use.
 - `entity_types` **list[str]** - The entity types to identify.
 - `relationship_types` **list[str]** - Optional relationship labels used to constrain extracted relationships.
+- `strict_entity_types` **bool** - If true, discard extracted entities whose type is not in `entity_types`.
+- `strict_relationship_types` **bool** - If true, discard extracted relationships whose description does not begin with an allowed `relationship_types` label followed by `:`.
 - `ontology` **str** - Optional raw ontology text to inject into the extraction prompt.
 - `max_gleanings` **int** - The maximum number of gleaning cycles to use.
 

@@ -59,6 +59,8 @@ extract_graph:
   prompt: "prompts/extract_graph.txt"
   entity_types: [organization, person, geo, event]
   relationship_types: []
+  strict_entity_types: false
+  strict_relationship_types: false
   # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ...
@@ -112,6 +114,8 @@ extract_graph:
   prompt: "prompts/extract_graph.txt"
   entity_types: [organization, person, geo, event]
   relationship_types: []
+  strict_entity_types: false
+  strict_relationship_types: false
   # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ```

@@ -32,6 +32,8 @@ async def extract_graph(
     max_gleanings: int,
     num_threads: int,
     async_type: AsyncType,
+    strict_entity_types: bool = False,
+    strict_relationship_types: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Extract a graph from a piece of text using a language model."""
     num_started = 0
@@ -45,6 +47,8 @@ async def extract_graph(
             source_id=id,
             entity_types=entity_types,
             relationship_types=relationship_types,
+            strict_entity_types=strict_entity_types,
+            strict_relationship_types=strict_relationship_types,
             ontology=ontology,
             model=model,
             prompt=prompt,
@@ -84,6 +88,8 @@ async def _run_extract_graph(
     model: "LLMCompletion",
     prompt: str,
     max_gleanings: int,
+    strict_entity_types: bool = False,
+    strict_relationship_types: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Run the graph intelligence entity extraction strategy."""
     extractor = GraphExtractor(
@@ -101,6 +107,8 @@ async def _run_extract_graph(
         entity_types=entity_types,
         source_id=source_id,
         relationship_types=relationship_types,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
         ontology=ontology,
     )
 

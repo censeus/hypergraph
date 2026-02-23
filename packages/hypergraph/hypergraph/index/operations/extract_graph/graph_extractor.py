@@ -64,6 +64,8 @@ class GraphExtractor:
         entity_types: list[str],
         source_id: str,
         relationship_types: list[str] | None = None,
+        strict_entity_types: bool = False,
+        strict_relationship_types: bool = False,
         ontology: str | None = None,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Extract entities and relationships from the supplied text."""
@@ -92,6 +94,10 @@ class GraphExtractor:
             source_id,
             TUPLE_DELIMITER,
             RECORD_DELIMITER,
+            entity_types=entity_types,
+            relationship_types=relationship_types,
+            strict_entity_types=strict_entity_types,
+            strict_relationship_types=strict_relationship_types,
         )
 
     async def _process_document(
@@ -147,10 +153,18 @@ class GraphExtractor:
         source_id: str,
         tuple_delimiter: str,
         record_delimiter: str,
+        entity_types: list[str],
+        relationship_types: list[str] | None,
+        strict_entity_types: bool,
+        strict_relationship_types: bool,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Parse the result string into entity and relationship data frames."""
         entities: list[dict[str, Any]] = []
         relationships: list[dict[str, Any]] = []
+        allowed_entity_types = _normalize_allowed_types(entity_types)
+        allowed_relationship_types = _normalize_allowed_types(relationship_types or [])
+        dropped_entity_count = 0
+        dropped_relationship_count = 0
 
         records = [r.strip() for r in result.split(record_delimiter)]
 
@@ -166,6 +180,9 @@ class GraphExtractor:
                 entity_name = clean_str(record_attributes[1].upper())
                 entity_type = clean_str(record_attributes[2].upper())
                 entity_description = clean_str(record_attributes[3])
+                if strict_entity_types and entity_type not in allowed_entity_types:
+                    dropped_entity_count += 1
+                    continue
                 entities.append({
                     "title": entity_name,
                     "type": entity_type,
@@ -177,6 +194,13 @@ class GraphExtractor:
                 source = clean_str(record_attributes[1].upper())
                 target = clean_str(record_attributes[2].upper())
                 edge_description = clean_str(record_attributes[3])
+                relationship_label = _extract_relationship_label(edge_description)
+                if (
+                    strict_relationship_types
+                    and relationship_label not in allowed_relationship_types
+                ):
+                    dropped_relationship_count += 1
+                    continue
                 try:
                     weight = float(record_attributes[-1])
                 except ValueError:
@@ -190,12 +214,39 @@ class GraphExtractor:
                     "weight": weight,
                 })
 
+        if dropped_entity_count > 0 or dropped_relationship_count > 0:
+            logger.info(
+                "Strict type filtering dropped %s entities and %s relationships for source_id=%s",
+                dropped_entity_count,
+                dropped_relationship_count,
+                source_id,
+            )
+
         entities_df = pd.DataFrame(entities) if entities else _empty_entities_df()
         relationships_df = (
             pd.DataFrame(relationships) if relationships else _empty_relationships_df()
         )
 
         return entities_df, relationships_df
+
+
+def _normalize_allowed_types(types: list[str]) -> set[str]:
+    """Normalize configured types to uppercase for strict matching."""
+    return {
+        clean_str(type_name).upper()
+        for type_name in types
+        if isinstance(type_name, str) and clean_str(type_name)
+    }
+
+
+def _extract_relationship_label(description: str) -> str | None:
+    """Extract typed relationship label from description prefix (`label: ...`)."""
+    if ":" not in description:
+        return None
+
+    candidate, _ = description.split(":", 1)
+    normalized = clean_str(candidate).upper()
+    return normalized if normalized else None
 
 
 def _empty_entities_df() -> pd.DataFrame:

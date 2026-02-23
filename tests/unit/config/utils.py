@@ -194,6 +194,8 @@ def assert_extract_graph_configs(
     assert actual.prompt == expected.prompt
     assert actual.entity_types == expected.entity_types
     assert actual.relationship_types == expected.relationship_types
+    assert actual.strict_entity_types == expected.strict_entity_types
+    assert actual.strict_relationship_types == expected.strict_relationship_types
     assert actual.ontology == expected.ontology
     assert actual.max_gleanings == expected.max_gleanings
     assert actual.completion_model_id == expected.completion_model_id

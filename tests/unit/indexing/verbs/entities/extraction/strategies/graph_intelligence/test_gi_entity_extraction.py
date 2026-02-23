@@ -19,6 +19,16 @@ SIMPLE_EXTRACTION_RESPONSE = """
 ("relationship"<|>TEST_ENTITY_1<|>TEST_ENTITY_3<|>TEST_ENTITY_1 and TEST_ENTITY_3 are related because TEST_ENTITY_3 is director of TEST_ENTITY_1<|>1))
 """.strip()
 
+STRICT_TYPE_EXTRACTION_RESPONSE = """
+("entity"<|>TEST_ENTITY_1<|>COMPANY<|>TEST_ENTITY_1 is a test company)
+##
+("entity"<|>TEST_ENTITY_2<|>PERSON<|>TEST_ENTITY_2 is a person)
+##
+("relationship"<|>TEST_ENTITY_1<|>TEST_ENTITY_2<|>acquires: TEST_ENTITY_1 acquired TEST_ENTITY_2<|>2)
+##
+("relationship"<|>TEST_ENTITY_2<|>TEST_ENTITY_1<|>partners_with: TEST_ENTITY_2 partners with TEST_ENTITY_1<|>1)
+""".strip()
+
 
 model = create_completion(
     ModelConfig(
@@ -83,3 +93,55 @@ class TestRunChain(unittest.IsolatedAsyncioTestCase):
         assert all(source_id == "1" for source_id in entities_df["source_id"])
 
         assert all(source_id == "1" for source_id in relationships_df["source_id"])
+
+    async def test_run_extract_graph_strict_entity_types_filters_unknown_types(self):
+        strict_model = create_completion(
+            ModelConfig(
+                type=LLMProviderType.MockLLM,
+                model_provider="openai",
+                model="gpt-4o",
+                mock_responses=[STRICT_TYPE_EXTRACTION_RESPONSE],
+            )
+        )
+
+        entities_df, _ = await _run_extract_graph(
+            text="test_text",
+            source_id="1",
+            entity_types=["person"],
+            relationship_types=["acquires"],
+            ontology=None,
+            max_gleanings=0,
+            model=strict_model,
+            prompt=GRAPH_EXTRACTION_PROMPT,
+            strict_entity_types=True,
+        )
+
+        assert entities_df["title"].tolist() == ["TEST_ENTITY_2"]
+        assert entities_df["type"].tolist() == ["PERSON"]
+
+    async def test_run_extract_graph_strict_relationship_types_filters_unknown_types(self):
+        strict_model = create_completion(
+            ModelConfig(
+                type=LLMProviderType.MockLLM,
+                model_provider="openai",
+                model="gpt-4o",
+                mock_responses=[STRICT_TYPE_EXTRACTION_RESPONSE],
+            )
+        )
+
+        _, relationships_df = await _run_extract_graph(
+            text="test_text",
+            source_id="1",
+            entity_types=["person"],
+            relationship_types=["acquires"],
+            ontology=None,
+            max_gleanings=0,
+            model=strict_model,
+            prompt=GRAPH_EXTRACTION_PROMPT,
+            strict_relationship_types=True,
+        )
+
+        assert len(relationships_df) == 1
+        assert relationships_df["description"].tolist() == [
+            "acquires: TEST_ENTITY_1 acquired TEST_ENTITY_2"
+        ]
