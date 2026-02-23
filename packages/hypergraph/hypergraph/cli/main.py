@@ -179,6 +179,11 @@ def _index_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    ontology: str | None = typer.Option(
+        None,
+        "--ontology",
+        help="Optional raw ontology text to inject into extraction prompts.",
+    ),
 ) -> None:
     """Build a knowledge graph index."""
     from hypergraph.cli.index import index_cli
@@ -190,6 +195,7 @@ def _index_cli(
         dry_run=dry_run,
         skip_validation=skip_validation,
         method=method,
+        ontology=ontology,
     )
 
 
@@ -229,6 +235,11 @@ def _update_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    ontology: str | None = typer.Option(
+        None,
+        "--ontology",
+        help="Optional raw ontology text to inject into extraction prompts.",
+    ),
 ) -> None:
     """
     Update an existing knowledge graph index.
@@ -243,6 +254,7 @@ def _update_cli(
         cache=cache,
         skip_validation=skip_validation,
         method=method,
+        ontology=ontology,
     )
 
 

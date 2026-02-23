@@ -28,6 +28,8 @@ INPUT_TEXT_KEY = "input_text"
 RECORD_DELIMITER_KEY = "record_delimiter"
 COMPLETION_DELIMITER_KEY = "completion_delimiter"
 ENTITY_TYPES_KEY = "entity_types"
+RELATIONSHIP_TYPES_KEY = "relationship_types"
+ONTOLOGY_KEY = "ontology"
 TUPLE_DELIMITER = "<|>"
 RECORD_DELIMITER = "##"
 COMPLETION_DELIMITER = "<|COMPLETE|>"
@@ -57,12 +59,22 @@ class GraphExtractor:
         self._on_error = on_error or (lambda _e, _s, _d: None)
 
     async def __call__(
-        self, text: str, entity_types: list[str], source_id: str
+        self,
+        text: str,
+        entity_types: list[str],
+        source_id: str,
+        relationship_types: list[str] | None = None,
+        ontology: str | None = None,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Extract entities and relationships from the supplied text."""
         try:
             # Invoke the entity extraction
-            result = await self._process_document(text, entity_types)
+            result = await self._process_document(
+                text=text,
+                entity_types=entity_types,
+                relationship_types=relationship_types,
+                ontology=ontology,
+            )
         except Exception as e:  # pragma: no cover - defensive logging
             logger.exception("error extracting graph")
             self._on_error(
@@ -82,11 +94,19 @@ class GraphExtractor:
             RECORD_DELIMITER,
         )
 
-    async def _process_document(self, text: str, entity_types: list[str]) -> str:
+    async def _process_document(
+        self,
+        text: str,
+        entity_types: list[str],
+        relationship_types: list[str] | None = None,
+        ontology: str | None = None,
+    ) -> str:
         messages_builder = CompletionMessagesBuilder().add_user_message(
             self._extraction_prompt.format(**{
                 INPUT_TEXT_KEY: text,
                 ENTITY_TYPES_KEY: ",".join(entity_types),
+                RELATIONSHIP_TYPES_KEY: ",".join(relationship_types or []),
+                ONTOLOGY_KEY: ontology or "",
             })
         )
 

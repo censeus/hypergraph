@@ -48,9 +48,11 @@ def index_cli(
     cache: bool,
     dry_run: bool,
     skip_validation: bool,
+    ontology: str | None,
 ):
     """Run the pipeline with the given config."""
-    config = load_config(root_dir=root_dir)
+    cli_overrides = {"extract_graph": {"ontology": ontology}} if ontology else None
+    config = load_config(root_dir=root_dir, cli_overrides=cli_overrides)
     _run_index(
         config=config,
         method=method,
@@ -68,10 +70,13 @@ def update_cli(
     verbose: bool,
     cache: bool,
     skip_validation: bool,
+    ontology: str | None,
 ):
     """Run the pipeline with the given config."""
+    cli_overrides = {"extract_graph": {"ontology": ontology}} if ontology else None
     config = load_config(
         root_dir=root_dir,
+        cli_overrides=cli_overrides,
     )
 
     _run_index(

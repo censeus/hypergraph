@@ -80,6 +80,8 @@ extract_graph:
   completion_model_id: {hypergraph_config_defaults.extract_graph.completion_model_id}
   prompt: "prompts/extract_graph.txt"
   entity_types: [{",".join(hypergraph_config_defaults.extract_graph.entity_types)}]
+  relationship_types: []
+  ## ontology: "Entities: organization, person. Relationships: acquires, partners_with." # optional raw ontology text
   max_gleanings: {hypergraph_config_defaults.extract_graph.max_gleanings}
 
 entity_resolution:

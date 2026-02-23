@@ -147,6 +147,8 @@ class ExtractGraphDefaults:
     entity_types: list[str] = field(
         default_factory=lambda: ["organization", "person", "geo", "event"]
     )
+    relationship_types: list[str] = field(default_factory=list)
+    ontology: None = None
     max_gleanings: int = 1
     completion_model_id: str = DEFAULT_COMPLETION_MODEL_ID
     model_instance_name: str = "extract_graph"

@@ -27,7 +27,12 @@ from hypergraph.config.models.summarize_descriptions_config import (
 from hypergraph_cache import CacheConfig
 from hypergraph_chunking.chunking_config import ChunkingConfig
 from hypergraph_input import InputConfig
-from hypergraph_llm.config import MetricsConfig, ModelConfig, RateLimitConfig, RetryConfig
+from hypergraph_llm.config import (
+    MetricsConfig,
+    ModelConfig,
+    RateLimitConfig,
+    RetryConfig,
+)
 from hypergraph_storage import StorageConfig
 from hypergraph_vectors import VectorStoreConfig
 
@@ -188,6 +193,8 @@ def assert_extract_graph_configs(
 ) -> None:
     assert actual.prompt == expected.prompt
     assert actual.entity_types == expected.entity_types
+    assert actual.relationship_types == expected.relationship_types
+    assert actual.ontology == expected.ontology
     assert actual.max_gleanings == expected.max_gleanings
     assert actual.completion_model_id == expected.completion_model_id
 

@@ -5,7 +5,7 @@
 
 GRAPH_EXTRACTION_PROMPT = """
 -Goal-
-Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
+Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities. If relationship types are supplied, only emit relationships that fit those relationship types.
  
 -Steps-
 1. Identify all entities. For each identified entity, extract the following information:
@@ -18,7 +18,7 @@ Format each entity as ("entity"<|><entity_name><|><entity_type><|><entity_descri
 For each pair of related entities, extract the following information:
 - source_entity: name of the source entity, as identified in step 1
 - target_entity: name of the target entity, as identified in step 1
-- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other. If relationship types are provided, begin the description with the selected relationship type label and a colon.
 - relationship_strength: a numeric score indicating strength of the relationship between the source entity and target entity
  Format each relationship as ("relationship"<|><source_entity><|><target_entity><|><relationship_description><|><relationship_strength>)
  
@@ -121,6 +121,8 @@ Output:
 -Real Data-
 ######################
 Entity_types: {entity_types}
+Relationship_types: {relationship_types}
+Ontology: {ontology}
 Text: {input_text}
 ######################
 Output:"""

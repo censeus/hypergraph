@@ -58,6 +58,8 @@ extract_graph:
   completion_model_id: extraction_completion_model
   prompt: "prompts/extract_graph.txt"
   entity_types: [organization, person, geo, event]
+  relationship_types: []
+  # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ...
 global_search:
@@ -109,6 +111,8 @@ extract_graph:
   completion_model_id: default_completion_model
   prompt: "prompts/extract_graph.txt"
   entity_types: [organization, person, geo, event]
+  relationship_types: []
+  # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ```
 

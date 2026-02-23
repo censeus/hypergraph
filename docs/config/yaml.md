@@ -246,6 +246,8 @@ Tune the language model-based graph extraction process.
 - `model_instance_name` **str** - Name of the model singleton instance. Default is "extract_graph". This primarily affects the cache storage partitioning.
 - `prompt` **str** - The prompt file to use.
 - `entity_types` **list[str]** - The entity types to identify.
+- `relationship_types` **list[str]** - Optional relationship labels used to constrain extracted relationships.
+- `ontology` **str** - Optional raw ontology text to inject into the extraction prompt.
 - `max_gleanings` **int** - The maximum number of gleaning cycles to use.
 
 ### summarize_descriptions

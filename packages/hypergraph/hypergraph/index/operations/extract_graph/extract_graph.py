@@ -27,6 +27,8 @@ async def extract_graph(
     model: "LLMCompletion",
     prompt: str,
     entity_types: list[str],
+    relationship_types: list[str] | None,
+    ontology: str | None,
     max_gleanings: int,
     num_threads: int,
     async_type: AsyncType,
@@ -42,6 +44,8 @@ async def extract_graph(
             text=text,
             source_id=id,
             entity_types=entity_types,
+            relationship_types=relationship_types,
+            ontology=ontology,
             model=model,
             prompt=prompt,
             max_gleanings=max_gleanings,
@@ -75,6 +79,8 @@ async def _run_extract_graph(
     text: str,
     source_id: str,
     entity_types: list[str],
+    relationship_types: list[str] | None,
+    ontology: str | None,
     model: "LLMCompletion",
     prompt: str,
     max_gleanings: int,
@@ -94,6 +100,8 @@ async def _run_extract_graph(
         text,
         entity_types=entity_types,
         source_id=source_id,
+        relationship_types=relationship_types,
+        ontology=ontology,
     )
 
     return (entities_df, relationships_df)
