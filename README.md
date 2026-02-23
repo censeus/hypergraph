@@ -2,6 +2,10 @@
 
 **A graph-powered RAG engine for extracting structured knowledge from unstructured text.**
 
+Maintained by <a href="https://censeus.ai"><img alt="Censeus" src="docs/img/censeus_logo.png" width="20" valign="middle"> censeus.ai</a> (forked from Microsoft's GraphRAG).
+
+<br>
+
 <div align="left">
   <a href="https://github.com/censeus/hypergraph/issues">
     <img alt="GitHub Issues" src="https://img.shields.io/github/issues/censeus/hypergraph">
@@ -66,7 +70,3 @@ Hypergraph is based on the GraphRAG research from Microsoft Research:
 ## License
 
 MIT License — see [LICENSE](./LICENSE) for details.
-
----
-
-> This project is forked from [microsoft/graphrag](https://github.com/microsoft/graphrag), originally developed by Microsoft Research. It is independently maintained by [Censeus](https://github.com/censeus).
