@@ -179,6 +179,27 @@ def _index_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    ontology: str | None = typer.Option(
+        None,
+        "--ontology",
+        help="Optional raw ontology text to inject into extraction prompts.",
+    ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entity types are constrained to extract_graph.entity_types."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
+        ),
+    ),
 ) -> None:
     """Build a knowledge graph index."""
     from hypergraph.cli.index import index_cli
@@ -190,6 +211,9 @@ def _index_cli(
         dry_run=dry_run,
         skip_validation=skip_validation,
         method=method,
+        ontology=ontology,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 
@@ -229,6 +253,27 @@ def _update_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    ontology: str | None = typer.Option(
+        None,
+        "--ontology",
+        help="Optional raw ontology text to inject into extraction prompts.",
+    ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entity types are constrained to extract_graph.entity_types."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
+        ),
+    ),
 ) -> None:
     """
     Update an existing knowledge graph index.
@@ -243,6 +288,9 @@ def _update_cli(
         cache=cache,
         skip_validation=skip_validation,
         method=method,
+        ontology=ontology,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 

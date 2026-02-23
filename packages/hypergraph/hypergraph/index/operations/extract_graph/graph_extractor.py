@@ -28,6 +28,10 @@ INPUT_TEXT_KEY = "input_text"
 RECORD_DELIMITER_KEY = "record_delimiter"
 COMPLETION_DELIMITER_KEY = "completion_delimiter"
 ENTITY_TYPES_KEY = "entity_types"
+RELATIONSHIP_TYPES_KEY = "relationship_types"
+ONTOLOGY_KEY = "ontology"
+ENTITY_TYPE_POLICY_KEY = "entity_type_policy"
+RELATIONSHIP_TYPE_POLICY_KEY = "relationship_type_policy"
 TUPLE_DELIMITER = "<|>"
 RECORD_DELIMITER = "##"
 COMPLETION_DELIMITER = "<|COMPLETE|>"
@@ -57,12 +61,26 @@ class GraphExtractor:
         self._on_error = on_error or (lambda _e, _s, _d: None)
 
     async def __call__(
-        self, text: str, entity_types: list[str], source_id: str
+        self,
+        text: str,
+        entity_types: list[str],
+        source_id: str,
+        relationship_types: list[str] | None = None,
+        strict_entity_types: bool = False,
+        strict_relationship_types: bool = False,
+        ontology: str | None = None,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Extract entities and relationships from the supplied text."""
         try:
             # Invoke the entity extraction
-            result = await self._process_document(text, entity_types)
+            result = await self._process_document(
+                text=text,
+                entity_types=entity_types,
+                relationship_types=relationship_types,
+                strict_entity_types=strict_entity_types,
+                strict_relationship_types=strict_relationship_types,
+                ontology=ontology,
+            )
         except Exception as e:  # pragma: no cover - defensive logging
             logger.exception("error extracting graph")
             self._on_error(
@@ -80,13 +98,37 @@ class GraphExtractor:
             source_id,
             TUPLE_DELIMITER,
             RECORD_DELIMITER,
+            entity_types=entity_types,
+            relationship_types=relationship_types,
+            strict_entity_types=strict_entity_types,
+            strict_relationship_types=strict_relationship_types,
         )
 
-    async def _process_document(self, text: str, entity_types: list[str]) -> str:
+    async def _process_document(
+        self,
+        text: str,
+        entity_types: list[str],
+        relationship_types: list[str] | None = None,
+        strict_entity_types: bool = False,
+        strict_relationship_types: bool = False,
+        ontology: str | None = None,
+    ) -> str:
+        entity_type_policy = _build_entity_type_policy(
+            strict_entity_types=strict_entity_types,
+            entity_types=entity_types,
+        )
+        relationship_type_policy = _build_relationship_type_policy(
+            strict_relationship_types=strict_relationship_types,
+            relationship_types=relationship_types or [],
+        )
         messages_builder = CompletionMessagesBuilder().add_user_message(
             self._extraction_prompt.format(**{
                 INPUT_TEXT_KEY: text,
                 ENTITY_TYPES_KEY: ",".join(entity_types),
+                RELATIONSHIP_TYPES_KEY: ",".join(relationship_types or []),
+                ONTOLOGY_KEY: ontology or "",
+                ENTITY_TYPE_POLICY_KEY: entity_type_policy,
+                RELATIONSHIP_TYPE_POLICY_KEY: relationship_type_policy,
             })
         )
 
@@ -127,10 +169,18 @@ class GraphExtractor:
         source_id: str,
         tuple_delimiter: str,
         record_delimiter: str,
+        entity_types: list[str],
+        relationship_types: list[str] | None,
+        strict_entity_types: bool,
+        strict_relationship_types: bool,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Parse the result string into entity and relationship data frames."""
         entities: list[dict[str, Any]] = []
         relationships: list[dict[str, Any]] = []
+        allowed_entity_types = _normalize_allowed_types(entity_types)
+        allowed_relationship_types = _normalize_allowed_types(relationship_types or [])
+        dropped_entity_count = 0
+        dropped_relationship_count = 0
 
         records = [r.strip() for r in result.split(record_delimiter)]
 
@@ -146,6 +196,9 @@ class GraphExtractor:
                 entity_name = clean_str(record_attributes[1].upper())
                 entity_type = clean_str(record_attributes[2].upper())
                 entity_description = clean_str(record_attributes[3])
+                if strict_entity_types and entity_type not in allowed_entity_types:
+                    dropped_entity_count += 1
+                    continue
                 entities.append({
                     "title": entity_name,
                     "type": entity_type,
@@ -157,6 +210,13 @@ class GraphExtractor:
                 source = clean_str(record_attributes[1].upper())
                 target = clean_str(record_attributes[2].upper())
                 edge_description = clean_str(record_attributes[3])
+                relationship_label = _extract_relationship_label(edge_description)
+                if (
+                    strict_relationship_types
+                    and relationship_label not in allowed_relationship_types
+                ):
+                    dropped_relationship_count += 1
+                    continue
                 try:
                     weight = float(record_attributes[-1])
                 except ValueError:
@@ -170,12 +230,92 @@ class GraphExtractor:
                     "weight": weight,
                 })
 
+        if strict_entity_types and entities and relationships:
+            known_titles = {entity["title"] for entity in entities}
+            kept_relationships = [
+                relationship
+                for relationship in relationships
+                if relationship["source"] in known_titles
+                and relationship["target"] in known_titles
+            ]
+            dropped_relationship_count += len(relationships) - len(kept_relationships)
+            relationships = kept_relationships
+
+        if dropped_entity_count > 0 or dropped_relationship_count > 0:
+            logger.info(
+                "Strict type filtering dropped %s entities and %s relationships for source_id=%s",
+                dropped_entity_count,
+                dropped_relationship_count,
+                source_id,
+            )
+
         entities_df = pd.DataFrame(entities) if entities else _empty_entities_df()
         relationships_df = (
             pd.DataFrame(relationships) if relationships else _empty_relationships_df()
         )
 
         return entities_df, relationships_df
+
+
+def _normalize_allowed_types(types: list[str]) -> set[str]:
+    """Normalize configured types to uppercase for strict matching."""
+    return {
+        clean_str(type_name).upper()
+        for type_name in types
+        if isinstance(type_name, str) and clean_str(type_name)
+    }
+
+
+def _extract_relationship_label(description: str) -> str | None:
+    """Extract typed relationship label from description prefix (`label: ...`)."""
+    if ":" not in description:
+        return None
+
+    candidate, _ = description.split(":", 1)
+    normalized = clean_str(candidate).upper()
+    return normalized if normalized else None
+
+
+def _build_entity_type_policy(
+    strict_entity_types: bool,
+    entity_types: list[str],
+) -> str:
+    """Build prompt instructions for entity type behavior."""
+    if strict_entity_types:
+        return (
+            "STRICT MODE: entity_type MUST be one of the provided Entity_types list. "
+            "Do not invent new entity types."
+        )
+
+    return (
+        "NON-STRICT MODE: Prefer the provided Entity_types list. "
+        "If none fit, you may propose a new concise entity type."
+    )
+
+
+def _build_relationship_type_policy(
+    strict_relationship_types: bool,
+    relationship_types: list[str],
+) -> str:
+    """Build prompt instructions for relationship type behavior."""
+    if strict_relationship_types and relationship_types:
+        return (
+            "STRICT MODE: each relationship_description MUST begin with one label from "
+            "Relationship_types followed by a colon, e.g. `acquires: ...`. "
+            "Do not invent new relationship labels."
+        )
+
+    if relationship_types:
+        return (
+            "NON-STRICT MODE: Prefer labels from Relationship_types, but you may propose "
+            "new labels when needed. Always begin relationship_description with "
+            "`<label>: ...`."
+        )
+
+    return (
+        "NON-STRICT MODE: No predefined relationship labels. Begin each "
+        "relationship_description with a concise inferred label as `<label>: ...`."
+    )
 
 
 def _empty_entities_df() -> pd.DataFrame:

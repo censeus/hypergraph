@@ -48,9 +48,27 @@ def index_cli(
     cache: bool,
     dry_run: bool,
     skip_validation: bool,
+    ontology: str | None,
+    strict_entity_types: bool | None,
+    strict_relationship_types: bool | None,
 ):
     """Run the pipeline with the given config."""
-    config = load_config(root_dir=root_dir)
+    extract_graph_overrides = {}
+    if ontology is not None:
+        extract_graph_overrides["ontology"] = ontology
+    if strict_entity_types is not None:
+        extract_graph_overrides["strict_entity_types"] = strict_entity_types
+    if strict_relationship_types is not None:
+        extract_graph_overrides["strict_relationship_types"] = (
+            strict_relationship_types
+        )
+
+    cli_overrides = (
+        {"extract_graph": extract_graph_overrides}
+        if extract_graph_overrides
+        else None
+    )
+    config = load_config(root_dir=root_dir, cli_overrides=cli_overrides)
     _run_index(
         config=config,
         method=method,
@@ -68,10 +86,29 @@ def update_cli(
     verbose: bool,
     cache: bool,
     skip_validation: bool,
+    ontology: str | None,
+    strict_entity_types: bool | None,
+    strict_relationship_types: bool | None,
 ):
     """Run the pipeline with the given config."""
+    extract_graph_overrides = {}
+    if ontology is not None:
+        extract_graph_overrides["ontology"] = ontology
+    if strict_entity_types is not None:
+        extract_graph_overrides["strict_entity_types"] = strict_entity_types
+    if strict_relationship_types is not None:
+        extract_graph_overrides["strict_relationship_types"] = (
+            strict_relationship_types
+        )
+
+    cli_overrides = (
+        {"extract_graph": extract_graph_overrides}
+        if extract_graph_overrides
+        else None
+    )
     config = load_config(
         root_dir=root_dir,
+        cli_overrides=cli_overrides,
     )
 
     _run_index(
