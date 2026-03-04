@@ -184,6 +184,22 @@ def _index_cli(
         "--ontology",
         help="Optional raw ontology text to inject into extraction prompts.",
     ),
+    entity_types: list[str] | None = typer.Option(
+        None,
+        "--entity-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.entity_types for this run. "
+            "Example: --entity-type person --entity-type organization"
+        ),
+    ),
+    relationship_types: list[str] | None = typer.Option(
+        None,
+        "--relationship-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.relationship_types for this run. "
+            "Example: --relationship-type acquires --relationship-type reports_to"
+        ),
+    ),
     strict_entity_types: bool | None = typer.Option(
         None,
         "--strict-entity-types/--no-strict-entity-types",
@@ -212,6 +228,8 @@ def _index_cli(
         skip_validation=skip_validation,
         method=method,
         ontology=ontology,
+        entity_types=entity_types,
+        relationship_types=relationship_types,
         strict_entity_types=strict_entity_types,
         strict_relationship_types=strict_relationship_types,
     )
@@ -258,6 +276,22 @@ def _update_cli(
         "--ontology",
         help="Optional raw ontology text to inject into extraction prompts.",
     ),
+    entity_types: list[str] | None = typer.Option(
+        None,
+        "--entity-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.entity_types for this run. "
+            "Example: --entity-type person --entity-type organization"
+        ),
+    ),
+    relationship_types: list[str] | None = typer.Option(
+        None,
+        "--relationship-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.relationship_types for this run. "
+            "Example: --relationship-type acquires --relationship-type reports_to"
+        ),
+    ),
     strict_entity_types: bool | None = typer.Option(
         None,
         "--strict-entity-types/--no-strict-entity-types",
@@ -289,6 +323,8 @@ def _update_cli(
         skip_validation=skip_validation,
         method=method,
         ontology=ontology,
+        entity_types=entity_types,
+        relationship_types=relationship_types,
         strict_entity_types=strict_entity_types,
         strict_relationship_types=strict_relationship_types,
     )

@@ -49,6 +49,8 @@ def index_cli(
     dry_run: bool,
     skip_validation: bool,
     ontology: str | None,
+    entity_types: list[str] | None,
+    relationship_types: list[str] | None,
     strict_entity_types: bool | None,
     strict_relationship_types: bool | None,
 ):
@@ -56,6 +58,10 @@ def index_cli(
     extract_graph_overrides = {}
     if ontology is not None:
         extract_graph_overrides["ontology"] = ontology
+    if entity_types is not None:
+        extract_graph_overrides["entity_types"] = entity_types
+    if relationship_types is not None:
+        extract_graph_overrides["relationship_types"] = relationship_types
     if strict_entity_types is not None:
         extract_graph_overrides["strict_entity_types"] = strict_entity_types
     if strict_relationship_types is not None:
@@ -87,6 +93,8 @@ def update_cli(
     cache: bool,
     skip_validation: bool,
     ontology: str | None,
+    entity_types: list[str] | None,
+    relationship_types: list[str] | None,
     strict_entity_types: bool | None,
     strict_relationship_types: bool | None,
 ):
@@ -94,6 +102,10 @@ def update_cli(
     extract_graph_overrides = {}
     if ontology is not None:
         extract_graph_overrides["ontology"] = ontology
+    if entity_types is not None:
+        extract_graph_overrides["entity_types"] = entity_types
+    if relationship_types is not None:
+        extract_graph_overrides["relationship_types"] = relationship_types
     if strict_entity_types is not None:
         extract_graph_overrides["strict_entity_types"] = strict_entity_types
     if strict_relationship_types is not None:
