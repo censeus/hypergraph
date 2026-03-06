@@ -48,7 +48,6 @@ def index_cli(
     cache: bool,
     dry_run: bool,
     skip_validation: bool,
-    ontology: str | None,
     entity_types: list[str] | None,
     relationship_types: list[str] | None,
     strict_entity_types: bool | None,
@@ -56,8 +55,6 @@ def index_cli(
 ):
     """Run the pipeline with the given config."""
     extract_graph_overrides = {}
-    if ontology is not None:
-        extract_graph_overrides["ontology"] = ontology
     if entity_types is not None:
         extract_graph_overrides["entity_types"] = entity_types
     if relationship_types is not None:
@@ -92,7 +89,6 @@ def update_cli(
     verbose: bool,
     cache: bool,
     skip_validation: bool,
-    ontology: str | None,
     entity_types: list[str] | None,
     relationship_types: list[str] | None,
     strict_entity_types: bool | None,
@@ -100,8 +96,6 @@ def update_cli(
 ):
     """Run the pipeline with the given config."""
     extract_graph_overrides = {}
-    if ontology is not None:
-        extract_graph_overrides["ontology"] = ontology
     if entity_types is not None:
         extract_graph_overrides["entity_types"] = entity_types
     if relationship_types is not None:

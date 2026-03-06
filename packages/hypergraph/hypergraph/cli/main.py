@@ -179,11 +179,6 @@ def _index_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
-    ontology: str | None = typer.Option(
-        None,
-        "--ontology",
-        help="Optional raw ontology text to inject into extraction prompts.",
-    ),
     entity_types: list[str] | None = typer.Option(
         None,
         "--entity-type",
@@ -227,7 +222,6 @@ def _index_cli(
         dry_run=dry_run,
         skip_validation=skip_validation,
         method=method,
-        ontology=ontology,
         entity_types=entity_types,
         relationship_types=relationship_types,
         strict_entity_types=strict_entity_types,
@@ -270,11 +264,6 @@ def _update_cli(
         False,
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
-    ),
-    ontology: str | None = typer.Option(
-        None,
-        "--ontology",
-        help="Optional raw ontology text to inject into extraction prompts.",
     ),
     entity_types: list[str] | None = typer.Option(
         None,
@@ -322,7 +311,6 @@ def _update_cli(
         cache=cache,
         skip_validation=skip_validation,
         method=method,
-        ontology=ontology,
         entity_types=entity_types,
         relationship_types=relationship_types,
         strict_entity_types=strict_entity_types,

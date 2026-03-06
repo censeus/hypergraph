@@ -56,10 +56,6 @@ class ExtractGraphConfig(BaseModel):
         ),
         default=hypergraph_config_defaults.extract_graph.strict_relationship_types,
     )
-    ontology: str | None = Field(
-        description="Optional raw ontology text to inject into the extraction prompt.",
-        default=hypergraph_config_defaults.extract_graph.ontology,
-    )
     max_gleanings: int = Field(
         description="The maximum number of entity gleanings to use.",
         default=hypergraph_config_defaults.extract_graph.max_gleanings,

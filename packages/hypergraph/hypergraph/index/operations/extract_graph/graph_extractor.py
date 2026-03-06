@@ -29,7 +29,6 @@ RECORD_DELIMITER_KEY = "record_delimiter"
 COMPLETION_DELIMITER_KEY = "completion_delimiter"
 ENTITY_TYPES_KEY = "entity_types"
 RELATIONSHIP_TYPES_KEY = "relationship_types"
-ONTOLOGY_KEY = "ontology"
 ENTITY_TYPE_POLICY_KEY = "entity_type_policy"
 RELATIONSHIP_TYPE_POLICY_KEY = "relationship_type_policy"
 TUPLE_DELIMITER = "<|>"
@@ -68,7 +67,6 @@ class GraphExtractor:
         relationship_types: list[str] | None = None,
         strict_entity_types: bool = False,
         strict_relationship_types: bool = False,
-        ontology: str | None = None,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Extract entities and relationships from the supplied text."""
         try:
@@ -79,7 +77,6 @@ class GraphExtractor:
                 relationship_types=relationship_types,
                 strict_entity_types=strict_entity_types,
                 strict_relationship_types=strict_relationship_types,
-                ontology=ontology,
             )
         except Exception as e:  # pragma: no cover - defensive logging
             logger.exception("error extracting graph")
@@ -111,7 +108,6 @@ class GraphExtractor:
         relationship_types: list[str] | None = None,
         strict_entity_types: bool = False,
         strict_relationship_types: bool = False,
-        ontology: str | None = None,
     ) -> str:
         entity_type_policy = _build_entity_type_policy(
             strict_entity_types=strict_entity_types,
@@ -126,7 +122,6 @@ class GraphExtractor:
                 INPUT_TEXT_KEY: text,
                 ENTITY_TYPES_KEY: ",".join(entity_types),
                 RELATIONSHIP_TYPES_KEY: ",".join(relationship_types or []),
-                ONTOLOGY_KEY: ontology or "",
                 ENTITY_TYPE_POLICY_KEY: entity_type_policy,
                 RELATIONSHIP_TYPE_POLICY_KEY: relationship_type_policy,
             })

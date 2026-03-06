@@ -124,7 +124,6 @@ Entity_types: {entity_types}
 Entity_type_policy: {entity_type_policy}
 Relationship_types: {relationship_types}
 Relationship_type_policy: {relationship_type_policy}
-Ontology: {ontology}
 Text: {input_text}
 ######################
 Output:"""

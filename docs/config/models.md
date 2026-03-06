@@ -61,7 +61,6 @@ extract_graph:
   relationship_types: []
   strict_entity_types: false
   strict_relationship_types: false
-  # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ...
 global_search:
@@ -116,7 +115,6 @@ extract_graph:
   relationship_types: []
   strict_entity_types: false
   strict_relationship_types: false
-  # ontology: "Entities: organization, person. Relationships: acquires, partners_with."
   max_gleanings: 1
 ```
 

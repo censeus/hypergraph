@@ -62,24 +62,6 @@ def test_load_config_with_cli_overrides() -> None:
     os.chdir(cwd)
 
 
-def test_extract_graph_ontology_is_preserved_as_raw_text() -> None:
-    ontology = (
-        "entity_types: [company, product]\n"
-        "relationship_types: [acquires, partners_with]"
-    )
-    config = HyperGraphConfig(
-        completion_models=DEFAULT_COMPLETION_MODELS,  # type: ignore
-        embedding_models=DEFAULT_EMBEDDING_MODELS,  # type: ignore
-        extract_graph={
-            "entity_types": ["ignored_default"],
-            "ontology": ontology,
-        },
-    )
-
-    assert config.extract_graph.ontology == ontology
-    assert config.extract_graph.entity_types == ["ignored_default"]
-
-
 def test_extract_graph_strict_entity_types_requires_allowed_types() -> None:
     with pytest.raises(ValueError, match="strict_entity_types"):
         HyperGraphConfig(

@@ -249,7 +249,6 @@ Tune the language model-based graph extraction process.
 - `relationship_types` **list[str]** - Optional relationship labels used to constrain extracted relationships.
 - `strict_entity_types` **bool** - If true, enforce `entity_types` as the only allowed entity labels. If false, the model may propose new entity labels.
 - `strict_relationship_types` **bool** - If true, enforce `relationship_types` as the only allowed relationship labels. If false, the model may propose new relationship labels.
-- `ontology` **str** - Optional raw ontology text to inject into the extraction prompt.
 - `max_gleanings` **int** - The maximum number of gleaning cycles to use.
 
 ### summarize_descriptions
