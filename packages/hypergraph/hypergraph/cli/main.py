@@ -179,6 +179,38 @@ def _index_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    entity_types: list[str] | None = typer.Option(
+        None,
+        "--entity-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.entity_types for this run. "
+            "Example: --entity-type person --entity-type organization"
+        ),
+    ),
+    relationship_types: list[str] | None = typer.Option(
+        None,
+        "--relationship-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.relationship_types for this run. "
+            "Example: --relationship-type acquires --relationship-type reports_to"
+        ),
+    ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entity types are constrained to extract_graph.entity_types."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
+        ),
+    ),
 ) -> None:
     """Build a knowledge graph index."""
     from hypergraph.cli.index import index_cli
@@ -190,6 +222,10 @@ def _index_cli(
         dry_run=dry_run,
         skip_validation=skip_validation,
         method=method,
+        entity_types=entity_types,
+        relationship_types=relationship_types,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 
@@ -229,6 +265,38 @@ def _update_cli(
         "--skip-validation",
         help="Skip any preflight validation. Useful when running no LLM steps.",
     ),
+    entity_types: list[str] | None = typer.Option(
+        None,
+        "--entity-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.entity_types for this run. "
+            "Example: --entity-type person --entity-type organization"
+        ),
+    ),
+    relationship_types: list[str] | None = typer.Option(
+        None,
+        "--relationship-type",
+        help=(
+            "Repeatable. If set, overrides extract_graph.relationship_types for this run. "
+            "Example: --relationship-type acquires --relationship-type reports_to"
+        ),
+    ),
+    strict_entity_types: bool | None = typer.Option(
+        None,
+        "--strict-entity-types/--no-strict-entity-types",
+        help=(
+            "If set, overrides extract_graph.strict_entity_types for this run. "
+            "When enabled, entity types are constrained to extract_graph.entity_types."
+        ),
+    ),
+    strict_relationship_types: bool | None = typer.Option(
+        None,
+        "--strict-relationship-types/--no-strict-relationship-types",
+        help=(
+            "If set, overrides extract_graph.strict_relationship_types for this run. "
+            "When enabled, relationship labels are constrained to extract_graph.relationship_types."
+        ),
+    ),
 ) -> None:
     """
     Update an existing knowledge graph index.
@@ -243,6 +311,10 @@ def _update_cli(
         cache=cache,
         skip_validation=skip_validation,
         method=method,
+        entity_types=entity_types,
+        relationship_types=relationship_types,
+        strict_entity_types=strict_entity_types,
+        strict_relationship_types=strict_relationship_types,
     )
 
 

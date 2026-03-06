@@ -10,7 +10,7 @@ Given a text document that is potentially relevant to this activity and a list o
 -Steps-
 1. Identify all entities. For each identified entity, extract the following information:
 - entity_name: Name of the entity, capitalized
-- entity_type: One of the following types: [{entity_types}]
+- entity_type: Follow Entity_type_policy when selecting this value.
 - entity_description: Comprehensive description of the entity's attributes and activities
 Format each entity as ("entity"<|><entity_name><|><entity_type><|><entity_description>)
  
@@ -18,7 +18,7 @@ Format each entity as ("entity"<|><entity_name><|><entity_type><|><entity_descri
 For each pair of related entities, extract the following information:
 - source_entity: name of the source entity, as identified in step 1
 - target_entity: name of the target entity, as identified in step 1
-- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other. Follow Relationship_type_policy for labeling requirements.
 - relationship_strength: a numeric score indicating strength of the relationship between the source entity and target entity
  Format each relationship as ("relationship"<|><source_entity><|><target_entity><|><relationship_description><|><relationship_strength>)
  
@@ -41,7 +41,7 @@ Output:
 ##
 ("entity"<|>MARKET STRATEGY COMMITTEE<|>ORGANIZATION<|>The Central Institution committee makes key decisions about interest rates and the growth of Verdantis's money supply)
 ##
-("relationship"<|>MARTIN SMITH<|>CENTRAL INSTITUTION<|>Martin Smith is the Chair of the Central Institution and will answer questions at a press conference<|>9)
+("relationship"<|>MARTIN SMITH<|>CENTRAL INSTITUTION<|>chairs: Martin Smith is the Chair of the Central Institution and will answer questions at a press conference<|>9)
 <|COMPLETE|>
 
 ######################
@@ -57,7 +57,7 @@ Output:
 ##
 ("entity"<|>VISION HOLDINGS<|>ORGANIZATION<|>Vision Holdings is a firm that previously owned TechGlobal)
 ##
-("relationship"<|>TECHGLOBAL<|>VISION HOLDINGS<|>Vision Holdings formerly owned TechGlobal from 2014 until present<|>5)
+("relationship"<|>TECHGLOBAL<|>VISION HOLDINGS<|>owned_by: Vision Holdings formerly owned TechGlobal from 2014 until present<|>5)
 <|COMPLETE|>
 
 ######################
@@ -96,34 +96,54 @@ Output:
 ##
 ("entity"<|>MEGGIE TAZBAH<|>PERSON<|>Bratinas national and environmentalist who was held hostage)
 ##
-("relationship"<|>FIRUZABAD<|>AURELIA<|>Firuzabad negotiated a hostage exchange with Aurelia<|>2)
+("relationship"<|>FIRUZABAD<|>AURELIA<|>negotiates_with: Firuzabad negotiated a hostage exchange with Aurelia<|>2)
 ##
-("relationship"<|>QUINTARA<|>AURELIA<|>Quintara brokered the hostage exchange between Firuzabad and Aurelia<|>2)
+("relationship"<|>QUINTARA<|>AURELIA<|>brokers_exchange: Quintara brokered the hostage exchange between Firuzabad and Aurelia<|>2)
 ##
-("relationship"<|>QUINTARA<|>FIRUZABAD<|>Quintara brokered the hostage exchange between Firuzabad and Aurelia<|>2)
+("relationship"<|>QUINTARA<|>FIRUZABAD<|>brokers_exchange: Quintara brokered the hostage exchange between Firuzabad and Aurelia<|>2)
 ##
-("relationship"<|>SAMUEL NAMARA<|>ALHAMIA PRISON<|>Samuel Namara was a prisoner at Alhamia prison<|>8)
+("relationship"<|>SAMUEL NAMARA<|>ALHAMIA PRISON<|>detained_at: Samuel Namara was a prisoner at Alhamia prison<|>8)
 ##
-("relationship"<|>SAMUEL NAMARA<|>MEGGIE TAZBAH<|>Samuel Namara and Meggie Tazbah were exchanged in the same hostage release<|>2)
+("relationship"<|>SAMUEL NAMARA<|>MEGGIE TAZBAH<|>co_released_with: Samuel Namara and Meggie Tazbah were exchanged in the same hostage release<|>2)
 ##
-("relationship"<|>SAMUEL NAMARA<|>DURKE BATAGLANI<|>Samuel Namara and Durke Bataglani were exchanged in the same hostage release<|>2)
+("relationship"<|>SAMUEL NAMARA<|>DURKE BATAGLANI<|>co_released_with: Samuel Namara and Durke Bataglani were exchanged in the same hostage release<|>2)
 ##
-("relationship"<|>MEGGIE TAZBAH<|>DURKE BATAGLANI<|>Meggie Tazbah and Durke Bataglani were exchanged in the same hostage release<|>2)
+("relationship"<|>MEGGIE TAZBAH<|>DURKE BATAGLANI<|>co_released_with: Meggie Tazbah and Durke Bataglani were exchanged in the same hostage release<|>2)
 ##
-("relationship"<|>SAMUEL NAMARA<|>FIRUZABAD<|>Samuel Namara was a hostage in Firuzabad<|>2)
+("relationship"<|>SAMUEL NAMARA<|>FIRUZABAD<|>held_in: Samuel Namara was a hostage in Firuzabad<|>2)
 ##
-("relationship"<|>MEGGIE TAZBAH<|>FIRUZABAD<|>Meggie Tazbah was a hostage in Firuzabad<|>2)
+("relationship"<|>MEGGIE TAZBAH<|>FIRUZABAD<|>held_in: Meggie Tazbah was a hostage in Firuzabad<|>2)
 ##
-("relationship"<|>DURKE BATAGLANI<|>FIRUZABAD<|>Durke Bataglani was a hostage in Firuzabad<|>2)
+("relationship"<|>DURKE BATAGLANI<|>FIRUZABAD<|>held_in: Durke Bataglani was a hostage in Firuzabad<|>2)
 <|COMPLETE|>
 
 ######################
 -Real Data-
 ######################
 Entity_types: {entity_types}
+Entity_type_policy: {entity_type_policy}
+Relationship_types: {relationship_types}
+Relationship_type_policy: {relationship_type_policy}
 Text: {input_text}
 ######################
 Output:"""
+
+TYPE_PROPOSAL_CANONIZATION_PROMPT = """
+You consolidate extracted type proposals produced from many document chunks.
+
+Rules:
+1. Preserve proposal_kind exactly (`entity` vs `relationship`), never merge across kinds.
+2. Merge aliases/synonyms/plural variants under one canonical_label.
+3. Prefer concise lowercase singular labels.
+4. Keep domain-specific labels; do not over-generalize.
+5. Do not invent new labels that are unsupported by the input.
+
+Input proposals (JSON):
+{proposals_json}
+
+Return groups in JSON format only:
+{{"groups":[{{"proposal_kind":"entity|relationship","canonical_label":"...","aliases":["..."]}}]}}
+""".strip()
 
 CONTINUE_PROMPT = "MANY entities and relationships were missed in the last extraction. Remember to ONLY emit entities that match any of the previously extracted types. Add them below using the same format:\n"
 LOOP_PROMPT = "It appears some entities and relationships may have still been missed. Answer Y if there are still entities or relationships that need to be added, or N if there are none. Please answer with a single letter Y or N.\n"

@@ -53,9 +53,14 @@ async def test_extract_graph():
 
     nodes_actual = await context.output_table_provider.read_dataframe("entities")
     edges_actual = await context.output_table_provider.read_dataframe("relationships")
+    type_proposals = await context.output_table_provider.read_dataframe("type_proposals")
 
     assert len(nodes_actual.columns) == 5
     assert len(edges_actual.columns) == 5
+    assert "proposal_kind" in type_proposals.columns
+    assert "canonical_label" in type_proposals.columns
+    assert "occurrences" in type_proposals.columns
+    assert ((type_proposals["proposal_kind"] == "entity") & (type_proposals["canonical_label"] == "company")).any()
 
     # TODO: with the combined verb we can't force summarization
     # this is because the mock responses always result in a single description, which is returned verbatim rather than summarized
