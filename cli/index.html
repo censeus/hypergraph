@@ -1805,6 +1805,25 @@
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  --cache / --no-cache            Use LLM cache.  [default: cache]
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  --skip-validation               Skip any preflight validation. Useful when
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                                  running no LLM steps.
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  --entity-type TEXT              Repeatable. If set, overrides
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>                                  extract_graph.entity_types for this run.
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>                                  Example: --entity-type person --entity-type
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>                                  organization
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  --relationship-type TEXT        Repeatable. If set, overrides
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>                                  extract_graph.relationship_types for this
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                                  run. Example: --relationship-type acquires
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                                  --relationship-type reports_to
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>  --strict-entity-types / --no-strict-entity-types
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>                                  If set, overrides
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>                                  extract_graph.strict_entity_types for this
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>                                  run. When enabled, entity types are
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>                                  constrained to extract_graph.entity_types.
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>  --strict-relationship-types / --no-strict-relationship-types
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>                                  If set, overrides
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>                                  extract_graph.strict_relationship_types for
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>                                  this run. When enabled, relationship labels
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>                                  are constrained to
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>                                  extract_graph.relationship_types.
 </code></pre></div>
 <h2 id="init">init</h2>
 <p>Generate a default configuration file.</p>
@@ -1910,6 +1929,25 @@
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  --cache / --no-cache            Use LLM cache.  [default: cache]
 <a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  --skip-validation               Skip any preflight validation. Useful when
 <a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>                                  running no LLM steps.
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  --entity-type TEXT              Repeatable. If set, overrides
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>                                  extract_graph.entity_types for this run.
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>                                  Example: --entity-type person --entity-type
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>                                  organization
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>  --relationship-type TEXT        Repeatable. If set, overrides
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>                                  extract_graph.relationship_types for this
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>                                  run. Example: --relationship-type acquires
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>                                  --relationship-type reports_to
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>  --strict-entity-types / --no-strict-entity-types
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>                                  If set, overrides
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>                                  extract_graph.strict_entity_types for this
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>                                  run. When enabled, entity types are
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>                                  constrained to extract_graph.entity_types.
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>  --strict-relationship-types / --no-strict-relationship-types
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>                                  If set, overrides
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>                                  extract_graph.strict_relationship_types for
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>                                  this run. When enabled, relationship labels
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>                                  are constrained to
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>                                  extract_graph.relationship_types.
 </code></pre></div>
 
 

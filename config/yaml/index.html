@@ -1992,6 +1992,9 @@
 <li><code>model_instance_name</code> <strong>str</strong> - Name of the model singleton instance. Default is "extract_graph". This primarily affects the cache storage partitioning.</li>
 <li><code>prompt</code> <strong>str</strong> - The prompt file to use.</li>
 <li><code>entity_types</code> <strong>list[str]</strong> - The entity types to identify.</li>
+<li><code>relationship_types</code> <strong>list[str]</strong> - Optional relationship labels used to constrain extracted relationships.</li>
+<li><code>strict_entity_types</code> <strong>bool</strong> - If true, enforce <code>entity_types</code> as the only allowed entity labels. If false, the model may propose new entity labels.</li>
+<li><code>strict_relationship_types</code> <strong>bool</strong> - If true, enforce <code>relationship_types</code> as the only allowed relationship labels. If false, the model may propose new relationship labels.</li>
 <li><code>max_gleanings</code> <strong>int</strong> - The maximum number of gleaning cycles to use.</li>
 </ul>
 <h3 id="summarize_descriptions">summarize_descriptions</h3>
