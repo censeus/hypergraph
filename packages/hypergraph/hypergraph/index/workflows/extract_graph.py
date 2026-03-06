@@ -3,12 +3,15 @@
 
 """A module containing run_workflow method definition."""
 
+import json
 import logging
 import re
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 import pandas as pd
 from hypergraph_llm.completion import create_completion
+from hypergraph_llm.utils import CompletionMessagesBuilder
+from pydantic import BaseModel, Field
 
 from hypergraph.cache.cache_key_creator import cache_key_creator
 from hypergraph.callbacks.workflow_callbacks import WorkflowCallbacks
@@ -27,9 +30,11 @@ from hypergraph.index.operations.summarize_descriptions.summarize_descriptions i
 from hypergraph.index.typing.context import PipelineRunContext
 from hypergraph.index.typing.workflow import WorkflowFunctionOutput
 from hypergraph.index.utils.string import clean_str
+from hypergraph.prompts.index.extract_graph import TYPE_PROPOSAL_CANONIZATION_PROMPT
 
 if TYPE_CHECKING:
     from hypergraph_llm.completion import LLMCompletion
+    from hypergraph_llm.types import LLMCompletionResponse
 
 logger = logging.getLogger(__name__)
 TYPE_PROPOSALS_COLUMNS = [
@@ -39,6 +44,20 @@ TYPE_PROPOSALS_COLUMNS = [
     "raw_labels",
     "sample_descriptions",
 ]
+
+
+class TypeProposalCanonizationGroup(BaseModel):
+    """One canonicalized proposal cluster."""
+
+    proposal_kind: Literal["entity", "relationship"]
+    canonical_label: str
+    aliases: list[str] = Field(default_factory=list)
+
+
+class TypeProposalCanonizationResponse(BaseModel):
+    """Structured response for type-proposal canonization."""
+
+    groups: list[TypeProposalCanonizationGroup] = Field(default_factory=list)
 
 
 async def run_workflow(
@@ -130,6 +149,10 @@ async def run_workflow(
         allowed_relationship_types=config.extract_graph.relationship_types,
         strict_entity_types=config.extract_graph.strict_entity_types,
         strict_relationship_types=config.extract_graph.strict_relationship_types,
+    )
+    type_proposals = await _canonize_type_proposals_with_llm(
+        type_proposals=type_proposals,
+        model=extraction_model,
     )
     await context.output_table_provider.write_dataframe("type_proposals", type_proposals)
 
@@ -269,13 +292,19 @@ def _build_type_proposals(
     proposal_records: list[dict] = []
 
     if not strict_entity_types and len(raw_entities) > 0:
-        allowed_entity_keys = _build_allowed_keys(allowed_entity_types)
+        allowed_entity_keys = _build_allowed_keys(
+            allowed_entity_types,
+            proposal_kind="entity",
+        )
         proposal_records.extend(
             _collect_entity_proposals(raw_entities, allowed_entity_keys)
         )
 
     if not strict_relationship_types and len(raw_relationships) > 0:
-        allowed_relationship_keys = _build_allowed_keys(allowed_relationship_types)
+        allowed_relationship_keys = _build_allowed_keys(
+            allowed_relationship_types,
+            proposal_kind="relationship",
+        )
         proposal_records.extend(
             _collect_relationship_proposals(
                 raw_relationships,
@@ -304,6 +333,139 @@ def _build_type_proposals(
     return consolidated
 
 
+async def _canonize_type_proposals_with_llm(
+    type_proposals: pd.DataFrame,
+    model: "LLMCompletion",
+) -> pd.DataFrame:
+    """Use an LLM pass to further consolidate similar type proposals."""
+    if len(type_proposals) < 2:
+        return type_proposals
+
+    proposals_payload = type_proposals.loc[
+        :,
+        TYPE_PROPOSALS_COLUMNS,
+    ].to_dict(orient="records")
+
+    messages = (
+        CompletionMessagesBuilder()
+        .add_user_message(
+            TYPE_PROPOSAL_CANONIZATION_PROMPT.format(
+                proposals_json=json.dumps(proposals_payload, ensure_ascii=True)
+            )
+        )
+        .build()
+    )
+
+    try:
+        response: LLMCompletionResponse[
+            TypeProposalCanonizationResponse
+        ] = await model.completion_async(
+            messages=messages,
+            response_format=TypeProposalCanonizationResponse,
+        )  # type: ignore
+    except Exception as error:  # pragma: no cover - best effort path
+        logger.warning("Type proposal canonization skipped due to LLM error: %s", error)
+        return type_proposals
+
+    parsed = response.formatted_response
+    if parsed is None or len(parsed.groups) == 0:
+        return type_proposals
+
+    alias_mapping = _build_type_alias_mapping(parsed.groups)
+    if len(alias_mapping) == 0:
+        return type_proposals
+
+    return _apply_type_alias_mapping(type_proposals, alias_mapping)
+
+
+def _build_type_alias_mapping(
+    groups: list[TypeProposalCanonizationGroup],
+) -> dict[tuple[str, str], str]:
+    """Build mapping: (proposal_kind, normalized_alias) -> canonical_label."""
+    mapping: dict[tuple[str, str], str] = {}
+    for group in groups:
+        canonical = _canonicalize_type_label(
+            group.canonical_label,
+            proposal_kind=group.proposal_kind,
+        )
+        if not canonical:
+            continue
+
+        mapping[(group.proposal_kind, _normalize_type_key(canonical))] = canonical
+        for alias in group.aliases:
+            normalized_alias = _normalize_type_key(alias)
+            if normalized_alias:
+                mapping[(group.proposal_kind, normalized_alias)] = canonical
+    return mapping
+
+
+def _apply_type_alias_mapping(
+    type_proposals: pd.DataFrame,
+    alias_mapping: dict[tuple[str, str], str],
+) -> pd.DataFrame:
+    """Apply LLM-proposed alias mapping and regroup proposals."""
+    remapped = type_proposals.copy()
+    remapped["canonical_label"] = remapped.apply(
+        lambda row: _resolve_canonical_label(row, alias_mapping),
+        axis=1,
+    )
+
+    return (
+        remapped
+        .groupby(["proposal_kind", "canonical_label"], as_index=False)
+        .agg(
+            occurrences=("occurrences", "sum"),
+            raw_labels=("raw_labels", _flatten_unique_labels),
+            sample_descriptions=("sample_descriptions", _flatten_unique_labels),
+        )
+        .sort_values(by=["occurrences", "canonical_label"], ascending=[False, True])
+        .reset_index(drop=True)
+    )
+
+
+def _resolve_canonical_label(
+    row: pd.Series,
+    alias_mapping: dict[tuple[str, str], str],
+) -> str:
+    proposal_kind = row.get("proposal_kind")
+    if not isinstance(proposal_kind, str):
+        return row.get("canonical_label", "")
+
+    candidates: list[str] = []
+    canonical_label = row.get("canonical_label")
+    if isinstance(canonical_label, str):
+        candidates.append(canonical_label)
+
+    raw_labels = row.get("raw_labels")
+    if isinstance(raw_labels, list):
+        candidates.extend([label for label in raw_labels if isinstance(label, str)])
+
+    for candidate in candidates:
+        mapped = alias_mapping.get((proposal_kind, _normalize_type_key(candidate)))
+        if mapped:
+            return mapped
+
+    return canonical_label if isinstance(canonical_label, str) else ""
+
+
+def _flatten_unique_labels(values: object) -> list[str]:
+    """Flatten nested lists and return unique, non-empty labels."""
+    unique: list[str] = []
+    for value in values:
+        if isinstance(value, list):
+            items = value
+        else:
+            items = [value]
+        for item in items:
+            if not isinstance(item, str):
+                continue
+            label = item.strip()
+            if not label or label in unique:
+                continue
+            unique.append(label)
+    return unique
+
+
 def _collect_entity_proposals(
     raw_entities: pd.DataFrame,
     allowed_entity_keys: set[str],
@@ -317,7 +479,7 @@ def _collect_entity_proposals(
         if not raw_label:
             continue
 
-        canonical_label = _canonicalize_type_label(raw_label)
+        canonical_label = _canonicalize_type_label(raw_label, proposal_kind="entity")
         if canonical_label in allowed_entity_keys:
             continue
 
@@ -344,7 +506,10 @@ def _collect_relationship_proposals(
             if raw_label is None:
                 continue
 
-            canonical_label = _canonicalize_type_label(raw_label)
+            canonical_label = _canonicalize_type_label(
+                raw_label,
+                proposal_kind="relationship",
+            )
             if canonical_label in allowed_relationship_keys:
                 continue
 
@@ -378,18 +543,28 @@ def _extract_relationship_label(description: str) -> str | None:
     return normalized if normalized else None
 
 
-def _build_allowed_keys(labels: list[str]) -> set[str]:
+def _build_allowed_keys(
+    labels: list[str],
+    proposal_kind: Literal["entity", "relationship"],
+) -> set[str]:
     return {
-        _canonicalize_type_label(label)
+        _canonicalize_type_label(label, proposal_kind=proposal_kind)
         for label in labels
-        if isinstance(label, str) and _canonicalize_type_label(label)
+        if isinstance(label, str)
+        and _canonicalize_type_label(label, proposal_kind=proposal_kind)
     }
 
 
-def _canonicalize_type_label(label: str) -> str:
+def _canonicalize_type_label(
+    label: str,
+    proposal_kind: Literal["entity", "relationship"],
+) -> str:
     """Canonical label used to collapse similar proposals from chunked extraction."""
     normalized = _normalize_type_key(label)
     if not normalized:
+        return normalized
+
+    if proposal_kind == "relationship":
         return normalized
 
     aliases = {
