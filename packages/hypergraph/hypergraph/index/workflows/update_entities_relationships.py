@@ -14,6 +14,9 @@ from hypergraph.cache.cache_key_creator import cache_key_creator
 from hypergraph.callbacks.workflow_callbacks import WorkflowCallbacks
 from hypergraph.config.models.hyper_graph_config import HyperGraphConfig
 from hypergraph.data_model.data_reader import DataReader
+from hypergraph.index.operations.resolve_entities.resolve_entities import (
+    resolve_entities,
+)
 from hypergraph.index.run.utils import get_update_table_providers
 from hypergraph.index.typing.context import PipelineRunContext
 from hypergraph.index.typing.workflow import WorkflowFunctionOutput
@@ -63,20 +66,61 @@ async def _update_entities_and_relationships(
     cache: Cache,
     callbacks: WorkflowCallbacks,
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
-    """Update Final Entities  and Relationships output."""
+    """Update Final Entities and Relationships output."""
     old_entities = await DataReader(previous_table_provider).entities()
     delta_entities = await DataReader(delta_table_provider).entities()
+
+    # Read relationships early — needed for cross-index entity resolution
+    old_relationships = await DataReader(previous_table_provider).relationships()
+    delta_relationships = await DataReader(delta_table_provider).relationships()
+
+    # LLM-based entity resolution across old + new entities
+    # This catches aliases (e.g. "Microsoft Corp" vs "Microsoft Corporation")
+    # that exact-title grouping would miss.
+    if config.entity_resolution.enabled:
+        logger.info("Running cross-index entity resolution on merged entities...")
+        from hypergraph.index.workflows.entity_resolution_helpers import (
+            create_entity_resolution_model,
+        )
+
+        resolution_model, resolution_prompt = create_entity_resolution_model(
+            config, cache
+        )
+
+        n_old_ent = len(old_entities)
+        n_old_rel = len(old_relationships)
+
+        combined_entities = pd.concat(
+            [old_entities, delta_entities], ignore_index=True, copy=False
+        )
+        combined_relationships = pd.concat(
+            [old_relationships, delta_relationships], ignore_index=True, copy=False
+        )
+
+        combined_entities, combined_relationships = await resolve_entities(
+            entities=combined_entities,
+            relationships=combined_relationships,
+            callbacks=callbacks,
+            model=resolution_model,
+            prompt=resolution_prompt,
+            num_threads=config.concurrent_requests,
+        )
+
+        # resolve_entities only renames titles in-place; it never drops,
+        # reorders, or merges rows, so the positional split is safe.
+        # We still need old/delta separated because _group_and_resolve_entities
+        # builds an id_mapping {delta_id → old_id} used downstream.
+        old_entities = combined_entities.iloc[:n_old_ent].reset_index(drop=True)
+        delta_entities = combined_entities.iloc[n_old_ent:].reset_index(drop=True)
+        old_relationships = combined_relationships.iloc[:n_old_rel].reset_index(drop=True)
+        delta_relationships = combined_relationships.iloc[n_old_rel:].reset_index(drop=True)
 
     merged_entities_df, entity_id_mapping = _group_and_resolve_entities(
         old_entities, delta_entities
     )
 
-    # Update Relationships
-    old_relationships = await DataReader(previous_table_provider).relationships()
-    delta_relationships = await DataReader(delta_table_provider).relationships()
     merged_relationships_df = _update_and_merge_relationships(
-        old_relationships,
-        delta_relationships,
+        old_relationships, delta_relationships,
     )
 
     summarization_model_config = config.get_completion_model_config(

@@ -30,6 +30,9 @@ from hypergraph.index.operations.summarize_descriptions.summarize_descriptions i
 from hypergraph.index.typing.context import PipelineRunContext
 from hypergraph.index.typing.workflow import WorkflowFunctionOutput
 from hypergraph.index.utils.string import clean_str
+from hypergraph.index.workflows.entity_resolution_helpers import (
+    create_entity_resolution_model,
+)
 from hypergraph.prompts.index.extract_graph import TYPE_PROPOSAL_CANONIZATION_PROMPT
 
 if TYPE_CHECKING:
@@ -94,17 +97,9 @@ async def run_workflow(
     resolution_model = None
     resolution_prompt = ""
     if resolution_enabled:
-        resolution_model_config = config.get_completion_model_config(
-            config.entity_resolution.completion_model_id
-        )
-        resolution_prompts = config.entity_resolution.resolved_prompts()
-        resolution_prompt = resolution_prompts.resolution_prompt
-        resolution_model = create_completion(
-            resolution_model_config,
-            cache=context.cache.child(
-                config.entity_resolution.model_instance_name
-            ),
-            cache_key_creator=cache_key_creator,
+
+        resolution_model, resolution_prompt = create_entity_resolution_model(
+            config, context.cache
         )
 
     entities, relationships, raw_entities, raw_relationships = await extract_graph(
