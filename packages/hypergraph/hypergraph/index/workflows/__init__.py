@@ -30,6 +30,9 @@ from .extract_covariates import (
 from .extract_graph import (
     run_workflow as run_extract_graph,
 )
+from .extract_codebase_graph import (
+    run_workflow as run_extract_codebase_graph,
+)
 from .extract_graph_nlp import (
     run_workflow as run_extract_graph_nlp,
 )
@@ -38,6 +41,9 @@ from .finalize_graph import (
 )
 from .generate_text_embeddings import (
     run_workflow as run_generate_text_embeddings,
+)
+from .load_codebase import (
+    run_workflow as run_load_codebase,
 )
 from .load_input_documents import (
     run_workflow as run_load_input_documents,
@@ -77,6 +83,7 @@ from .update_text_units import (
 PipelineFactory.register_all({  # noqa: RUF067
     "load_input_documents": run_load_input_documents,
     "load_update_documents": run_load_update_documents,
+    "load_codebase": run_load_codebase,
     "create_base_text_units": run_create_base_text_units,
     "create_communities": run_create_communities,
     "create_community_reports_text": run_create_community_reports_text,
@@ -86,6 +93,7 @@ PipelineFactory.register_all({  # noqa: RUF067
     "create_final_text_units": run_create_final_text_units,
     "extract_graph_nlp": run_extract_graph_nlp,
     "extract_graph": run_extract_graph,
+    "extract_codebase_graph": run_extract_codebase_graph,
     "finalize_graph": run_finalize_graph,
     "generate_text_embeddings": run_generate_text_embeddings,
     "prune_graph": run_prune_graph,
@@ -98,3 +106,4 @@ PipelineFactory.register_all({  # noqa: RUF067
     "update_text_units": run_update_text_units,
     "update_clean_state": run_update_clean_state,
 })
+

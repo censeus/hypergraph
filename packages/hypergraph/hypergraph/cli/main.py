@@ -551,3 +551,83 @@ def _query_cli(
             )
         case _:
             raise ValueError(INVALID_METHOD_ERROR)
+
+
+@app.command("codegraph")
+def _codegraph_cli(
+    source: Path = typer.Argument(
+        help="The codebase directory to scan.",
+        exists=True,
+        dir_okay=True,
+        file_okay=False,
+        readable=True,
+        resolve_path=True,
+    ),
+    root: Path = typer.Option(
+        Path.cwd(),
+        "--root",
+        "-r",
+        help="The project root directory (for config and output).",
+        dir_okay=True,
+        writable=True,
+        file_okay=False,
+        resolve_path=True,
+        autocompletion=ROOT_AUTOCOMPLETE,
+    ),
+    verbose: bool = typer.Option(
+        False,
+        "--verbose",
+        "-v",
+        help="Run with verbose logging.",
+    ),
+    cache: bool = typer.Option(
+        True,
+        "--cache/--no-cache",
+        help="Use LLM cache.",
+    ),
+    skip_validation: bool = typer.Option(
+        False,
+        "--skip-validation",
+        help="Skip any preflight validation.",
+    ),
+    extensions: list[str] | None = typer.Option(
+        None,
+        "--ext",
+        help=(
+            "Repeatable. File extensions to parse. "
+            "Example: --ext .py --ext .pyi"
+        ),
+    ),
+    exclude: list[str] | None = typer.Option(
+        None,
+        "--exclude",
+        help=(
+            "Repeatable. Glob patterns to exclude. "
+            "Example: --exclude '**/tests/**'"
+        ),
+    ),
+    extract_calls: bool | None = typer.Option(
+        None,
+        "--calls/--no-calls",
+        help="Extract function CALLS relationships.",
+    ),
+    extract_decorators: bool | None = typer.Option(
+        None,
+        "--decorators/--no-decorators",
+        help="Extract DECORATES relationships.",
+    ),
+) -> None:
+    """Extract a structural ontology graph from a codebase using static analysis."""
+    from hypergraph.cli.codegraph import codegraph_cli
+
+    codegraph_cli(
+        root_dir=root,
+        source_dir=source,
+        verbose=verbose,
+        cache=cache,
+        skip_validation=skip_validation,
+        extensions=extensions,
+        exclude=exclude,
+        extract_calls=extract_calls,
+        extract_decorators=extract_decorators,
+    )
