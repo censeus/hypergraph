@@ -95,3 +95,14 @@ PipelineFactory.register_pipeline(
     IndexingMethod.FastUpdate,
     ["load_update_documents", *_fast_workflows, *_update_workflows],
 )
+_codebase_workflows = [
+    "extract_codebase_graph",
+    "finalize_graph",
+    "create_communities",
+    "create_final_text_units",
+    "create_community_reports_text",
+    "generate_text_embeddings",
+]
+PipelineFactory.register_pipeline(
+    IndexingMethod.Codebase, ["load_codebase", *_codebase_workflows]
+)

@@ -52,6 +52,8 @@ class IndexingMethod(str, Enum):
     """Incremental update with standard indexing."""
     FastUpdate = "fast-update"
     """Incremental update with fast indexing."""
+    Codebase = "codebase"
+    """Codebase ontology extraction using static AST analysis."""
 
 
 class NounPhraseExtractorType(str, Enum):

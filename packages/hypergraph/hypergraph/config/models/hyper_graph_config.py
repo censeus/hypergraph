@@ -26,6 +26,9 @@ from hypergraph.config.models.drift_search_config import DRIFTSearchConfig
 from hypergraph.config.models.embed_text_config import EmbedTextConfig
 from hypergraph.config.models.entity_resolution_config import EntityResolutionConfig
 from hypergraph.config.models.extract_claims_config import ExtractClaimsConfig
+from hypergraph.config.models.extract_codebase_graph_config import (
+    ExtractCodebaseGraphConfig,
+)
 from hypergraph.config.models.extract_graph_config import ExtractGraphConfig
 from hypergraph.config.models.extract_graph_nlp_config import ExtractGraphNLPConfig
 from hypergraph.config.models.global_search_config import GlobalSearchConfig
@@ -204,6 +207,12 @@ class HyperGraphConfig(BaseModel):
         default=ExtractGraphNLPConfig(),
     )
     """The NLP-based graph extraction configuration to use."""
+
+    extract_codebase_graph: ExtractCodebaseGraphConfig = Field(
+        description="The codebase graph extraction configuration to use.",
+        default=ExtractCodebaseGraphConfig(),
+    )
+    """The codebase graph extraction configuration (AST-based ontology)."""
 
     prune_graph: PruneGraphConfig = Field(
         description="The graph pruning configuration to use.",
