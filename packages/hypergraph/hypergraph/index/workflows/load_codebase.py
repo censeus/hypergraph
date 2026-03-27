@@ -33,6 +33,7 @@ async def run_workflow(
     extensions = cb_config.file_extensions
     excludes = cb_config.exclude_patterns
     max_depth = cb_config.max_depth
+    file_filter = cb_config.file_filter
     root_depth = len(root.parts)
 
     async with (
@@ -40,18 +41,26 @@ async def run_workflow(
         context.output_table_provider.open("text_units") as text_units_table,
     ):
         file_count = 0
-        for filepath in sorted(root.rglob("*")):
+
+        # If file_filter is set, iterate only those files
+        if file_filter is not None:
+            file_iter = sorted(root / f for f in file_filter if (root / f).is_file())
+        else:
+            file_iter = sorted(root.rglob("*"))
+
+        for filepath in file_iter:
             if not filepath.is_file():
                 continue
             if filepath.suffix not in extensions:
                 continue
-            if max_depth is not None:
-                depth = len(filepath.parts) - root_depth
-                if depth > max_depth:
+            if file_filter is None:
+                if max_depth is not None:
+                    depth = len(filepath.parts) - root_depth
+                    if depth > max_depth:
+                        continue
+                relative = str(filepath.relative_to(root))
+                if any(fnmatch.fnmatch(relative, pat) for pat in excludes):
                     continue
-            relative = str(filepath.relative_to(root))
-            if any(fnmatch.fnmatch(relative, pat) for pat in excludes):
-                continue
 
             try:
                 text = filepath.read_text(encoding="utf-8", errors="replace")
@@ -79,9 +88,11 @@ async def run_workflow(
             # One text unit per file
             tu_row = {
                 "id": "",
+                "short_id": str(file_count),
                 "document_id": doc_row["id"],
                 "text": text,
                 "n_tokens": len(text.split()),  # rough estimate
+                "human_readable_id": file_count,
             }
             tu_row["id"] = gen_sha512_hash(tu_row, ["text"])
             await text_units_table.write(tu_row)

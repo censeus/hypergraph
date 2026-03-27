@@ -1,16 +1,22 @@
 # Copyright (c) 2024 Microsoft Corporation.
 # Licensed under the MIT License
 
-"""Static AST-based codebase parser for extracting structural knowledge graphs.
+"""Hierarchical AST-based codebase parser for extracting structural knowledge graphs.
 
-Walks a directory of Python source files and extracts entities (modules, classes,
-functions, methods) and relationships (imports, containment, inheritance, calls,
-decorators) into DataFrames compatible with Hypergraph's entity/relationship schema.
+Walks a directory of Python source files and extracts a 4-level hierarchy:
+  PACKAGE → MODULE → CLASS → METHOD/FUNCTION
+
+Relationships:
+  CONTAINS  — structural parent→child
+  DEPENDS_ON — package→package (aggregated from imports)
+  IMPORTS   — module→module
+  INHERITS  — class→class
 """
 
 import ast
 import fnmatch
 import logging
+from collections import defaultdict
 from pathlib import Path
 
 import pandas as pd
@@ -26,9 +32,9 @@ def parse_codebase(
     root_dir: str | Path,
     file_extensions: list[str] | None = None,
     exclude_patterns: list[str] | None = None,
-    extract_calls: bool = True,
-    extract_decorators: bool = True,
+    skip_tests: bool = True,
     max_depth: int | None = None,
+    file_filter: list[str] | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Parse a codebase directory and return entity / relationship DataFrames.
 
@@ -40,12 +46,13 @@ def parse_codebase(
         File extensions to include (default: ``[".py"]``).
     exclude_patterns:
         Glob patterns for paths to skip (matched against relative paths).
-    extract_calls:
-        Whether to extract ``CALLS`` relationships.
-    extract_decorators:
-        Whether to extract ``DECORATES`` relationships.
+    skip_tests:
+        Whether to skip test files (``test_*.py``, ``*_test.py``).
     max_depth:
         Maximum directory depth to scan (``None`` = unlimited).
+    file_filter:
+        If provided, only parse files whose relative paths are in this list.
+        Used for diff-only indexing (e.g., branch comparisons).
 
     Returns
     -------
@@ -71,8 +78,15 @@ def parse_codebase(
 
     entities: list[dict] = []
     relationships: list[dict] = []
+    # Track which modules belong to which package, and module-level imports
+    package_modules: dict[str, list[str]] = defaultdict(list)
+    module_imports: dict[str, set[str]] = defaultdict(set)
 
-    for filepath in _walk_files(root, extensions, excludes, max_depth):
+    # ── Step 1: Discover packages ──
+    _discover_packages(root, extensions, excludes, max_depth, entities)
+
+    # ── Step 2: Parse each source file ──
+    for filepath in _walk_files(root, extensions, excludes, max_depth, skip_tests, file_filter):
         try:
             source = filepath.read_text(encoding="utf-8", errors="replace")
             tree = ast.parse(source, filename=str(filepath))
@@ -81,16 +95,38 @@ def parse_codebase(
             continue
 
         module_name = _file_to_module_name(filepath, root)
+        package_name = _module_to_package(module_name)
+
+        # Track package→module mapping
+        if package_name:
+            package_modules[package_name].append(module_name)
+
         _extract_from_module(
             tree=tree,
             module_name=module_name,
             filepath=filepath,
-            source=source,
             entities=entities,
             relationships=relationships,
-            extract_calls=extract_calls,
-            extract_decorators=extract_decorators,
+            module_imports=module_imports,
         )
+
+    # ── Step 3: Add PACKAGE→MODULE CONTAINS relationships ──
+    for pkg, modules in package_modules.items():
+        for mod in modules:
+            relationships.append({
+                "source": pkg,
+                "target": mod,
+                "description": f"contains: package {pkg} contains module {mod.split('.')[-1]}",
+                "weight": 1.0,
+                "source_id": pkg,
+            })
+
+    # ── Step 4: Build PACKAGE→PACKAGE DEPENDS_ON ──
+    _build_package_dependencies(
+        module_imports=module_imports,
+        package_modules=package_modules,
+        relationships=relationships,
+    )
 
     entities_df = pd.DataFrame(
         entities, columns=["title", "type", "description", "source_id"]
@@ -102,14 +138,12 @@ def parse_codebase(
 
     if len(entities_df) == 0:
         logger.warning("No entities extracted from codebase at %s", root)
-    if len(relationships_df) == 0:
-        logger.warning("No relationships extracted from codebase at %s", root)
 
     return entities_df, relationships_df
 
 
 # ---------------------------------------------------------------------------
-# File walking
+# File walking & package discovery
 # ---------------------------------------------------------------------------
 
 
@@ -118,9 +152,25 @@ def _walk_files(
     extensions: list[str],
     exclude_patterns: list[str],
     max_depth: int | None,
+    skip_tests: bool = True,
+    file_filter: list[str] | None = None,
 ) -> list[Path]:
     """Collect matching source files under *root*."""
-    files: list[Path] = []
+    # If file_filter is provided, resolve those paths directly
+    if file_filter is not None:
+        files: list[Path] = []
+        for rel_path in sorted(file_filter):
+            path = root / rel_path
+            if not path.is_file():
+                continue
+            if path.suffix not in extensions:
+                continue
+            if skip_tests and _is_test_file(path):
+                continue
+            files.append(path)
+        return files
+
+    files = []
     root_depth = len(root.parts)
 
     for path in sorted(root.rglob("*")):
@@ -139,9 +189,78 @@ def _walk_files(
         if any(fnmatch.fnmatch(relative, pat) for pat in exclude_patterns):
             continue
 
+        # Skip test files
+        if skip_tests and _is_test_file(path):
+            continue
+
         files.append(path)
 
     return files
+
+
+def _is_test_file(path: Path) -> bool:
+    """Check if a file is a test file based on its name."""
+    name = path.stem
+    return (
+        name.startswith("test_")
+        or name.endswith("_test")
+        or name == "conftest"
+    )
+
+
+def _discover_packages(
+    root: Path,
+    extensions: list[str],
+    exclude_patterns: list[str],
+    max_depth: int | None,
+    entities: list[dict],
+) -> None:
+    """Create PACKAGE entities for directories that contain Python files."""
+    root_depth = len(root.parts)
+    seen_packages: set[str] = set()
+
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        if path.suffix not in extensions:
+            continue
+
+        relative = str(path.relative_to(root))
+        if any(fnmatch.fnmatch(relative, pat) for pat in exclude_patterns):
+            continue
+
+        if max_depth is not None:
+            depth = len(path.parts) - root_depth
+            if depth > max_depth:
+                continue
+
+        # Build package names from the directory chain
+        rel_dir = path.parent.relative_to(root)
+        parts = list(rel_dir.parts)
+
+        # Create package entities for each level in the path
+        for i in range(len(parts)):
+            pkg_name = ".".join(parts[: i + 1])
+            if pkg_name and pkg_name not in seen_packages:
+                seen_packages.add(pkg_name)
+
+                # Try to read package docstring from __init__.py
+                init_path = root / "/".join(parts[: i + 1]) / "__init__.py"
+                pkg_doc = ""
+                if init_path.exists():
+                    try:
+                        source = init_path.read_text(encoding="utf-8", errors="replace")
+                        tree = ast.parse(source)
+                        pkg_doc = ast.get_docstring(tree) or ""
+                    except SyntaxError:
+                        pass
+
+                entities.append({
+                    "title": pkg_name,
+                    "type": "PACKAGE",
+                    "description": _truncate(pkg_doc, 500) or f"Package: {pkg_name}",
+                    "source_id": pkg_name,
+                })
 
 
 def _file_to_module_name(filepath: Path, root: Path) -> str:
@@ -157,6 +276,12 @@ def _file_to_module_name(filepath: Path, root: Path) -> str:
     return ".".join(parts) if parts else filepath.stem
 
 
+def _module_to_package(module_name: str) -> str:
+    """Get the immediate parent package of a module."""
+    parts = module_name.rsplit(".", 1)
+    return parts[0] if len(parts) > 1 else ""
+
+
 # ---------------------------------------------------------------------------
 # AST extraction
 # ---------------------------------------------------------------------------
@@ -166,24 +291,42 @@ def _extract_from_module(
     tree: ast.Module,
     module_name: str,
     filepath: Path,
-    source: str,
     entities: list[dict],
     relationships: list[dict],
-    extract_calls: bool,
-    extract_decorators: bool,
+    module_imports: dict[str, set[str]],
 ) -> None:
     """Extract entities and relationships from a single parsed module."""
     source_id = module_name
 
-    # Module entity
+    # Collect top-level function names for the module description
+    top_functions: list[str] = []
+    top_classes: list[str] = []
+
+    for node in ast.iter_child_nodes(tree):
+        if isinstance(node, ast.ClassDef):
+            top_classes.append(node.name)
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            if not node.name.startswith("_"):
+                top_functions.append(_build_signature(node))
+
+    # Module entity with enriched description
     module_doc = ast.get_docstring(tree) or ""
+    description_parts = [module_doc or f"Module: {filepath.name}"]
+    if top_classes:
+        description_parts.append(f"Classes: {', '.join(top_classes)}")
+    if top_functions:
+        description_parts.append("Functions: " + "; ".join(top_functions[:5]))
+        if len(top_functions) > 5:
+            description_parts.append(f"  ... and {len(top_functions) - 5} more")
+
     entities.append({
         "title": module_name,
         "type": "MODULE",
-        "description": _truncate(module_doc, 500) or f"Module: {filepath.name}",
+        "description": _truncate("\n".join(description_parts), 800),
         "source_id": source_id,
     })
 
+    # Extract child entities
     for node in ast.iter_child_nodes(tree):
         if isinstance(node, ast.ClassDef):
             _extract_class(
@@ -192,8 +335,6 @@ def _extract_from_module(
                 source_id=source_id,
                 entities=entities,
                 relationships=relationships,
-                extract_calls=extract_calls,
-                extract_decorators=extract_decorators,
             )
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             _extract_function(
@@ -203,8 +344,6 @@ def _extract_from_module(
                 source_id=source_id,
                 entities=entities,
                 relationships=relationships,
-                extract_calls=extract_calls,
-                extract_decorators=extract_decorators,
             )
         elif isinstance(node, (ast.Import, ast.ImportFrom)):
             _extract_import(
@@ -212,6 +351,7 @@ def _extract_from_module(
                 module_name=module_name,
                 source_id=source_id,
                 relationships=relationships,
+                module_imports=module_imports,
             )
 
 
@@ -221,8 +361,6 @@ def _extract_class(
     source_id: str,
     entities: list[dict],
     relationships: list[dict],
-    extract_calls: bool,
-    extract_decorators: bool,
 ) -> None:
     """Extract a class entity plus its methods and relationships."""
     class_fqn = f"{module_name}.{node.name}"
@@ -230,14 +368,33 @@ def _extract_class(
     bases = [_name_from_node(base) for base in node.bases]
     bases_str = ", ".join(b for b in bases if b)
 
-    description = class_doc or f"Class {node.name}"
+    # Collect method signatures for the class description
+    methods: list[str] = []
+    public_methods: list[str] = []
+    for item in node.body:
+        if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            sig = _build_signature(item)
+            methods.append(item.name)
+            if not item.name.startswith("_") or item.name == "__init__":
+                public_methods.append(sig)
+
+    # Build rich description
+    desc_parts = []
+    if class_doc:
+        desc_parts.append(class_doc)
+    else:
+        desc_parts.append(f"Class {node.name}")
     if bases_str:
-        description += f" (extends: {bases_str})"
+        desc_parts.append(f"Extends: {bases_str}")
+    if public_methods:
+        desc_parts.append("Methods: " + "; ".join(public_methods[:8]))
+        if len(public_methods) > 8:
+            desc_parts.append(f"  ... and {len(public_methods) - 8} more")
 
     entities.append({
         "title": class_fqn,
         "type": "CLASS",
-        "description": _truncate(description, 500),
+        "description": _truncate("\n".join(desc_parts), 800),
         "source_id": source_id,
     })
 
@@ -254,7 +411,6 @@ def _extract_class(
     for base in node.bases:
         base_name = _name_from_node(base)
         if base_name:
-            # Try to resolve base within same module
             base_fqn = f"{module_name}.{base_name}" if "." not in base_name else base_name
             relationships.append({
                 "source": class_fqn,
@@ -264,20 +420,7 @@ def _extract_class(
                 "source_id": source_id,
             })
 
-    # Decorators
-    if extract_decorators:
-        for decorator in node.decorator_list:
-            dec_name = _name_from_node(decorator)
-            if dec_name:
-                relationships.append({
-                    "source": dec_name,
-                    "target": class_fqn,
-                    "description": f"decorates: @{dec_name} decorates {node.name}",
-                    "weight": 1.0,
-                    "source_id": source_id,
-                })
-
-    # Methods
+    # Methods as entities
     for item in node.body:
         if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
             _extract_function(
@@ -287,8 +430,6 @@ def _extract_class(
                 source_id=source_id,
                 entities=entities,
                 relationships=relationships,
-                extract_calls=extract_calls,
-                extract_decorators=extract_decorators,
             )
 
 
@@ -299,8 +440,6 @@ def _extract_function(
     source_id: str,
     entities: list[dict],
     relationships: list[dict],
-    extract_calls: bool,
-    extract_decorators: bool,
 ) -> None:
     """Extract a function/method entity and its relationships."""
     func_fqn = f"{parent_name}.{node.name}"
@@ -327,45 +466,18 @@ def _extract_function(
         "source_id": source_id,
     })
 
-    # Decorators
-    if extract_decorators:
-        for decorator in node.decorator_list:
-            dec_name = _name_from_node(decorator)
-            if dec_name:
-                relationships.append({
-                    "source": dec_name,
-                    "target": func_fqn,
-                    "description": f"decorates: @{dec_name} decorates {node.name}",
-                    "weight": 1.0,
-                    "source_id": source_id,
-                })
-
-    # CALLS: best-effort static call extraction
-    if extract_calls:
-        seen_calls: set[str] = set()
-        for child in ast.walk(node):
-            if isinstance(child, ast.Call):
-                callee = _name_from_node(child.func)
-                if callee and callee not in seen_calls:
-                    seen_calls.add(callee)
-                    relationships.append({
-                        "source": func_fqn,
-                        "target": callee,
-                        "description": f"calls: {node.name} calls {callee}",
-                        "weight": 0.5,
-                        "source_id": source_id,
-                    })
-
 
 def _extract_import(
     node: ast.Import | ast.ImportFrom,
     module_name: str,
     source_id: str,
     relationships: list[dict],
+    module_imports: dict[str, set[str]],
 ) -> None:
     """Extract IMPORTS relationships from import statements."""
     if isinstance(node, ast.Import):
         for alias in node.names:
+            module_imports[module_name].add(alias.name)
             relationships.append({
                 "source": module_name,
                 "target": alias.name,
@@ -374,12 +486,53 @@ def _extract_import(
                 "source_id": source_id,
             })
     elif isinstance(node, ast.ImportFrom) and node.module:
+        module_imports[module_name].add(node.module)
         relationships.append({
             "source": module_name,
             "target": node.module,
             "description": f"imports: {module_name} imports from {node.module}",
             "weight": 1.0,
             "source_id": source_id,
+        })
+
+
+def _build_package_dependencies(
+    module_imports: dict[str, set[str]],
+    package_modules: dict[str, list[str]],
+    relationships: list[dict],
+) -> None:
+    """Build PACKAGE→PACKAGE DEPENDS_ON by aggregating module imports."""
+    # Build reverse map: module → package
+    module_to_pkg: dict[str, str] = {}
+    for pkg, modules in package_modules.items():
+        for mod in modules:
+            module_to_pkg[mod] = pkg
+
+    # Count inter-package dependencies
+    pkg_deps: dict[tuple[str, str], int] = defaultdict(int)
+    for module, imports in module_imports.items():
+        src_pkg = module_to_pkg.get(module)
+        if not src_pkg:
+            continue
+        for imp in imports:
+            # Find the package of the imported module
+            tgt_pkg = module_to_pkg.get(imp)
+            if not tgt_pkg:
+                # Try prefix matching (e.g., import from sub-module)
+                for known_mod, known_pkg in module_to_pkg.items():
+                    if imp.startswith(known_mod) or known_mod.startswith(imp):
+                        tgt_pkg = known_pkg
+                        break
+            if tgt_pkg and tgt_pkg != src_pkg:
+                pkg_deps[(src_pkg, tgt_pkg)] += 1
+
+    for (src, tgt), count in pkg_deps.items():
+        relationships.append({
+            "source": src,
+            "target": tgt,
+            "description": f"depends_on: {src} depends on {tgt} ({count} imports)",
+            "weight": min(count / 5.0, 3.0),  # Scale weight by import count
+            "source_id": src,
         })
 
 
@@ -407,8 +560,10 @@ def _build_signature(node: ast.FunctionDef | ast.AsyncFunctionDef) -> str:
     args = node.args
     parts: list[str] = []
 
-    # Positional args
+    # Positional args (skip 'self' and 'cls')
     for arg in args.args:
+        if arg.arg in ("self", "cls"):
+            continue
         annotation = _annotation_str(arg.annotation)
         name = arg.arg
         parts.append(f"{name}: {annotation}" if annotation else name)

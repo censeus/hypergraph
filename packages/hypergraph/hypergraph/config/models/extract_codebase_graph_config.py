@@ -47,3 +47,8 @@ class ExtractCodebaseGraphConfig(BaseModel):
         description="Maximum directory depth to scan (None = unlimited).",
         default=None,
     )
+
+    file_filter: list[str] | None = Field(
+        description="If set, only parse files whose relative paths are in this list.",
+        default=None,
+    )

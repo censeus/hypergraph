@@ -30,9 +30,8 @@ async def run_workflow(
         root_dir=root_dir,
         file_extensions=cb_config.file_extensions,
         exclude_patterns=cb_config.exclude_patterns,
-        extract_calls=cb_config.extract_calls,
-        extract_decorators=cb_config.extract_decorators,
         max_depth=cb_config.max_depth,
+        file_filter=cb_config.file_filter,
     )
 
     if len(entities) == 0:
